@@ -1,0 +1,17 @@
+site_name: My GitHub Site
+site_url: https://maroph.github.io/
+site_description: my personal GitHub site
+site_author: Manfred Rosenboom (maroph)
+
+theme:
+    name: mkdocs
+
+nav:
+    - Home: index.md
+    - Info:
+        - About: info/index.md
+        - License: info/license.md
+
+docs_dir: docs-src
+site_dir: docs
+
