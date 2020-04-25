@@ -1,0 +1,103 @@
+#!/bin/bash
+#
+##############################################
+# Copyright (c) 2020 by Manfred Rosenboom    #
+#                                            #
+# This work is licensed under a MIT License. #
+# https://choosealicense.com/licenses/mit/   #
+##############################################
+#
+SCRIPT_NAME=`basename $0`
+SCRIPT_DIR=`dirname $0`
+VERSION="${SCRIPT_NAME}  1  (25-APR-2020)"
+#
+###############################################################################
+#
+export LANG="en_US.UTF-8"
+#
+###############################################################################
+#
+print_usage() {
+    cat - <<EOT
+
+Usage: ${SCRIPT_NAME} [option(s)]
+       This command ...
+
+Options:
+  -h|--help    : show this help and exit
+  -V|--version : show version information and exit
+
+EOT
+}
+#
+###############################################################################
+#
+cwd=`pwd`
+if [ "${SCRIPT_DIR}" = "." ]
+then
+    SCRIPT_DIR=$cwd
+else
+    cd ${SCRIPT_DIR}
+    SCRIPT_DIR=`pwd`
+    cd $cwd
+fi
+cwd=
+unset cwd
+#
+###############################################################################
+#
+while :
+do
+    option=$1
+    case "$1" in
+        -h | --help)    
+            print_usage
+            exit 0
+            ;;
+        -V | --version)
+            echo ${VERSION}
+            exit 0
+            ;;
+        --)
+            shift 1
+            break
+            ;;
+        --*)
+            echo "${SCRIPT_NAME}: '$1' : unknown option"
+            exit 1
+            ;;
+        -*)
+            echo "${SCRIPT_NAME}: '$1' : unknown option"
+            exit 1
+            ;;
+        *)  break;;
+    esac
+#
+    shift 1
+done
+#
+###############################################################################
+#
+cd ${SCRIPT_DIR} || exit 1
+rm -fr docs
+mkdir docs || exit 1
+#
+mkdocs build || exit 1
+#
+find docs -type d -exec chmod 750 {} \;
+find docs -type f -exec chmod 640 {} \;
+#
+rm -f ../LICENSE ../README.md
+rm -f ../*.html
+rm -f ../sitemap*
+rm -fr ../css ../fonts ../img ../info ../js ../search
+#
+cp -p LICENSE README.md ..
+#
+cd docs
+cp -rp * ../..
+#
+###############################################################################
+#
+exit 0
+
