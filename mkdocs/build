@@ -21,7 +21,7 @@ print_usage() {
     cat - <<EOT
 
 Usage: ${SCRIPT_NAME} [option(s)]
-       This command ...
+       Call mkdocs to build the maroph.github.io related files
 
 Options:
   -h|--help    : show this help and exit
@@ -79,23 +79,50 @@ done
 ###############################################################################
 #
 cd ${SCRIPT_DIR} || exit 1
+#
+echo "${SCRIPT_NAME}: rm -fr docs"
 rm -fr docs
 mkdir docs || exit 1
 #
+echo "${SCRIPT_NAME}: mkdocs build"
 mkdocs build || exit 1
 #
+echo ""
+echo "${SCRIPT_NAME}: adapt permissions in directory docs"
 find docs -type d -exec chmod 750 {} \;
 find docs -type f -exec chmod 640 {} \;
 #
+echo ""
+echo "${SCRIPT_NAME}: update site data"
 rm -f ../LICENSE ../README.md
 rm -f ../*.html
 rm -f ../sitemap*
 rm -fr ../css ../fonts ../img ../info ../js ../search
 #
-cp -p LICENSE README.md ..
+if [ ! -r ../.nojekyll ]
+then
+    touch  ../.nojekyll || exit 1
+fi
 #
-cd docs
-cp -rp * ../..
+cp -p LICENSE README.md .. || exit 1
+#
+cd docs || exit 1
+cp -rp * ../.. || exit 1
+#
+cd ../.. || exit 1
+#
+echo ""
+echo "${SCRIPT_NAME}: git add ."
+git add . || exit 1
+#
+echo ""
+echo "${SCRIPT_NAME}: git status"
+git add . || exit 1
+git status
+#
+#echo ""
+#echo "${SCRIPT_NAME}: git log -3"
+#git log --graph --decorate --oneline -3
 #
 ###############################################################################
 #

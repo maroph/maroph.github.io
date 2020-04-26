@@ -3,13 +3,16 @@ site_url: https://maroph.github.io/
 site_description: My GitHub user site
 site_author: Manfred Rosenboom (maroph)
 
+repo_url: https://github.com/maroph/maroph.github.io/
+edit_uri: ""
+
 theme:
     name: mkdocs
 
 nav:
     - Home: index.md
     - Info:
-        - About: info/index.md
+        - About: info/about.md
         - License: info/license.md
 
 docs_dir: docs-src
