@@ -4,7 +4,7 @@ site_description: My GitHub user site
 site_author: Manfred Rosenboom (maroph)
 
 repo_url: https://github.com/maroph/maroph.github.io/
-edit_uri: ""
+edit_uri: "edit/master/mkdocs/docs-src"
 
 theme:
     name: mkdocs
