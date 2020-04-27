@@ -1,22 +1,45 @@
 site_name: My GitHub Site
 site_url: https://maroph.github.io/
-site_description: My GitHub user site
+site_description: My GitHub related site
 site_author: Manfred Rosenboom (maroph)
 
+repo_name: GitHub
 repo_url: https://github.com/maroph/maroph.github.io/
-edit_uri: "edit/master/mkdocs/docs-src"
+# edit_uri: "edit/master/mkdocs/docs-src"
+# view readonly version
+edit_uri: "blob/master/mkdocs/docs-src"
 
 theme:
     name: mkdocs
 
 nav:
     - Home: index.md
+    - Links:
+        - My Sites:
+            - Blogger: https://maroph.blogspot.com/
+            - GitHub: https://github.com/maroph/
+            - Gravatar: https://en.gravatar.com/maroph
+            - LinkedIn: https://www.linkedin.com/in/manfredrosenboom
+            - Pastebin: https://pastebin.com/u/maroph
+            - Twitter: https://twitter.com/maroph
+            - WordPress: https://maroph.wordpress.com
+        - Rankings:
+            - DB-Engines Ranking: https://db-engines.com/en/ranking
+            - TIOBE Index: https://www.tiobe.com/tiobe-index/
+        - Security:
+            - Certificate Search: https://crt.sh/
+            - Have I been pwned: https://haveibeenpwned.com/
+            - HPI Identity Leak Checker: https://sec.hpi.de/ilc/d?lang=en
+            - Mozilla CA PEM File: https://curl.haxx.se/docs/caextract.html
+            - SSL Server Test: https://www.ssllabs.com/ssltest/
     - Info:
-        - About: info/about.md
+        - About: https://github.com/maroph
         - License: info/license.md
 
 docs_dir: docs-src
 site_dir: docs
+
+use_directory_urls: false
 
 copyright: (c) 2020 Manfred Rosenboom (maroph)
 
