@@ -9,23 +9,27 @@
 #
 SCRIPT_NAME=`basename $0`
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  1  (25-APR-2020)"
+VERSION="${SCRIPT_NAME}  2  (04-MAY-2020)"
 #
 ###############################################################################
 #
 export LANG="en_US.UTF-8"
+#
+nocheck=0
 #
 ###############################################################################
 #
 print_usage() {
     cat - <<EOT
 
-Usage: ${SCRIPT_NAME} [option(s)]
+Usage: ${SCRIPT_NAME} [option(s)] [venv]
        Call mkdocs to build the maroph.github.io related files
 
 Options:
-  -h|--help    : show this help and exit
-  -V|--version : show version information and exit
+  -h|--help     : show this help and exit
+  -V|--version  : show version information and exit
+  -n|--no-check : don't check for the virtual environment
+  venv          : create the required virtual environment and exit
 
 EOT
 }
@@ -58,6 +62,9 @@ do
             echo ${VERSION}
             exit 0
             ;;
+        -n | --no-check)
+            nocheck=1
+            ;;
         --)
             shift 1
             break
@@ -75,6 +82,62 @@ do
 #
     shift 1
 done
+#
+###############################################################################
+#
+cd ${SCRIPT_DIR} || exit 1
+#
+###############################################################################
+#
+if [ "$1" = "venv" ]
+then
+    rm -fr ./venv
+    echo "${SCRIPT_NAME}: python3 -m venv ./venv"
+    python3 -m venv ./venv || exit 1
+    echo "${SCRIPT_NAME}: . ./venv/bin/activate"
+    . ./venv/bin/activate
+#
+    echo "python -m pip install --upgrade pip"
+    python -m pip install --upgrade pip || exit 1
+    echo "python -m pip install --upgrade setuptools"
+    python -m pip install --upgrade setuptools || exit 1
+    echo "python -m pip install --upgrade wheel"
+    python -m pip install --upgrade wheel || exit 1
+#
+    echo "python -m pip install --requirement ./requirements.txt"
+    python -m pip install --requirement ./requirements.txt || exit 1
+#
+    exit 0
+fi
+#
+###############################################################################
+#
+if [ "${VIRTUAL_ENV}" = "" ]
+then
+    if [ ! -d ${SCRIPT_DIR}/venv ]
+    then
+        echo "${SCRIPT_NAME}: directory ${SCRIPT_DIR}/venv missing"
+        echo "${SCRIPT_NAME}: call first './build venv'"
+        exit 1
+    fi
+#
+    if [ ! -r ${SCRIPT_DIR}/venv/bin/activate ]
+    then
+        echo "${SCRIPT_NAME}: script ${SCRIPT_DIR}/venv/bin/activate missing"
+        exit 1
+    fi
+    . ${SCRIPT_DIR}/venv/bin/activate
+else
+    if [ "${VIRTUAL_ENV}" != "${SCRIPT_DIR}/venv" ]
+    then
+        if [ ${nocheck} -eq 0 ]
+        then
+            echo "${SCRIPT_NAME}: wrong virtual environment"
+            echo "${SCRIPT_NAME}: \$VIRTUAL_ENV : ${VIRTUAL_ENV}"
+            exit 1
+        fi
+    fi
+fi
 #
 ###############################################################################
 #
@@ -117,7 +180,6 @@ git add . || exit 1
 #
 echo ""
 echo "${SCRIPT_NAME}: git status"
-git add . || exit 1
 git status
 #
 #echo ""
