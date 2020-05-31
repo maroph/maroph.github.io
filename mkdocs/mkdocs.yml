@@ -7,13 +7,17 @@ repo_name: GitHub
 repo_url: https://github.com/maroph/maroph.github.io/
 # edit_uri: "edit/master/mkdocs/docs-src"
 # view readonly version
-edit_uri: "blob/master/mkdocs/docs-src"
+# edit_uri: "blob/master/mkdocs/docs-src"
+edit_uri: ""
 
 theme:
     name: mkdocs
 
 nav:
     - Home: index.md
+    - Documents:
+      - mkdocs: docs/mkdocs.md
+      - OpenSSL: docs/openssl.md
     - Links:
         - My Sites:
             - Blogger: https://maroph.blogspot.com/
@@ -35,11 +39,15 @@ nav:
     - Info:
         - About: https://github.com/maroph
         - License: info/license.md
+        - Sources: info/sources.md
 
 docs_dir: docs-src
 site_dir: docs
 
 use_directory_urls: false
 
-copyright: (c) 2020 Manfred Rosenboom (maroph)
+copyright: Copyright (c) 2020 <a href="https://github.com/maroph">Manfred Rosenboom (maroph)</a>
+
+plugins:
+    - search
 
