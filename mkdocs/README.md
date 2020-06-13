@@ -51,3 +51,7 @@ to the .gitignore file.
     git commit -m "my commit message"
     git push
 
+## Get hash of last commit
+
+    git rev-parse [--short] HEAD
+
