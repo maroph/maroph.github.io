@@ -9,7 +9,7 @@
 #
 SCRIPT_NAME=`basename $0`
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  2  (19-MAY-2020)"
+VERSION="${SCRIPT_NAME}  3  (12-DEC-2020)"
 #
 ###############################################################################
 #
@@ -200,7 +200,17 @@ echo "${SCRIPT_NAME}: update site data"
 rm -f ../LICENSE ../README.md
 rm -f ../*.html
 rm -f ../sitemap*
-rm -fr ../css ../fonts ../img ../info ../js ../search
+#
+dirs=$(ls -d ../*/)
+#
+for d in ${dirs}
+do
+    if [[ $d != *"/mkdocs"* ]]
+    then
+        echo "rm -fr $d"
+        rm -fr $d
+    fi
+done
 #
 if [ ! -r ../.nojekyll ]
 then

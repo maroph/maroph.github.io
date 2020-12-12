@@ -8,16 +8,24 @@ repo_url: https://github.com/maroph/maroph.github.io/
 # edit_uri: "edit/master/mkdocs/docs-src"
 # view readonly version
 # edit_uri: "blob/master/mkdocs/docs-src"
+# link to github project site
 edit_uri: ""
 
 theme:
     name: mkdocs
+    # custom_dir: custom_theme/
+    highlightjs: true
+    hljs_style: github
+    nav_style: dark
+    navigation_depth: 2
+    shortcuts:
+        help: 191    # ?
+        next: 78     # n
+        previous: 80 # p
+        search: 83   # s
 
 nav:
     - Home: index.md
-    - Documents:
-      - mkdocs: docs/mkdocs.md
-      - OpenSSL: docs/openssl.md
     - Links:
         - My Sites:
             - Blogger: https://maroph.blogspot.com/
@@ -27,6 +35,13 @@ nav:
             - Pastebin: https://pastebin.com/u/maroph
             - Twitter: https://twitter.com/maroph
             - WordPress: https://maroph.wordpress.com
+        - Collaboration:
+            - DFN Terminplaner: https://terminplaner4.dfn.de/
+            - nuudel: https://nuudel.digitalcourage.de/
+            - NoPaste: https://nopaste.dnshome.org/
+            - PrivateBin: https://privatebin.net/
+            - Jitsi Meet (dnshome.org): https://meet.dnshome.org/
+            - Jitsi Meet (ffmuc.net): https://meet.ffmuc.net/
         - Rankings:
             - DB-Engines Ranking: https://db-engines.com/en/ranking
             - TIOBE Index: https://www.tiobe.com/tiobe-index/
@@ -50,5 +65,6 @@ strict: true
 copyright: Copyright (c) 2020 <a href="https://github.com/maroph">Manfred Rosenboom (maroph)</a>
 
 plugins:
-    - search
+    - search:
+        min_search_length: 3
 
