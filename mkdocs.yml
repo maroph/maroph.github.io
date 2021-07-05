@@ -62,7 +62,7 @@ site_dir: docs
 use_directory_urls: false
 strict: true
 
-copyright: Copyright (c) 2020 <a href="https://github.com/maroph">Manfred Rosenboom (maroph)</a>
+copyright: Copyright (c) 2020-2021 <a href="https://github.com/maroph">Manfred Rosenboom (maroph)</a>
 
 plugins:
     - search:

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 ##############################################
-# Copyright (c) 2020 by Manfred Rosenboom    #
+# Copyright (c) 2021 by Manfred Rosenboom    #
 #                                            #
 # This work is licensed under a MIT License. #
 # https://choosealicense.com/licenses/mit/   #
@@ -9,7 +9,7 @@
 #
 SCRIPT_NAME=`basename $0`
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  3  (12-DEC-2020)"
+VERSION="${SCRIPT_NAME}  4  (05-JUL-2021)"
 #
 ###############################################################################
 #
@@ -133,11 +133,11 @@ then
         exit 1
     fi
 #
-    rm -fr ./venv
-    echo "${SCRIPT_NAME}: python3 -m venv ./venv"
-    python3 -m venv ./venv || exit 1
-    echo "${SCRIPT_NAME}: . ./venv/bin/activate"
-    . ./venv/bin/activate
+    rm -fr ${SCRIPT_DIR}/venv
+    echo "${SCRIPT_NAME}: python3 -m venv v --prompt ven venv"
+    python3 -m venv --prompt venv ${SCRIPT_DIR}/venv || exit 1
+    echo "${SCRIPT_NAME}: . venv/bin/activate"
+    . ${SCRIPT_DIR}/venv/bin/activate
 #
     echo "python -m pip install --upgrade pip"
     python -m pip install --upgrade pip || exit 1
@@ -145,9 +145,11 @@ then
     python -m pip install --upgrade setuptools || exit 1
     echo "python -m pip install --upgrade wheel"
     python -m pip install --upgrade wheel || exit 1
+    echo "python -m pip install --upgrade mkdocs"
+    python -m pip install --upgrade mkdocs || exit 1
 #
-    echo "python -m pip install --requirement ./requirements.txt"
-    python -m pip install --requirement ./requirements.txt || exit 1
+    echo "python -m pip freeze >requirements.txt"
+    python -m pip freeze >${SCRIPT_DIR}/venv/requirements.txt || exit 1
 #
     exit 0
 fi
@@ -183,10 +185,6 @@ fi
 #
 ###############################################################################
 #
-echo "${SCRIPT_NAME}: rm -fr docs"
-rm -fr docs
-mkdir docs || exit 1
-#
 echo "${SCRIPT_NAME}: mkdocs build"
 mkdocs build || exit 1
 #
@@ -195,34 +193,10 @@ echo "${SCRIPT_NAME}: adapt permissions in directory docs"
 find docs -type d -exec chmod 750 {} \;
 find docs -type f -exec chmod 640 {} \;
 #
-echo ""
-echo "${SCRIPT_NAME}: update site data"
-rm -f ../LICENSE ../README.md
-rm -f ../*.html
-rm -f ../sitemap*
-#
-dirs=$(ls -d ../*/)
-#
-for d in ${dirs}
-do
-    if [[ $d != *"/mkdocs"* ]]
-    then
-        echo "rm -fr $d"
-        rm -fr $d
-    fi
-done
-#
-if [ ! -r ../.nojekyll ]
+if [ ! -r ${SCRIPT_DIR}/.nojekyll ]
 then
-    touch  ../.nojekyll || exit 1
+    touch  ${SCRIPT_DIR}/.nojekyll || exit 1
 fi
-#
-cp -p LICENSE README.md .. || exit 1
-#
-cd docs || exit 1
-cp -rp * ../.. || exit 1
-#
-cd ../.. || exit 1
 #
 echo ""
 echo "${SCRIPT_NAME}: git add ."
