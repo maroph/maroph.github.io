@@ -193,10 +193,11 @@ echo "${SCRIPT_NAME}: adapt permissions in directory docs"
 find docs -type d -exec chmod 750 {} \;
 find docs -type f -exec chmod 640 {} \;
 #
-if [ ! -r ${SCRIPT_DIR}/.nojekyll ]
+if [ ! -r ${SCRIPT_DIR}/docs/.nojekyll ]
 then
-    touch  ${SCRIPT_DIR}/.nojekyll || exit 1
+    touch  ${SCRIPT_DIR}/docs/.nojekyll || exit 1
 fi
+chmod 640 ${SCRIPT_DIR}/docs/.nojekyll || exit 1
 #
 echo ""
 echo "${SCRIPT_NAME}: git add ."
