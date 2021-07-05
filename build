@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+#
 ##############################################
 # Copyright (c) 2021 by Manfred Rosenboom    #
 #                                            #
@@ -182,6 +183,10 @@ else
         fi
     fi
 fi
+#
+echo ""
+python -m pip show mkdocs 2>/dev/null | head -2
+echo ""
 #
 ###############################################################################
 #

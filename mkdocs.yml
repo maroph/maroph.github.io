@@ -13,8 +13,7 @@ edit_uri: "blob/master/docs-src"
 
 theme:
     name: mkdocs
-    # custom_dir: custom_theme/
-    highlightjs: true
+    highlightjs: false
     hljs_style: github
     nav_style: dark
     navigation_depth: 2
@@ -52,6 +51,12 @@ nav:
             - HPI Identity Leak Checker: https://sec.hpi.de/ilc/d?lang=en
             - Mozilla CA PEM File: https://curl.haxx.se/docs/caextract.html
             - SSL Server Test: https://www.ssllabs.com/ssltest/
+        - Software:
+            - AdoptOpenJDK: https://adoptopenjdk.net/
+            - OpenSSL: https://www.openssl.org/
+            - Tomcat: https://tomcat.apache.org/
+            - WildFly: https://www.wildfly.org/
+            - XAMPP: https://www.apachefriends.org/
     - Info:
         - About: info/about.md
         - License: info/license.md
