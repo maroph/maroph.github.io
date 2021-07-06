@@ -1,6 +1,9 @@
 # About
 This is my personal GitHub site.
 
+The data are stored in my GitHub repository 
+[maroph/maroph.github.io](https://github.com/maroph/maroph.github.io).
+
 ## How I create the pages on site maroph.github.io
 My pages are written in Markdown (directory docs-src) an transformed into HTML 
 pages (directory docs) with the [mkdocs](https://www.mkdocs.org/) Python module.
