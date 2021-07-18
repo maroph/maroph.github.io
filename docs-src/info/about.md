@@ -11,7 +11,7 @@ pages (directory docs) with the [mkdocs](https://www.mkdocs.org/) Python module.
 Because the mkdocs module on my Debian 10 system is pretty old (1.0.4) I use a 
 virtual environment with a current mkdocs module.
 
-My current mkdocs version is 1.2.1
+My current mkdocs version is **1.2.1**
 
 ## Check the build environment
 
