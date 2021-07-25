@@ -7,9 +7,9 @@ repo_name: GitHub
 repo_url: https://github.com/maroph/maroph.github.io/
 # edit_uri: "edit/master/docs-src"
 # view readonly version
-edit_uri: "blob/master/docs-src"
-# link to github project site
-# edit_uri: ""
+# edit_uri: "blob/master/docs-src"
+# link to GitHub repository site
+edit_uri: ""
 
 theme:
     name: mkdocs
@@ -17,11 +17,11 @@ theme:
     hljs_style: github
     nav_style: dark
     navigation_depth: 2
-    shortcuts:
-        help: 191    # ?
-        next: 78     # n
-        previous: 80 # p
-        search: 83   # s
+#    shortcuts:
+#        help: 191    # ?
+#        next: 78     # n
+#        previous: 80 # p
+#        search: 83   # s
 
 nav:
     - Home: index.md
@@ -29,7 +29,6 @@ nav:
         - My Sites:
             - Blogger: https://maroph.blogspot.com/
             - GitHub: https://github.com/maroph/
-            - GitHub Page: https://maroph.github.io/
             - Gravatar: https://en.gravatar.com/maroph
             - Homepage: https://manfred.rosenboom.name
             - LinkedIn: https://www.linkedin.com/in/manfredrosenboom
@@ -37,6 +36,10 @@ nav:
             - Personal Home Page: https://manfred.rosenboom.name/
             - Twitter: https://twitter.com/maroph
             - WordPress: https://maroph.wordpress.com
+        - GitHub Pages:
+            - Main Page: https://maroph.github.io/
+            - blog: https://maroph.github.io/blog/
+            - geocities_marochess: https://maroph.github.io/geocities_marochess/
         - Collaboration:
             - DFN Terminplaner: https://terminplaner4.dfn.de/
             - nuudel: https://nuudel.digitalcourage.de/
@@ -55,7 +58,10 @@ nav:
             - SSL Server Test: https://www.ssllabs.com/ssltest/
         - Software:
             - AdoptOpenJDK: https://adoptopenjdk.net/
+            - Debian: https://www.debian.org/index.en.html
+            - MkDocs: https://www.mkdocs.org/
             - OpenSSL: https://www.openssl.org/
+            - Raspberry Pi OS: https://www.raspberrypi.org/software/operating-systems/
             - Tomcat: https://tomcat.apache.org/
             - WildFly: https://www.wildfly.org/
             - XAMPP: https://www.apachefriends.org/

@@ -50,10 +50,6 @@
 </li>
             
 <li>
-    <a href="https://maroph.github.io/" class="dropdown-item">GitHub Page</a>
-</li>
-            
-<li>
     <a href="https://en.gravatar.com/maroph" class="dropdown-item">Gravatar</a>
 </li>
             
@@ -79,6 +75,24 @@
             
 <li>
     <a href="https://maroph.wordpress.com" class="dropdown-item">WordPress</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">GitHub Pages</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="https://maroph.github.io/" class="dropdown-item">Main Page</a>
+</li>
+            
+<li>
+    <a href="https://maroph.github.io/blog/" class="dropdown-item">blog</a>
+</li>
+            
+<li>
+    <a href="https://maroph.github.io/geocities_marochess/" class="dropdown-item">geocities_marochess</a>
 </li>
     </ul>
   </li>
@@ -162,7 +176,19 @@
 </li>
             
 <li>
+    <a href="https://www.debian.org/index.en.html" class="dropdown-item">Debian</a>
+</li>
+            
+<li>
+    <a href="https://www.mkdocs.org/" class="dropdown-item">MkDocs</a>
+</li>
+            
+<li>
     <a href="https://www.openssl.org/" class="dropdown-item">OpenSSL</a>
+</li>
+            
+<li>
+    <a href="https://www.raspberrypi.org/software/operating-systems/" class="dropdown-item">Raspberry Pi OS</a>
 </li>
             
 <li>
@@ -216,7 +242,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://github.com/maroph/maroph.github.io/blob/master/docs-src/info/about.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                                <a href="https://github.com/maroph/maroph.github.io/" class="nav-link"><i class="fa fa-github"></i> GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -275,10 +301,15 @@
 <a href="https://github.com/maroph/maroph.github.io">maroph/maroph.github.io</a>.</p>
 <h2 id="how-i-create-the-pages-on-site-marophgithubio">How I create the pages on site maroph.github.io</h2>
 <p>My pages are written in Markdown (directory docs-src) an transformed into HTML 
-pages (directory docs) with the <a href="https://www.mkdocs.org/">mkdocs</a> Python module.</p>
-<p>Because the mkdocs module on my Debian 10 system is pretty old (1.0.4) I use a 
+pages (directory docs) with the <a href="https://www.mkdocs.org/">MkDocs</a> Python module.</p>
+<p>Software in use to produce this site:</p>
+<ul>
+<li>Debian 10.10</li>
+<li>Python 3.7.3</li>
+<li>MkDocs 1.2.2</li>
+</ul>
+<p>Because the MkDocs module on my Debian 10 system is pretty old (1.0.4) I use a 
 virtual environment with a current mkdocs module.</p>
-<p>My current mkdocs version is <strong>1.2.1</strong></p>
 <h2 id="check-the-build-environment">Check the build environment</h2>
 <pre><code>./build check
 </code></pre>

@@ -6,12 +6,16 @@ The data are stored in my GitHub repository
 
 ## How I create the pages on site maroph.github.io
 My pages are written in Markdown (directory docs-src) an transformed into HTML 
-pages (directory docs) with the [mkdocs](https://www.mkdocs.org/) Python module.
+pages (directory docs) with the [MkDocs](https://www.mkdocs.org/) Python module.
 
-Because the mkdocs module on my Debian 10 system is pretty old (1.0.4) I use a 
+Software in use to produce this site:
+
+* Debian 10.10
+* Python 3.7.3
+* MkDocs 1.2.2
+
+Because the MkDocs module on my Debian 10 system is pretty old (1.0.4) I use a 
 virtual environment with a current mkdocs module.
-
-My current mkdocs version is **1.2.1**
 
 ## Check the build environment
 
