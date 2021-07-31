@@ -57,7 +57,7 @@ nav:
             - Mozilla CA PEM File: https://curl.haxx.se/docs/caextract.html
             - SSL Server Test: https://www.ssllabs.com/ssltest/
         - Software:
-            - AdoptOpenJDK: https://adoptopenjdk.net/
+            - Adoptium (OpenJDK): https://adoptium.net/
             - Debian: https://www.debian.org/index.en.html
             - MkDocs: https://www.mkdocs.org/
             - OpenSSL: https://www.openssl.org/
