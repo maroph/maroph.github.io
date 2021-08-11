@@ -10,7 +10,7 @@
 #
 SCRIPT_NAME=`basename $0`
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  4  (05-JUL-2021)"
+VERSION="${SCRIPT_NAME}  5  (11-AUG-2021)"
 #
 ###############################################################################
 #
@@ -159,6 +159,7 @@ fi
 #
 if [ "${VIRTUAL_ENV}" = "" ]
 then
+    echo "${SCRIPT_NAME}: no virtual environment active"
     if [ ! -d ${SCRIPT_DIR}/venv ]
     then
         echo "${SCRIPT_NAME}: directory ${SCRIPT_DIR}/venv missing"
@@ -184,6 +185,14 @@ else
     fi
 fi
 #
+python -m pip show mkdocs >/dev/null 2>/dev/null
+if [ $? -ne 0 ]
+then
+    echo "${SCRIPT_NAME}: Python module mkdocs not available"
+    exit 1
+fi
+#
+echo "${SCRIPT_NAME}: Python module mkdocs available"
 echo ""
 python -m pip show mkdocs 2>/dev/null | head -2
 echo ""
