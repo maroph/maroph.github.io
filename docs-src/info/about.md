@@ -10,7 +10,7 @@ pages (directory docs) with the [MkDocs](https://www.mkdocs.org/) Python module.
 
 Software in use to produce this site:
 
-* Debian 10.10
+* Debian/Raspbian 10.10
 * Python 3.7.3
 * MkDocs 1.2.2
 

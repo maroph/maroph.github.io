@@ -38,7 +38,6 @@ nav:
             - WordPress: https://maroph.wordpress.com
         - GitHub Pages:
             - Main Page: https://maroph.github.io/
-            - blog: https://maroph.github.io/blog/
             - geocities_marochess: https://maroph.github.io/geocities_marochess/
         - Collaboration:
             - DFN Terminplaner: https://terminplaner4.dfn.de/
@@ -52,14 +51,16 @@ nav:
             - TIOBE Index: https://www.tiobe.com/tiobe-index/
         - Security:
             - Certificate Search: https://crt.sh/
+            - Geekflare Tools for Webmasters: https://gf.dev/
             - Have I been pwned: https://haveibeenpwned.com/
             - HPI Identity Leak Checker: https://sec.hpi.de/ilc/d?lang=en
             - Mozilla CA PEM File: https://curl.haxx.se/docs/caextract.html
+            - Security Headers (Web Server): https://securityheaders.com/
             - SSL Server Test: https://www.ssllabs.com/ssltest/
         - Software:
-            - Adoptium (OpenJDK): https://adoptium.net/
             - Debian: https://www.debian.org/index.en.html
             - MkDocs: https://www.mkdocs.org/
+            - OpenJDK: https://adoptium.net/
             - OpenSSL: https://www.openssl.org/
             - Raspberry Pi OS: https://www.raspberrypi.org/software/operating-systems/
             - Tomcat: https://tomcat.apache.org/
