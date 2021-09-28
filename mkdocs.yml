@@ -29,6 +29,7 @@ nav:
         - My Sites:
             - Blogger: https://maroph.blogspot.com/
             - GitHub: https://github.com/maroph/
+            - GitHub Gist: https://gist.github.com/maroph/
             - Gravatar: https://en.gravatar.com/maroph
             - Homepage: https://manfred.rosenboom.name
             - LinkedIn: https://www.linkedin.com/in/manfredrosenboom
@@ -55,6 +56,7 @@ nav:
             - Have I been pwned: https://haveibeenpwned.com/
             - HPI Identity Leak Checker: https://sec.hpi.de/ilc/d?lang=en
             - Mozilla CA PEM File: https://curl.haxx.se/docs/caextract.html
+            - Mozilla SSL Configuration Generator: https://ssl-config.mozilla.org/
             - Security Headers (Web Server): https://securityheaders.com/
             - SSL Server Test: https://www.ssllabs.com/ssltest/
         - Software:
