@@ -1,1 +1,11 @@
 .* export-ignore
+#
+* text=auto
+#
+build text eol=crlf
+LICENSE text
+#
+*.md text
+#
+*.jpg binary
+*.png binary
