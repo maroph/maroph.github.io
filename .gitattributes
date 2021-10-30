@@ -2,7 +2,7 @@
 #
 * text=auto
 #
-build text eol=crlf
+build text eol=lf
 LICENSE text
 #
 *.md text
