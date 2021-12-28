@@ -343,13 +343,16 @@
 <p>My pages are written in Markdown (directory docs-src) an transformed into HTML 
 pages (directory docs) with the <a href="https://www.mkdocs.org/">MkDocs</a> Python module.</p>
 <p>Software in use to produce this site:</p>
-<ul>
-<li>MkDocs 1.2.3</li>
-<li>Debian 11.1    : Python 3.9.2</li>
-<li>Raspbian 10.11 : Python 3.7.3</li>
-</ul>
-<p>Because the MkDocs module on my Debian 10 system is pretty old (1.0.4) I use a 
-virtual environment with a current mkdocs module.</p>
+<pre><code>MkDocs 1.2.3
+Editor: vim and PyCharm
+
+Runtime Environment
+-------------------
+Debian 11.2     : Python 3.9.2
+Raspbian 10.11  : Python 3.7.3
+Windows 10 21H1 : Python 3.9.5
+</code></pre>
+<p>I use a virtual environment with the current mkdocs module.</p>
 <h2 id="check-the-build-environment">Check the build environment</h2>
 <pre><code>./build check
 </code></pre>

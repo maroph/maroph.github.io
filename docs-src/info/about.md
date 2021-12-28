@@ -10,12 +10,16 @@ pages (directory docs) with the [MkDocs](https://www.mkdocs.org/) Python module.
 
 Software in use to produce this site:
 
-* MkDocs 1.2.3
-* Debian 11.1    : Python 3.9.2
-* Raspbian 10.11 : Python 3.7.3
+    MkDocs 1.2.3
+    Editor: vim and PyCharm
+    
+    Runtime Environment
+    -------------------
+    Debian 11.2     : Python 3.9.2
+    Raspbian 10.11  : Python 3.7.3
+    Windows 10 21H1 : Python 3.9.5
 
-Because the MkDocs module on my Debian 10 system is pretty old (1.0.4) I use a 
-virtual environment with a current mkdocs module.
+I use a virtual environment with the current mkdocs module.
 
 ## Check the build environment
 
