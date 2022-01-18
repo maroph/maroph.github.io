@@ -7,16 +7,22 @@ repo_name: GitHub
 repo_url: https://github.com/maroph/maroph.github.io/
 # edit_uri: "edit/master/docs"
 # view readonly version
-edit_uri: "blob/master/docs"
+# edit_uri: "blob/master/docs"
 # link to GitHub repository site
 edit_uri: ""
 
 theme:
     name: mkdocs
+    locale: en
     highlightjs: false
+    hljs_languages: []
     hljs_style: github
+    include_search_page: false
+    search_index_only: false
     nav_style: dark
     navigation_depth: 2
+    analytics:
+        gtag: null
 #    shortcuts:
 #        help: 191    # ?
 #        next: 78     # n
