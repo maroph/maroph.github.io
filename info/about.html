@@ -320,7 +320,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#build-the-docs-for-pushing" class="nav-link">Build the docs for pushing</a>
+            <li class="nav-item" data-level="2"><a href="#build-the-docs-for-publishing" class="nav-link">Build the docs for publishing</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -378,10 +378,13 @@ python -m pip install --upgrade mkdocs
 <h2 id="build-the-docs-for-testing">Build the docs for testing</h2>
 <pre><code>source venv/bin/activate
 mkdocs build
-</code></pre>
-<h2 id="build-the-docs-for-pushing">Build the docs for pushing</h2>
-<pre><code>source venv/bin/activate
+or
 ./build
+</code></pre>
+<h2 id="build-the-docs-for-publishing">Build the docs for publishing</h2>
+<pre><code>source venv/bin/activate
+./build deploy
+
 git commit -m "my commit message"
 git push
 </code></pre>
