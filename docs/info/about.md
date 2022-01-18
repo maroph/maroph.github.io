@@ -51,11 +51,14 @@ The following commands are used to build the needed virtual environment:
 
     source venv/bin/activate
     mkdocs build
+    or
+    ./build
 
-## Build the docs for pushing
+## Build the docs for publishing
 
     source venv/bin/activate
-    ./build
+    ./build deploy
+
     git commit -m "my commit message"
     git push
 
