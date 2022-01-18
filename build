@@ -2,7 +2,7 @@
 #
 #
 ##############################################
-# Copyright (c) 2021 by Manfred Rosenboom    #
+# Copyright (c) 2022 by Manfred Rosenboom    #
 #                                            #
 # This work is licensed under a MIT License. #
 # https://choosealicense.com/licenses/mit/   #
@@ -10,7 +10,7 @@
 #
 SCRIPT_NAME=`basename $0`
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  5  (11-AUG-2021)"
+VERSION="${SCRIPT_NAME}  6  (18-JAN-2022)"
 #
 ###############################################################################
 #
@@ -199,25 +199,10 @@ echo ""
 #
 ###############################################################################
 #
-echo "${SCRIPT_NAME}: mkdocs build"
-mkdocs build || exit 1
-#
+echo "${SCRIPT_NAME}: mkdocs gh-deploy"
+mkdocs gh-deploy || exit 1
 echo ""
-echo "${SCRIPT_NAME}: adapt permissions in directory docs"
-find docs -type d -exec chmod 750 {} \;
-find docs -type f -exec chmod 640 {} \;
 #
-if [ ! -r ${SCRIPT_DIR}/docs/.nojekyll ]
-then
-    touch  ${SCRIPT_DIR}/docs/.nojekyll || exit 1
-fi
-chmod 640 ${SCRIPT_DIR}/docs/.nojekyll || exit 1
-#
-echo ""
-echo "${SCRIPT_NAME}: git add ."
-git add . || exit 1
-#
-echo ""
 echo "${SCRIPT_NAME}: git status"
 git status
 #
