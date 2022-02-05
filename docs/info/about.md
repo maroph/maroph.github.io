@@ -1,68 +1,80 @@
 # About
 This is my personal GitHub site.
 
-The data are stored in my GitHub repository 
-[maroph/maroph.github.io](https://github.com/maroph/maroph.github.io).
+The data are stored in my [GitHub repository ](https://github.com/maroph/maroph.github.io).
 
 ## How I create the pages on site maroph.github.io
-My pages are written in Markdown (directory docs-src) an transformed into HTML 
-pages (directory docs) with the [MkDocs](https://www.mkdocs.org/) Python module.
+My pages are written in Markdown (directory docs) an transformed into HTML 
+pages (local directory site) with the [MkDocs](https://www.mkdocs.org/) Python
+module. The site data are published in the gh-pages branch of the directory.
 
-Software in use to produce this site:
+### Software in use to produce this site:
 
-    MkDocs 1.2.3
-    Editor: vim and PyCharm
-    
-    Runtime Environment
-    -------------------
-    Debian 11.2     : Python 3.9.2
-    Raspbian 10.11  : Python 3.7.3
-    Windows 10 21H1 : Python 3.9.5
+- MkDocs
+- Theme Material for MkDocs
+- MkDocs plugin git-revision-date
 
-I use a virtual environment with the current mkdocs module.
+## Python Virtual Environment
+I use a virtual environment with the current MkDocs module.
 
-## Check the build environment
+### How the virtual environment is created
+The following commands are used to build the needed virtual environment:
 
-    ./build check
+```bash
+python3 -m venv ./venv
+source ./venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install --upgrade setuptools
+python -m pip install --upgrade wheel
+python -m pip install --upgrade mkdocs
+python -m pip install --upgrade mkdocs-material
+python -m pip install --upgrade mkdocs-git-revision-date-plugin
+```
 
-## Create the virtual environment
+### Create the virtual environment with the build script
 
-    ./build venv
-    source ./venv/bin/activate
+```bash
+./build venv
+source ./venv/bin/activate
+```
 
 ### Install missing Python3 software
 If pip for Python3 and/or the Python3 venv module aren't installed on your system
 use the following commands as administrator (root):
 
-    sudo apt install python3-pip
-    sudo apt install python3-venv
-
-### How the virtual environment is created
-The following commands are used to build the needed virtual environment:
-
-    python3 -m venv ./venv
-    source ./venv/bin/activate
-    python -m pip install --upgrade pip
-    python -m pip install --upgrade setuptools
-    python -m pip install --upgrade wheel
-    python -m pip install --upgrade mkdocs
+```bash
+sudo apt install python3-pip
+sudo apt install python3-venv
+```
 
 ##  Build the docs for testing
 
-    source venv/bin/activate
-    mkdocs build
-    or
-    ./build
+```bash
+source venv/bin/activate
+mkdocs build
+```
+
+or
+
+```bash
+./build
+```
 
 ## Build the docs for publishing
 
-    source venv/bin/activate
-    ./build deploy
+```bash
+source venv/bin/activate
+./build deploy
+```
 
-    git commit -m "my commit message"
-    git push
+```bash
+git commit -m "my commit message"
+git push
+```
 
 ## Get hash of last commit
 
-    git rev-parse [--short] HEAD
+```bash
+git rev-parse [--short] HEAD
+```
 

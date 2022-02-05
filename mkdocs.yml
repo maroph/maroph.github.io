@@ -12,22 +12,18 @@ repo_url: https://github.com/maroph/maroph.github.io/
 edit_uri: ""
 
 theme:
-    name: mkdocs
-    locale: en
-    highlightjs: false
-    hljs_languages: []
-    hljs_style: github
-    include_search_page: false
-    search_index_only: false
-    nav_style: dark
-    navigation_depth: 2
-    analytics:
-        gtag: null
-#    shortcuts:
-#        help: 191    # ?
-#        next: 78     # n
-#        previous: 80 # p
-#        search: 83   # s
+    name: material
+    palette:
+        scheme: default
+    font: false
+    language: en
+    icon:
+        repo: fontawesome/brands/github
+    features:
+        - navigation.instant
+        - navigation.tracking
+        - navigation.tabs
+        - navigation.tabs.sticky
 
 nav:
     - Home: index.md
@@ -94,7 +90,15 @@ strict: true
 
 copyright: Copyright (c) 2020-2022 <a href="https://github.com/maroph">Manfred Rosenboom (maroph)</a>
 
+markdown_extensions:
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+
 plugins:
+    - git-revision-date
     - search:
         min_search_length: 3
 
