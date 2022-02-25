@@ -10,7 +10,7 @@
 #
 SCRIPT_NAME=`basename $0`
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  1  (05-FEB-2022)"
+VERSION="${SCRIPT_NAME}  1  (25-FEB-2022)"
 #
 ###############################################################################
 #
@@ -27,6 +27,9 @@ Usage: ${SCRIPT_NAME} [option(s)] [venv|deploy]
 Options:
   -h|--help     : show this help and exit
   -V|--version  : show version information and exit
+  -n|--no-check : no check for needed Python3 modules
+
+  Arguments
   venv          : create the required virtual environment and exit
   deploy        : create the site and push all data to branch gh-pages
                   (mkdocs gh-deploy)
@@ -52,6 +55,7 @@ unset cwd
 #
 ###############################################################################
 #
+check=1
 while :
 do
     option=$1
@@ -63,6 +67,9 @@ do
         -V | --version)
             echo ${VERSION}
             exit 0
+            ;;
+        -n | --no-check)
+            check=0
             ;;
         --)
             shift 1
@@ -142,41 +149,48 @@ then
     . ${SCRIPT_DIR}/venv/bin/activate
 fi
 #
-python -m pip show mkdocs >/dev/null 2>/dev/null
-if [ $? -ne 0 ]
+###############################################################################
+#
+if [ ${check} -eq 1 ]
 then
-    echo "${SCRIPT_NAME}: Python module mkdocs not available"
-    exit 1
+#
+    python -m pip show mkdocs >/dev/null 2>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "${SCRIPT_NAME}: Python module mkdocs not available"
+        exit 1
+    fi
+#
+    echo "${SCRIPT_NAME}: Python module mkdocs available"
+    echo ""
+    python -m pip show mkdocs 2>/dev/null | head -2
+    echo ""
+#
+    python -m pip show mkdocs-material >/dev/null 2>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "${SCRIPT_NAME}: Python module mkdocs-material not available"
+        exit 1
+    fi
+#
+    echo "${SCRIPT_NAME}: Python module mkdocs-material available"
+    echo ""
+    python -m pip show mkdocs-material 2>/dev/null | head -2
+    echo ""
+#
+    python -m pip show mkdocs-git-revision-date-plugin >/dev/null 2>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin not available"
+        exit 1
+    fi
+#
+    echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin available"
+    echo ""
+    python -m pip show mkdocs-git-revision-date-plugin 2>/dev/null | head -2
+    echo ""
+#
 fi
-#
-echo "${SCRIPT_NAME}: Python module mkdocs available"
-echo ""
-python -m pip show mkdocs 2>/dev/null | head -2
-echo ""
-#
-python -m pip show mkdocs-material >/dev/null 2>/dev/null
-if [ $? -ne 0 ]
-then
-    echo "${SCRIPT_NAME}: Python module mkdocs-material not available"
-    exit 1
-fi
-#
-echo "${SCRIPT_NAME}: Python module mkdocs-material available"
-echo ""
-python -m pip show mkdocs-material 2>/dev/null | head -2
-echo ""
-#
-python -m pip show mkdocs-git-revision-date-plugin >/dev/null 2>/dev/null
-if [ $? -ne 0 ]
-then
-    echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin not available"
-    exit 1
-fi
-#
-echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin available"
-echo ""
-python -m pip show mkdocs-git-revision-date-plugin 2>/dev/null | head -2
-echo ""
 #
 ###############################################################################
 #
@@ -185,10 +199,6 @@ then
     echo "${SCRIPT_NAME}: mkdocs gh-deploy"
     mkdocs gh-deploy || exit 1
     echo ""
-#
-    echo "${SCRIPT_NAME}: git status"
-    git status
-#
     exit 0
 fi
 #

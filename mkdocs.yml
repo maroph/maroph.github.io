@@ -20,6 +20,7 @@ theme:
     icon:
         repo: fontawesome/brands/github
     features:
+        - navigation.indexes
         - navigation.instant
         - navigation.tracking
         - navigation.tabs
@@ -28,20 +29,22 @@ theme:
 nav:
     - Home: index.md
     - Links:
+        - links.md
         - My Sites:
             - Blogger: https://maroph.blogspot.com/
             - GitHub: https://github.com/maroph/
             - GitHub Gist: https://gist.github.com/maroph/
             - Gravatar: https://en.gravatar.com/maroph
-            - Homepage: https://manfred.rosenboom.name
             - LinkedIn: https://www.linkedin.com/in/manfredrosenboom
             - Pastebin: https://pastebin.com/u/maroph
             - Personal Home Page: https://manfred.rosenboom.name/
             - Twitter: https://twitter.com/maroph
             - WordPress: https://maroph.wordpress.com
         - GitHub Pages:
+            - Blogger: https://maroph.blogspot.com/
             - Main Page: https://maroph.github.io/
             - geocities_marochess: https://maroph.github.io/geocities_marochess/
+            - openHPI Kurs Linux CLI: https://maroph.github.io/openhpi_linux-cli_2022/
         - Collaboration:
             - DFN Terminplaner: https://terminplaner4.dfn.de/
             - nuudel: https://nuudel.digitalcourage.de/
@@ -50,6 +53,7 @@ nav:
             - Jitsi Meet (dnshome.org): https://meet.dnshome.org/
             - Jitsi Meet (ffmuc.net): https://meet.ffmuc.net/
         - Rankings:
+            - DFN Terminplaner: https://terminplaner4.dfn.de/
             - DB-Engines Ranking: https://db-engines.com/en/ranking
             - TIOBE Index: https://www.tiobe.com/tiobe-index/
         - Security:
@@ -88,7 +92,7 @@ site_dir: site
 use_directory_urls: false
 strict: true
 
-copyright: Copyright (c) 2020-2022 <a href="https://github.com/maroph">Manfred Rosenboom (maroph)</a>
+copyright: Copyright (c) 2020-2022 <a href="https://github.com/maroph">Manfred Rosenboom</a>
 
 markdown_extensions:
     - pymdownx.highlight:
