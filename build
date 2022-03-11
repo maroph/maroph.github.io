@@ -154,40 +154,34 @@ fi
 if [ ${check} -eq 1 ]
 then
 #
-    python -m pip show mkdocs >/dev/null 2>/dev/null
+    echo "${SCRIPT_NAME}: check for needed Python modules"
+    echo "----------"
+    data=$(python -m pip show mkdocs 2>/dev/null)
     if [ $? -ne 0 ]
     then
         echo "${SCRIPT_NAME}: Python module mkdocs not available"
         exit 1
     fi
-#
-    echo "${SCRIPT_NAME}: Python module mkdocs available"
-    echo ""
-    python -m pip show mkdocs 2>/dev/null | head -2
+    echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
     echo ""
 #
-    python -m pip show mkdocs-material >/dev/null 2>/dev/null
+    data=$(python -m pip show mkdocs-material 2>/dev/null)
     if [ $? -ne 0 ]
     then
         echo "${SCRIPT_NAME}: Python module mkdocs-material not available"
         exit 1
     fi
-#
-    echo "${SCRIPT_NAME}: Python module mkdocs-material available"
-    echo ""
-    python -m pip show mkdocs-material 2>/dev/null | head -2
+    echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
     echo ""
 #
-    python -m pip show mkdocs-git-revision-date-plugin >/dev/null 2>/dev/null
+    data=$(python -m pip show mkdocs-git-revision-date-plugin 2>/dev/null)
     if [ $? -ne 0 ]
     then
         echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin not available"
         exit 1
     fi
-#
-    echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin available"
-    echo ""
-    python -m pip show mkdocs-git-revision-date-plugin 2>/dev/null | head -2
+    echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
+    echo "----------"
     echo ""
 #
 fi
