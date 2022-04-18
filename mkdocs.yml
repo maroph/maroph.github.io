@@ -39,9 +39,7 @@ nav:
             - Pastebin: https://pastebin.com/u/maroph
             - Personal Home Page: https://manfred.rosenboom.name/
             - Twitter: https://twitter.com/maroph
-            - WordPress: https://maroph.wordpress.com
         - GitHub Pages:
-            - Blogger: https://maroph.blogspot.com/
             - Main Page: https://maroph.github.io/
             - geocities_marochess: https://maroph.github.io/geocities_marochess/
             - openHPI Kurs Linux CLI: https://maroph.github.io/openhpi_linux-cli_2022/
@@ -53,7 +51,6 @@ nav:
             - Jitsi Meet (dnshome.org): https://meet.dnshome.org/
             - Jitsi Meet (ffmuc.net): https://meet.ffmuc.net/
         - Rankings:
-            - DFN Terminplaner: https://terminplaner4.dfn.de/
             - DB-Engines Ranking: https://db-engines.com/en/ranking
             - TIOBE Index: https://www.tiobe.com/tiobe-index/
         - Security:
@@ -67,12 +64,14 @@ nav:
             - Geekflare Tools for Webmasters: https://gf.dev/
             - Have I been pwned: https://haveibeenpwned.com/
             - HPI Identity Leak Checker: https://sec.hpi.de/ilc/d?lang=en
+            - HTTP Security Headers: https://securityheaders.com/
             - Mozilla CA PEM File: https://curl.haxx.se/docs/caextract.html
             - Mozilla SSL Configuration Generator: https://ssl-config.mozilla.org/
             - NVD Feeds: https://nvd.nist.gov/vuln/data-feeds
             - Security Headers (Web Server): https://securityheaders.com/
             - SSL Server Test: https://www.ssllabs.com/ssltest/
         - Software:
+            - Bouncy Castle: https://bouncycastle.org/
             - Debian: https://www.debian.org/index.en.html
             - MkDocs: https://www.mkdocs.org/
             - OpenJDK: https://adoptium.net/
