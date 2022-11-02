@@ -35,7 +35,6 @@ nav:
             - GitHub: https://github.com/maroph/
             - GitHub Gist: https://gist.github.com/maroph/
             - Gravatar: https://en.gravatar.com/maroph
-            - LinkedIn: https://www.linkedin.com/in/manfredrosenboom
             - Mastodon: https://fosstodon.org/@maroph
             - Pastebin: https://pastebin.com/u/maroph
             - Personal Home Page: https://manfred.rosenboom.name/
@@ -95,6 +94,7 @@ strict: true
 copyright: Copyright (c) 2020-2022 <a href="https://github.com/maroph">Manfred Rosenboom</a>
 
 markdown_extensions:
+    - attr_list
     - pymdownx.highlight:
         anchor_linenums: true
     - pymdownx.inlinehilite
