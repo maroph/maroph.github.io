@@ -1,4 +1,4 @@
-# My GitHub Site
+# My Main GitHub Site
 
 ![THHGTTG intro](./assets/THHGTTG_intro.jpg)
 

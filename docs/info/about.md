@@ -2,7 +2,7 @@
 This is my main GitHub site.
 
 ## Bio
-My name is Manfred ROsenboom and I work as a software lead developer for 
+My name is Manfred Rosenboom and I work as a software lead developer for 
 [Fujitsu Germany](https://www.fujitsu.com/de/) in the Munich Area. At the moment
 I work mainly on the 
 [SecDocs Archive Service](https://www.fujitsu.com/de/products/computing/servers/mainframe/bs2000/ccp/) 

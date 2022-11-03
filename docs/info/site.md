@@ -21,7 +21,7 @@ module. The site data are published in the gh-pages branch of the directory.
 I use a virtual environment with the current MkDocs module.
 
 ### How the virtual environment is created
-The following commands are used to build the needed virtual environment:
+The following commands are used to build.bash the needed virtual environment:
 
 ```bash
 python3 -m venv ./venv
@@ -34,10 +34,10 @@ python -m pip install --upgrade mkdocs-material
 python -m pip install --upgrade mkdocs-git-revision-date-plugin
 ```
 
-### Create the virtual environment with the build script
+### Create the virtual environment with the build.bash script
 
 ```bash
-./build venv
+./build.bash venv
 source ./venv/bin/activate
 ```
 
@@ -60,24 +60,18 @@ mkdocs build
 or
 
 ```bash
-./build
+./build.bash
 ```
 
 ## Build the docs for publishing
 
 ```bash
 source venv/bin/activate
-./build deploy
+./build.bash deploy
 ```
 
 ```bash
 git commit -m "my commit message"
 git push
-```
-
-## Get hash of last commit
-
-```bash
-git rev-parse [--short] HEAD
 ```
 

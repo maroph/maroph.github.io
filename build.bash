@@ -10,7 +10,7 @@
 #
 SCRIPT_NAME=`basename $0`
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  1  (25-FEB-2022)"
+VERSION="${SCRIPT_NAME}  1  (03-NOV-2022)"
 #
 ###############################################################################
 #
@@ -25,9 +25,10 @@ Usage: ${SCRIPT_NAME} [option(s)] [venv|deploy]
        Call mkdocs to build the maroph.github.io related files
 
 Options:
-  -h|--help     : show this help and exit
-  -V|--version  : show version information and exit
-  -n|--no-check : no check for needed Python3 modules
+  -h|--help       : show this help and exit
+  -V|--version    : show version information and exit
+  -c|--check-only : check for needed Python3 modules and exit
+  -n|--no-check   : no check for needed Python3 modules
 
   Arguments
   venv          : create the required virtual environment and exit
@@ -56,6 +57,7 @@ unset cwd
 ###############################################################################
 #
 check=1
+checkOnly=0
 while :
 do
     option=$1
@@ -67,6 +69,9 @@ do
         -V | --version)
             echo ${VERSION}
             exit 0
+            ;;
+        -c | --check-only)
+            checkOnly=1
             ;;
         -n | --no-check)
             check=0
@@ -183,6 +188,11 @@ then
     echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
     echo "----------"
     echo ""
+#
+    if [ ${checkOnly} -eq 1 ]
+    then
+        exit 0
+    fi
 #
 fi
 #
