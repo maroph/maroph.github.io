@@ -3,13 +3,14 @@ site_url: https://maroph.github.io/
 site_description: My GitHub related site
 site_author: Manfred Rosenboom (maroph)
 
-repo_name: GitHub
+# repo_name: GitHub
+repo_name: maroph/maroph.github.io
 repo_url: https://github.com/maroph/maroph.github.io/
-# edit_uri: "edit/master/docs"
+edit_uri: edit/master/docs
 # view readonly version
-# edit_uri: "blob/master/docs"
+# edit_uri: blob/master/docs
 # link to GitHub repository site
-edit_uri: ""
+# edit_uri: ""
 
 theme:
     name: material
@@ -18,6 +19,7 @@ theme:
     font: false
     language: en
     icon:
+        edit: material/pencil
         repo: fontawesome/brands/github
     features:
         - navigation.indexes
@@ -81,9 +83,11 @@ nav:
             - WildFly: https://www.wildfly.org/
             - XAMPP: https://www.apachefriends.org/
     - Info:
+        - info.md
         - About: info/about.md
         - License: info/license.md
         - Sources: info/sources.md
+        - This Site: info/site.md
 
 docs_dir: docs
 site_dir: site
@@ -92,6 +96,22 @@ use_directory_urls: false
 strict: true
 
 copyright: Copyright (c) 2020-2022 <a href="https://github.com/maroph">Manfred Rosenboom</a>
+
+copyright: >
+    Copyright (c) 2020-2022 <a href="https://github.com/maroph">Manfred Rosenboom</a> - <a href="#__consent">Change cookie settings</a>
+
+extra:
+   consent:
+       title: Cookie consent
+       description: >
+           We use cookies to recognize your repeated visits and preferences, as well
+           as to measure the effectiveness of our documentation and whether users
+           find what they're searching for. With your consent, you're helping us to
+           make our documentation better.
+       action:
+           - reject
+           - accept
+           - manage
 
 markdown_extensions:
     - attr_list
@@ -104,5 +124,6 @@ markdown_extensions:
 plugins:
     - git-revision-date
     - search:
+        lang: en
         min_search_length: 3
 
