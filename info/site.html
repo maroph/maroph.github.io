@@ -1422,8 +1422,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-the-virtual-environment-with-the-build-script" class="md-nav__link">
-    Create the virtual environment with the build script
+  <a href="#create-the-virtual-environment-with-the-buildbash-script" class="md-nav__link">
+    Create the virtual environment with the build.bash script
   </a>
   
 </li>
@@ -1450,13 +1450,6 @@
         <li class="md-nav__item">
   <a href="#build-the-docs-for-publishing" class="md-nav__link">
     Build the docs for publishing
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-hash-of-last-commit" class="md-nav__link">
-    Get hash of last commit
   </a>
   
 </li>
@@ -1538,8 +1531,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-the-virtual-environment-with-the-build-script" class="md-nav__link">
-    Create the virtual environment with the build script
+  <a href="#create-the-virtual-environment-with-the-buildbash-script" class="md-nav__link">
+    Create the virtual environment with the build.bash script
   </a>
   
 </li>
@@ -1566,13 +1559,6 @@
         <li class="md-nav__item">
   <a href="#build-the-docs-for-publishing" class="md-nav__link">
     Build the docs for publishing
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-hash-of-last-commit" class="md-nav__link">
-    Get hash of last commit
   </a>
   
 </li>
@@ -1613,7 +1599,7 @@ module. The site data are published in the gh-pages branch of the directory.</p>
 <h2 id="python-virtual-environment">Python Virtual Environment</h2>
 <p>I use a virtual environment with the current MkDocs module.</p>
 <h3 id="how-the-virtual-environment-is-created">How the virtual environment is created</h3>
-<p>The following commands are used to build the needed virtual environment:</p>
+<p>The following commands are used to build.bash the needed virtual environment:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3 -m venv ./venv
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">source</span> ./venv/bin/activate
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python -m pip install --upgrade pip
@@ -1623,8 +1609,8 @@ module. The site data are published in the gh-pages branch of the directory.</p>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>python -m pip install --upgrade mkdocs-material
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>python -m pip install --upgrade mkdocs-git-revision-date-plugin
 </code></pre></div>
-<h3 id="create-the-virtual-environment-with-the-build-script">Create the virtual environment with the build script</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./build venv
+<h3 id="create-the-virtual-environment-with-the-buildbash-script">Create the virtual environment with the build.bash script</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./build.bash venv
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">source</span> ./venv/bin/activate
 </code></pre></div>
 <h3 id="install-missing-python3-software">Install missing Python3 software</h3>
@@ -1638,17 +1624,14 @@ use the following commands as administrator (root):</p>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>mkdocs build
 </code></pre></div>
 <p>or</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./build.bash
 </code></pre></div>
 <h2 id="build-the-docs-for-publishing">Build the docs for publishing</h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">source</span> venv/bin/activate
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>./build deploy
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>./build.bash deploy
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git commit -m <span class="s2">&quot;my commit message&quot;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git push
-</code></pre></div>
-<h2 id="get-hash-of-last-commit">Get hash of last commit</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git rev-parse <span class="o">[</span>--short<span class="o">]</span> HEAD
 </code></pre></div>
 
   <hr>
