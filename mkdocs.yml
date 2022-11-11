@@ -1,16 +1,16 @@
 site_name: My GitHub Site
 site_url: https://maroph.github.io/
-site_description: My GitHub related site
+site_description: My Main GitHub Site
 site_author: Manfred Rosenboom (maroph)
 
-# repo_name: GitHub
-repo_name: maroph/maroph.github.io
+repo_name: GitHub
+# repo_name: maroph/maroph.github.io
 repo_url: https://github.com/maroph/maroph.github.io/
-edit_uri: edit/master/docs
+# edit_uri: edit/master/docs
 # view readonly version
 # edit_uri: blob/master/docs
 # link to GitHub repository site
-# edit_uri: ""
+edit_uri: ""
 
 theme:
     name: material
@@ -34,10 +34,10 @@ nav:
         - links.md
         - My Sites:
             - Blogger: https://maroph.blogspot.com/
+            - Fediverse: https://fosstodon.org/@maroph
             - GitHub: https://github.com/maroph/
             - GitHub Gist: https://gist.github.com/maroph/
             - Gravatar: https://en.gravatar.com/maroph
-            - Mastodon: https://fosstodon.org/@maroph
             - Pastebin: https://pastebin.com/u/maroph
             - Personal Home Page: https://manfred.rosenboom.name/
             - Twitter: https://twitter.com/maroph
@@ -52,8 +52,10 @@ nav:
             - PrivateBin: https://privatebin.net/
             - Jitsi Meet (dnshome.org): https://meet.dnshome.org/
             - Jitsi Meet (ffmuc.net): https://meet.ffmuc.net/
+            - Padlet: https://padlet.com/
         - Rankings:
             - DB-Engines Ranking: https://db-engines.com/en/ranking
+            - PYPL: https://pypl.github.io/PYPL.html
             - TIOBE Index: https://www.tiobe.com/tiobe-index/
         - Security:
             - BSI CERT: https://www.cert-bund.de/overview/AdvisoryShort
@@ -76,8 +78,10 @@ nav:
             - Bouncy Castle: https://bouncycastle.org/
             - Debian: https://www.debian.org/index.en.html
             - MkDocs: https://www.mkdocs.org/
+            - MkDocs Material: https://squidfunk.github.io/mkdocs-material/
             - OpenJDK: https://adoptium.net/
             - OpenSSL: https://www.openssl.org/
+            - Pandoc: https://pandoc.org/
             - Raspberry Pi OS: https://www.raspberrypi.org/software/operating-systems/
             - Tomcat: https://tomcat.apache.org/
             - WildFly: https://www.wildfly.org/
@@ -85,6 +89,7 @@ nav:
     - Info:
         - info.md
         - About: info/about.md
+        - GDPR/DSGVO: info/gdpr.md
         - License: info/license.md
         - Sources: info/sources.md
         - This Site: info/site.md
@@ -96,22 +101,6 @@ use_directory_urls: false
 strict: true
 
 copyright: Copyright (c) 2020-2022 <a href="https://github.com/maroph">Manfred Rosenboom</a>
-
-copyright: >
-    Copyright (c) 2020-2022 <a href="https://github.com/maroph">Manfred Rosenboom</a> - <a href="#__consent">Change cookie settings</a>
-
-extra:
-   consent:
-       title: Cookie consent
-       description: >
-           We use cookies to recognize your repeated visits and preferences, as well
-           as to measure the effectiveness of our documentation and whether users
-           find what they're searching for. With your consent, you're helping us to
-           make our documentation better.
-       action:
-           - reject
-           - accept
-           - manage
 
 markdown_extensions:
     - attr_list
