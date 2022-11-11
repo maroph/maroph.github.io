@@ -2,37 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://maroph.github.io/index.html</loc>
-         <lastmod>2022-11-03</lastmod>
+         <lastmod>2022-11-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info.html</loc>
-         <lastmod>2022-11-03</lastmod>
+         <lastmod>2022-11-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links.html</loc>
-         <lastmod>2022-11-03</lastmod>
+         <lastmod>2022-11-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/about.html</loc>
-         <lastmod>2022-11-03</lastmod>
+         <lastmod>2022-11-11</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://maroph.github.io/info/gdpr.html</loc>
+         <lastmod>2022-11-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/license.html</loc>
-         <lastmod>2022-11-03</lastmod>
+         <lastmod>2022-11-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/site.html</loc>
-         <lastmod>2022-11-03</lastmod>
+         <lastmod>2022-11-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/sources.html</loc>
-         <lastmod>2022-11-03</lastmod>
+         <lastmod>2022-11-11</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
