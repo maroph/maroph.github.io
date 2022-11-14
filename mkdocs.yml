@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
 site_name: My GitHub Site
 site_url: https://maroph.github.io/
 site_description: My Main GitHub Site
@@ -47,12 +48,12 @@ nav:
             - openHPI Kurs Linux CLI: https://maroph.github.io/openhpi_linux-cli_2022/
         - Collaboration:
             - DFN Terminplaner: https://terminplaner4.dfn.de/
+            - Etherpad (ffmuc.net): https://ffmuc.net/pad/
+            - Jitsi Meet (ffmuc.net): https://meet.ffmuc.net/
             - nuudel: https://nuudel.digitalcourage.de/
             - NoPaste: https://nopaste.dnshome.org/
-            - PrivateBin: https://privatebin.net/
-            - Jitsi Meet (dnshome.org): https://meet.dnshome.org/
-            - Jitsi Meet (ffmuc.net): https://meet.ffmuc.net/
             - Padlet: https://padlet.com/
+            - PrivateBin: https://privatebin.net/
         - Rankings:
             - DB-Engines Ranking: https://db-engines.com/en/ranking
             - PYPL: https://pypl.github.io/PYPL.html
