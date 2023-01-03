@@ -2,7 +2,7 @@
 #
 #
 ##############################################
-# Copyright (c) 2022 by Manfred Rosenboom    #
+# Copyright (c) 2023 by Manfred Rosenboom    #
 #                                            #
 # This work is licensed under a MIT License. #
 # https://choosealicense.com/licenses/mit/   #
@@ -10,7 +10,7 @@
 #
 SCRIPT_NAME=`basename $0`
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  1  (03-NOV-2022)"
+VERSION="${SCRIPT_NAME}  1  (03-JAN-2023)"
 #
 ###############################################################################
 #
@@ -130,6 +130,13 @@ then
 #
     echo "${SCRIPT_NAME}: python -m pip freeze >requirements.txt"
     python -m pip freeze >${SCRIPT_DIR}/venv/requirements.txt || exit 1
+#
+    echo ""
+    echo ""
+    echo "----------"
+    grep -E 'mkdocs' ${SCRIPT_DIR}/venv/requirements.txt
+    echo "----------"
+    echo ""
 #
     exit 0
 fi

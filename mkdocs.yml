@@ -78,8 +78,11 @@ nav:
             - Security Headers (Web Server): https://securityheaders.com/
             - SSL Server Test: https://www.ssllabs.com/ssltest/
         - Software:
+            - Ant: https://ant.apache.org/
             - Bouncy Castle: https://bouncycastle.org/
             - Debian: https://www.debian.org/index.en.html
+            - Git for Windows: https://git-scm.com/download/win
+            - Maven: https://maven.apache.org/
             - MkDocs: https://www.mkdocs.org/
             - MkDocs Material: https://squidfunk.github.io/mkdocs-material/
             - OpenJDK: https://adoptium.net/
