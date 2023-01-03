@@ -21,7 +21,7 @@ export LANG="en_US.UTF-8"
 print_usage() {
     cat - <<EOT
 
-Usage: ${SCRIPT_NAME} [option(s)] [venv|deploy]
+Usage: ${SCRIPT_NAME} [option(s)] [venv|deploy|serve]
        Call mkdocs to build the maroph.github.io related files
 
 Options:
@@ -34,6 +34,8 @@ Options:
   venv          : create the required virtual environment and exit
   deploy        : create the site and push all data to branch gh-pages
                   (mkdocs gh-deploy)
+  serve         : Run the MkDocs builtin development server
+                  (mkdocs serve)
 
   Default: call 'mkdocs build'
 
@@ -215,12 +217,33 @@ fi
 #
 ###############################################################################
 #
+if [ "$1" = "serve" ]
+then
+    echo "${SCRIPT_NAME}: mkdocs serve"
+    mkdocs serve &
+    echo "#!/bin/bash" >${SCRIPT_DIR}/mkdocs.shut
+    echo "kill -15 $!" >>${SCRIPT_DIR}/mkdocs.shut
+    echo "rm ${SCRIPT_DIR}/mkdocs.shut" >>${SCRIPT_DIR}/mkdocs.shut
+    chmod 700 ${SCRIPT_DIR}/mkdocs.shut
+    sleep 1
+    echo ""
+    echo "pid : ${pid}"
+    echo "shutdown MkDocs server: ${SCRIPT_DIR}/mkdocs.shut"
+    echo ""
+    exit 0
+fi
+#
+###############################################################################
+#
 echo "${SCRIPT_NAME}: mkdocs build"
 mkdocs build || exit 1
 echo ""
 #
-echo "${SCRIPT_NAME}: git status"
-git status
+if [ -d ${SCRIPT_DIR}/.git ]
+then
+    echo "${SCRIPT_NAME}: git status"
+    git status
+fi
 #
 ###############################################################################
 #
