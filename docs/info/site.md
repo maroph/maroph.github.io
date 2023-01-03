@@ -34,6 +34,15 @@ python -m pip install --upgrade mkdocs-material
 python -m pip install --upgrade mkdocs-git-revision-date-plugin
 ```
 
+The current installed module versions are:
+
+```
+mkdocs==1.4.2
+mkdocs-git-revision-date-plugin==0.3.2
+mkdocs-material==9.0.0
+mkdocs-material-extensions==1.1.1
+```
+
 ### Create the virtual environment with the build.bash script
 
 ```bash
