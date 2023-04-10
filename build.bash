@@ -8,13 +8,31 @@
 # https://choosealicense.com/licenses/mit/   #
 ##############################################
 #
-SCRIPT_NAME=`basename $0`
+declare -r SCRIPT_NAME=`basename $0`
+declare -r VERSION="${SCRIPT_NAME}  1  (23-JAN-2023)"
+#
+###############################################################################
+#
 SCRIPT_DIR=`dirname $0`
-VERSION="${SCRIPT_NAME}  1  (03-JAN-2023)"
+cwd=`pwd`
+if [ "${SCRIPT_DIR}" = "." ]
+then
+    SCRIPT_DIR=$cwd
+else
+    cd ${SCRIPT_DIR}
+    SCRIPT_DIR=`pwd`
+    cd $cwd
+fi
+cwd=
+unset cwd
+declare -r SCRIPT_DIR
 #
 ###############################################################################
 #
 export LANG="en_US.UTF-8"
+#
+check=1
+checkOnly=0
 #
 ###############################################################################
 #
@@ -22,7 +40,7 @@ print_usage() {
     cat - <<EOT
 
 Usage: ${SCRIPT_NAME} [option(s)] [venv|deploy|serve]
-       Call mkdocs to build the maroph.github.io related files
+       Call mkdocs to build the site related files
 
 Options:
   -h|--help       : show this help and exit
@@ -44,22 +62,6 @@ EOT
 #
 ###############################################################################
 #
-cwd=`pwd`
-if [ "${SCRIPT_DIR}" = "." ]
-then
-    SCRIPT_DIR=$cwd
-else
-    cd ${SCRIPT_DIR}
-    SCRIPT_DIR=`pwd`
-    cd $cwd
-fi
-cwd=
-unset cwd
-#
-###############################################################################
-#
-check=1
-checkOnly=0
 while :
 do
     option=$1
@@ -95,6 +97,21 @@ do
 #
     shift 1
 done
+#
+###############################################################################
+#
+if [ "$1" != "" ]
+then
+    case "$1" in
+        venv)   ;;
+        deploy) ;;
+        serve)  ;;
+        *)
+            echo "${SCRIPT_NAME}: '$1' : unknown argument"
+            exit 1
+            ;;
+    esac
+fi
 #
 ###############################################################################
 #
@@ -227,7 +244,6 @@ then
     chmod 700 ${SCRIPT_DIR}/mkdocs.shut
     sleep 1
     echo ""
-    echo "pid : ${pid}"
     echo "shutdown MkDocs server: ${SCRIPT_DIR}/mkdocs.shut"
     echo ""
     exit 0
