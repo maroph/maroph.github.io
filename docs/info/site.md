@@ -39,7 +39,7 @@ The current installed module versions are:
 ```
 mkdocs==1.4.2
 mkdocs-git-revision-date-plugin==0.3.2
-mkdocs-material==9.1.6
+mkdocs-material==9.1.8
 mkdocs-material-extensions==1.1.1
 ```
 
