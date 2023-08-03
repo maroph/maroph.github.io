@@ -9,7 +9,7 @@
 ##############################################
 #
 declare -r SCRIPT_NAME=`basename $0`
-declare -r VERSION="${SCRIPT_NAME}  1  (23-JAN-2023)"
+declare -r VERSION="${SCRIPT_NAME}  1  (02-AUG-2023)"
 #
 ###############################################################################
 #
@@ -140,12 +140,10 @@ then
     python -m pip install --upgrade setuptools || exit 1
     echo "${SCRIPT_NAME}: python -m pip install --upgrade wheel"
     python -m pip install --upgrade wheel || exit 1
-    echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs"
-    python -m pip install --upgrade mkdocs || exit 1
     echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs-material"
     python -m pip install --upgrade mkdocs-material || exit 1
-    echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs-git-revision-date-plugin"
-    python -m pip install --upgrade mkdocs-git-revision-date-plugin || exit 1
+    echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs-git-revision-date-localized-plugin"
+    python -m pip install --upgrade mkdocs-git-revision-date-localized-plugin || exit 1
 #
     echo "${SCRIPT_NAME}: python -m pip freeze >requirements.txt"
     python -m pip freeze >${SCRIPT_DIR}/venv/requirements.txt || exit 1
@@ -205,10 +203,10 @@ then
     echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
     echo ""
 #
-    data=$(python -m pip show mkdocs-git-revision-date-plugin 2>/dev/null)
+    data=$(python -m pip show mkdocs-git-revision-date-localized-plugin 2>/dev/null)
     if [ $? -ne 0 ]
     then
-        echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-plugin not available"
+        echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-localized-plugin not available"
         exit 1
     fi
     echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'

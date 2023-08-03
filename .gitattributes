@@ -2,8 +2,7 @@
 #
 * text=auto
 #
-build text eol=lf
-LICENSE text
+build.bash text eol=lf
 #
 *.md text
 #

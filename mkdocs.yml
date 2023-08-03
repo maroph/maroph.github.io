@@ -13,16 +13,22 @@ repo_url: https://github.com/maroph/maroph.github.io/
 # link to GitHub repository site
 edit_uri: ""
 
+# MkDocs Theme: Material for MkDocs
+# https://squidfunk.github.io/mkdocs-material/
 theme:
     name: material
     palette:
         scheme: default
+        accent: indigo
     font: false
     language: en
-    icon:
-        edit: material/pencil
-        repo: fontawesome/brands/github
+    direction: ltr
     features:
+        - header.autohide
+        - content.action.edit
+        - content.action.view
+        - content.code.copy
+        - navigation.footer
         - navigation.indexes
         - navigation.instant
         - navigation.tracking
@@ -30,6 +36,10 @@ theme:
         - navigation.tabs.sticky
         - search.suggest
         - search.highlight
+    icon:
+        repo: fontawesome/brands/github
+        edit: material/pencil 
+        view: material/eye
 
 nav:
     - Home: index.md
@@ -117,6 +127,14 @@ markdown_extensions:
     - pymdownx.superfences
 
 plugins:
-    - git-revision-date
-    - search
+    - git-revision-date-localized:
+          enable_creation_date: false
+          type: iso_datetime
+    - search:
+        lang: en
 
+# extra:
+#   social:
+#     - icon: fontawesome/brands/github
+#       link: https://github.com/maroph
+#       name: github.com/maroph
