@@ -1538,8 +1538,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#software-in-use-to-produce-this-site" class="md-nav__link">
-    Software in use to produce this site:
+  <a href="#python-modules-in-use-to-produce-this-site" class="md-nav__link">
+    Python modules in use to produce this site:
   </a>
   
 </li>
@@ -1580,6 +1580,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-the-docs" class="md-nav__link">
+    Build the docs
+  </a>
   
 </li>
       
@@ -1647,8 +1654,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#software-in-use-to-produce-this-site" class="md-nav__link">
-    Software in use to produce this site:
+  <a href="#python-modules-in-use-to-produce-this-site" class="md-nav__link">
+    Python modules in use to produce this site:
   </a>
   
 </li>
@@ -1693,6 +1700,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#build-the-docs" class="md-nav__link">
+    Build the docs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#build-the-docs-for-testing" class="md-nav__link">
     Build the docs for testing
   </a>
@@ -1722,60 +1736,84 @@
 
 
 <h1 id="this-site">This Site</h1>
-<p>This is my main GitHub site.  The data are stored in my
-<a href="https://github.com/maroph/maroph.github.io">GitHub repository</a>.</p>
+<p>This is my main GitHub site.  The data are stored in my GitHub repository
+<a href="https://github.com/maroph/maroph.github.io">maroph/maroph.github.io</a>.</p>
 <h2 id="how-i-create-the-pages-on-this-site">How I create the pages on this site</h2>
 <p>My pages are written in Markdown (directory docs) an transformed into HTML 
-pages (local directory site) with the <a href="https://www.mkdocs.org/">MkDocs</a> Python
-module. The site data are published in the gh-pages branch of the directory.</p>
-<h3 id="software-in-use-to-produce-this-site">Software in use to produce this site:</h3>
+pages (local directory site) with the <a href="https://www.mkdocs.org/">MkDocs</a>
+static site generator. The site data are published in the gh-pages branch 
+of the directory.</p>
+<h3 id="python-modules-in-use-to-produce-this-site">Python modules in use to produce this site:</h3>
 <ul>
-<li><a href="https://www.mkdocs.org/" target="blank">MkDocs</a></li>
-<li><a href="https://squidfunk.github.io/mkdocs-material/" target="blank">Theme Material for MkDocs</a></li>
-<li><a href="https://github.com/zhaoterryy/mkdocs-git-revision-date-plugin/" target="blank">MkDocs plugin git-revision-date</a></li>
+<li><a href="https://pypi.org/project/mkdocs/" target="blank">MkDocs</a></li>
+<li><a href="https://pypi.org/project/mkdocs-material/" target="blank">Material for MkDocs</a></li>
+<li>MkDocs plugin <a href="https://pypi.org/project/mkdocs-git-revision-date-localized-plugin/" target="blank">mkdocs-git-revision-date-localized-plugin</a></li>
 </ul>
 <h2 id="python-virtual-environment">Python Virtual Environment</h2>
-<p>I use a virtual environment with the current MkDocs module.</p>
+<p>I use a virtual environment with the above Python modules.</p>
 <h3 id="how-the-virtual-environment-is-created">How the virtual environment is created</h3>
 <p>The following commands are used to build.bash the needed virtual environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>./venv
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">source</span><span class="w"> </span>./venv/bin/activate
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>setuptools
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>wheel
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>mkdocs
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>mkdocs-material
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>mkdocs-git-revision-date-plugin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>./venv
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>./venv/bin/activate
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>setuptools
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>wheel
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>mkdocs-material
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>mkdocs-git-revision-date-localized-plugin
 </code></pre></div>
 <p>The current installed module versions are:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdocs==1.4.2
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>mkdocs-git-revision-date-plugin==0.3.2
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>mkdocs-material==9.1.8
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdocs==1.5.2
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>mkdocs-git-revision-date-localized-plugin==1.2.0
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>mkdocs-material==9.1.21
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>mkdocs-material-extensions==1.1.1
 </code></pre></div>
 <h3 id="create-the-virtual-environment-with-the-buildbash-script">Create the virtual environment with the build.bash script</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./build.bash<span class="w"> </span>venv
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">source</span><span class="w"> </span>./venv/bin/activate
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>./build.bash<span class="w"> </span>venv
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>./venv/bin/activate
 </code></pre></div>
 <h3 id="install-missing-python3-software">Install missing Python3 software</h3>
 <p>If pip for Python3 and/or the Python3 venv module aren't installed on your system
 use the following commands as administrator (root):</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-pip
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-venv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-pip
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-venv
 </code></pre></div>
-<h2 id="build-the-docs-for-testing">Build the docs for testing</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>mkdocs<span class="w"> </span>build
+<h2 id="build-the-docs">Build the docs</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>$<span class="w"> </span>mkdocs<span class="w"> </span>build
 </code></pre></div>
 <p>or</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./build.bash
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>./build.bash
+</code></pre></div>
+<h2 id="build-the-docs-for-testing">Build the docs for testing</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$ source venv/bin/activate
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>$ ./build.bash serve
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>build.bash: check for needed Python modules
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>----------
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Name: mkdocs
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Version: 1.5.2
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Name: mkdocs-material
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>Version: 9.1.21
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Name: mkdocs-git-revision-date-localized-plugin
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>Version: 1.2.0
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>----------
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>build.bash: mkdocs serve
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>INFO    -  Building documentation...
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>INFO    -  Cleaning site directory
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>INFO    -  Documentation built in 0.35 seconds
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>INFO    -  [10:03:56] Watching paths for changes: &#39;docs&#39;, &#39;mkdocs.yml&#39;
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>INFO    -  [10:03:56] Serving on http://127.0.0.1:8000/
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>shutdown MkDocs server: ./mkdocs.shut
 </code></pre></div>
 <h2 id="build-the-docs-for-publishing">Build the docs for publishing</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>./build.bash<span class="w"> </span>deploy
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>$<span class="w"> </span>./build.bash<span class="w"> </span>deploy
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;my commit message&quot;</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>push
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;my commit message&quot;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>$<span class="w"> </span>git<span class="w"> </span>push
 </code></pre></div>
 
   <hr>
@@ -1783,7 +1821,7 @@ use the following commands as administrator (root):</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-04-27 15:59:27</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2023-08-03 08:21:38</span>
       
     
   </small>
