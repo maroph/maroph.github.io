@@ -5,6 +5,7 @@
 build.bash text eol=lf
 #
 *.md text
+*.yml text
 #
 *.jpg binary
 *.png binary
