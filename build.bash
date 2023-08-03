@@ -236,13 +236,18 @@ if [ "$1" = "serve" ]
 then
     echo "${SCRIPT_NAME}: mkdocs serve"
     mkdocs serve &
-    echo "#!/bin/bash" >${SCRIPT_DIR}/mkdocs.shut
-    echo "kill -15 $!" >>${SCRIPT_DIR}/mkdocs.shut
-    echo "rm ${SCRIPT_DIR}/mkdocs.shut" >>${SCRIPT_DIR}/mkdocs.shut
-    chmod 700 ${SCRIPT_DIR}/mkdocs.shut
+    #echo "#!/bin/bash" >${SCRIPT_DIR}/mkdocs.shut
+    echo "#!/bin/bash" >./mkdocs.shut
+    #echo "kill -15 $!" >>${SCRIPT_DIR}/mkdocs.shut
+    echo "kill -15 $!" >>./mkdocs.shut
+    #echo "rm ${SCRIPT_DIR}/mkdocs.shut" >>${SCRIPT_DIR}/mkdocs.shut
+    echo "rm ./mkdocs.shut" >>./mkdocs.shut
+    # chmod 700 ${SCRIPT_DIR}/mkdocs.shut
+    chmod 700 ./mkdocs.shut
     sleep 1
     echo ""
-    echo "shutdown MkDocs server: ${SCRIPT_DIR}/mkdocs.shut"
+    # echo "shutdown MkDocs server: ${SCRIPT_DIR}/mkdocs.shut"
+    echo "shutdown MkDocs server: ./mkdocs.shut"
     echo ""
     exit 0
 fi
