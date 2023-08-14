@@ -7,11 +7,11 @@ site_author: Manfred Rosenboom (maroph)
 repo_name: GitHub
 # repo_name: maroph/maroph.github.io
 repo_url: https://github.com/maroph/maroph.github.io/
-# edit_uri: edit/master/docs
+edit_uri: edit/master/docs
 # view readonly version
 # edit_uri: blob/master/docs
 # link to GitHub repository site
-edit_uri: ""
+# edit_uri: ""
 
 # MkDocs Theme: Material for MkDocs
 # https://squidfunk.github.io/mkdocs-material/
@@ -56,7 +56,7 @@ nav:
             - Twitter: https://twitter.com/maroph
         - GitHub Pages:
             - Main Page: https://maroph.github.io/
-            - geocities_marochess: https://maroph.github.io/geocities_marochess/
+            - My vi Site: https://maroph.github.io/ex-vi/
             - openHPI Kurs Linux CLI: https://maroph.github.io/openhpi_linux-cli_2022/
         - Collaboration:
             - DFN Terminplaner: https://terminplaner4.dfn.de/

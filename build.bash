@@ -9,7 +9,7 @@
 ##############################################
 #
 declare -r SCRIPT_NAME=`basename $0`
-declare -r VERSION="${SCRIPT_NAME}  1  (02-AUG-2023)"
+declare -r VERSION="${SCRIPT_NAME}  1  (09-AUG-2023)"
 #
 ###############################################################################
 #
@@ -33,6 +33,7 @@ export LANG="en_US.UTF-8"
 #
 check=1
 checkOnly=0
+force=0
 #
 ###############################################################################
 #
@@ -46,6 +47,7 @@ Options:
   -h|--help       : show this help and exit
   -V|--version    : show version information and exit
   -c|--check-only : check for needed Python3 modules and exit
+  -f|--force      : use option --no-strict for mkdocs build
   -n|--no-check   : no check for needed Python3 modules
 
   Arguments
@@ -76,6 +78,9 @@ do
             ;;
         -c | --check-only)
             checkOnly=1
+            ;;
+        -f | --force)
+            force=1
             ;;
         -n | --no-check)
             check=0
@@ -234,19 +239,20 @@ fi
 #
 if [ "$1" = "serve" ]
 then
-    echo "${SCRIPT_NAME}: mkdocs serve"
-    mkdocs serve &
-    #echo "#!/bin/bash" >${SCRIPT_DIR}/mkdocs.shut
+    if [ ${force} -eq 1 ]
+    then
+        echo "${SCRIPT_NAME}: mkdocs serve --no-strict ..."
+        mkdocs serve --no-strict &
+    else
+        echo "${SCRIPT_NAME}: mkdocs serve ..."
+        mkdocs serve &
+    fi
     echo "#!/bin/bash" >./mkdocs.shut
-    #echo "kill -15 $!" >>${SCRIPT_DIR}/mkdocs.shut
     echo "kill -15 $!" >>./mkdocs.shut
-    #echo "rm ${SCRIPT_DIR}/mkdocs.shut" >>${SCRIPT_DIR}/mkdocs.shut
     echo "rm ./mkdocs.shut" >>./mkdocs.shut
-    # chmod 700 ${SCRIPT_DIR}/mkdocs.shut
     chmod 700 ./mkdocs.shut
     sleep 1
     echo ""
-    # echo "shutdown MkDocs server: ${SCRIPT_DIR}/mkdocs.shut"
     echo "shutdown MkDocs server: ./mkdocs.shut"
     echo ""
     exit 0
@@ -254,8 +260,14 @@ fi
 #
 ###############################################################################
 #
-echo "${SCRIPT_NAME}: mkdocs build"
-mkdocs build || exit 1
+if [ ${force} -eq 1 ]
+then
+    echo "${SCRIPT_NAME}: mkdocs build --clean --no-strict"
+    mkdocs build --clean --no-strict || exit 1
+else
+    echo "${SCRIPT_NAME}: mkdocs build --clean"
+    mkdocs build --clean || exit 1
+fi
 echo ""
 #
 if [ -d ${SCRIPT_DIR}/.git ]
