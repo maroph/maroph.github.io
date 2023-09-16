@@ -1,5 +1,5 @@
 # About
-This is my main GitHub site.
+This is my main GitHub Page.
 
 ## Bio
 My name is Manfred Rosenboom. I worked as a software lead developer for 

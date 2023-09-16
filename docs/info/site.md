@@ -1,5 +1,5 @@
 # This Site
-This is my main GitHub site.  The data are stored in my GitHub repository
+This is my main GitHub Page. The data are stored in my GitHub repository
 [maroph/maroph.github.io](https://github.com/maroph/maroph.github.io).
 
 ## How I create the pages on this site

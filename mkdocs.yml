@@ -1,11 +1,10 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
-site_name: My GitHub Site
+site_name: My Main GitHub Page
 site_url: https://maroph.github.io/
-site_description: My Main GitHub Site
+site_description: main GitHub Page
 site_author: Manfred Rosenboom (maroph)
 
-repo_name: GitHub
-# repo_name: maroph/maroph.github.io
+repo_name: maroph/maroph.github.io
 repo_url: https://github.com/maroph/maroph.github.io/
 edit_uri: edit/master/docs
 # view readonly version
@@ -13,13 +12,25 @@ edit_uri: edit/master/docs
 # link to GitHub repository site
 # edit_uri: ""
 
+# MkDocs Site: https://www.mkdocs.org/
 # MkDocs Theme: Material for MkDocs
 # https://squidfunk.github.io/mkdocs-material/
 theme:
     name: material
+# https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/
     palette:
-        scheme: default
-        accent: indigo
+        - scheme: default
+          primary: indigo
+          accent: indigo
+          toggle:
+            icon: material/brightness-7
+            name: Switch to dark mode
+        - scheme: slate
+          primary: indigo
+          accent: indigo
+          toggle:
+            icon: material/brightness-4
+            name: Switch to light mode
     font: false
     language: en
     direction: ltr
@@ -28,12 +39,16 @@ theme:
         - content.action.edit
         - content.action.view
         - content.code.copy
+        - navigation.expand
         - navigation.footer
         - navigation.indexes
         - navigation.instant
+        - navigation.prune
+        - navigation.sections
         - navigation.tracking
         - navigation.tabs
         - navigation.tabs.sticky
+        - navigation.top
         - search.suggest
         - search.highlight
     icon:
@@ -66,6 +81,10 @@ nav:
             - NoPaste: https://nopaste.dnshome.org/
             - Padlet: https://padlet.com/
             - PrivateBin: https://privatebin.net/
+        - GPT:
+            - Google Bard: https://bard.google.com/
+            - Meta LLaMa Chat: https://labs.perplexity.ai/
+            - OpenAI ChatGPT: https://chat.openai.com/
         - Rankings:
             - DB-Engines Ranking: https://db-engines.com/en/ranking
             - PYPL: https://pypl.github.io/PYPL.html
@@ -94,10 +113,11 @@ nav:
             - Git for Windows: https://git-scm.com/download/win
             - Maven: https://maven.apache.org/
             - MkDocs: https://www.mkdocs.org/
-            - MkDocs Material: https://squidfunk.github.io/mkdocs-material/
+            - Material for MkDocs: https://squidfunk.github.io/mkdocs-material/
             - OpenJDK: https://adoptium.net/
             - OpenSSL: https://www.openssl.org/
             - Pandoc: https://pandoc.org/
+            - Python: https://www.python.org/
             - Raspberry Pi OS: https://www.raspberrypi.org/software/operating-systems/
             - Tomcat: https://tomcat.apache.org/
             - WildFly: https://www.wildfly.org/
@@ -116,25 +136,32 @@ site_dir: site
 use_directory_urls: false
 strict: true
 
-copyright: Copyright (c) 2020-2023 <a href="https://github.com/maroph">Manfred Rosenboom</a>
+copyright: Copyright (c) 2020-2023 <a href="https://maroph.github.io/">Manfred Rosenboom</a>
 
 markdown_extensions:
     - attr_list
     - pymdownx.highlight:
-        anchor_linenums: true
+          anchor_linenums: true
     - pymdownx.inlinehilite
     - pymdownx.snippets
     - pymdownx.superfences
 
 plugins:
+# https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
     - git-revision-date-localized:
           enable_creation_date: false
+          fallback_to_build_date: true
+          timezone: Europe/Amsterdam
           type: iso_datetime
+    - info:
+        enabled: false
     - search:
         lang: en
 
-# extra:
-#   social:
-#     - icon: fontawesome/brands/github
-#       link: https://github.com/maroph
-#       name: github.com/maroph
+extra:
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/maroph
+        - icon: fontawesome/brands/mastodon 
+          link: https://muenchen.social/@maroph
+
