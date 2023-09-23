@@ -44,7 +44,6 @@ theme:
         - navigation.indexes
         - navigation.instant
         - navigation.prune
-        - navigation.sections
         - navigation.tracking
         - navigation.tabs
         - navigation.tabs.sticky
@@ -61,6 +60,7 @@ nav:
     - Links:
         - links.md
         - My Sites:
+            - links_my_sites.md
             - Blogger: https://maroph.blogspot.com/
             - Fediverse: https://muenchen.social/@maroph
             - GitHub: https://github.com/maroph/
@@ -70,10 +70,12 @@ nav:
             - Personal Home Page: https://manfred.rosenboom.name/
             - Twitter: https://twitter.com/maroph
         - GitHub Pages:
+            - links_github_pages.md
             - Main Page: https://maroph.github.io/
             - My vi Site: https://maroph.github.io/ex-vi/
             - openHPI Kurs Linux CLI: https://maroph.github.io/openhpi_linux-cli_2022/
         - Collaboration:
+            - links_collaboration.md
             - DFN Terminplaner: https://terminplaner4.dfn.de/
             - Etherpad (ffmuc.net): https://ffmuc.net/pad/
             - Jitsi Meet (ffmuc.net): https://meet.ffmuc.net/
@@ -82,14 +84,17 @@ nav:
             - Padlet: https://padlet.com/
             - PrivateBin: https://privatebin.net/
         - GPT:
+            - links_gpt.md
             - Google Bard: https://bard.google.com/
             - Meta LLaMa Chat: https://labs.perplexity.ai/
             - OpenAI ChatGPT: https://chat.openai.com/
         - Rankings:
+            - links_rankings.md
             - DB-Engines Ranking: https://db-engines.com/en/ranking
             - PYPL: https://pypl.github.io/PYPL.html
             - TIOBE Index: https://www.tiobe.com/tiobe-index/
         - Security:
+            - links_security.md
             - BSI CERT: https://www.cert-bund.de/overview/AdvisoryShort
             - Certificate Search: https://crt.sh/
             - CVE Details: https://www.cvedetails.com/
@@ -107,6 +112,7 @@ nav:
             - Security Headers (Web Server): https://securityheaders.com/
             - SSL Server Test: https://www.ssllabs.com/ssltest/
         - Software:
+            - links_software.md
             - Ant: https://ant.apache.org/
             - Bouncy Castle: https://bouncycastle.org/
             - Debian: https://www.debian.org/index.en.html
