@@ -62,6 +62,7 @@ nav:
         - My Sites:
             - links_my_sites.md
             - Blogger: https://maroph.blogspot.com/
+            - Bluesky: https://bsky.app/profile/maroph.bsky.social
             - Fediverse: https://muenchen.social/@maroph
             - GitHub: https://github.com/maroph/
             - GitHub Gist: https://gist.github.com/maroph/
@@ -73,6 +74,7 @@ nav:
             - links_github_pages.md
             - Main Page: https://maroph.github.io/
             - My vi Site: https://maroph.github.io/ex-vi/
+            - MVHS Kurs HTML & CSS: https://maroph.github.io/mvhs_html_css/
             - openHPI Kurs Linux CLI: https://maroph.github.io/openhpi_linux-cli_2022/
         - Collaboration:
             - links_collaboration.md
@@ -170,4 +172,3 @@ extra:
           link: https://github.com/maroph
         - icon: fontawesome/brands/mastodon 
           link: https://muenchen.social/@maroph
-
