@@ -2,92 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://maroph.github.io/index.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links_collaboration.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links_github_pages.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links_gpt.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links_my_sites.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links_rankings.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links_security.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/links_software.html</loc>
-         <lastmod>2023-11-20</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://maroph.github.io/blog/index.html</loc>
-         <lastmod>2023-11-20</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://maroph.github.io/blog/2023/11/20/first-post.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/about.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/gdpr.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://maroph.github.io/info/gpg.html</loc>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/license.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/site.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://maroph.github.io/info/sources.html</loc>
-         <lastmod>2023-11-20</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://maroph.github.io/blog/archive/2023.html</loc>
-         <lastmod>2023-11-20</lastmod>
+         <lastmod>2023-12-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
