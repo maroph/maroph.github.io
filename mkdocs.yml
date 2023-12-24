@@ -133,10 +133,14 @@ nav:
             - Tomcat: https://tomcat.apache.org/
             - WildFly: https://www.wildfly.org/
             - XAMPP: https://www.apachefriends.org/
+    - TechNotes:
+        - links_technotes.md
+        - GnuPG: technotes/gnupg/gnupg.md
+        - OpenSSL CLI Tool: technotes/openssl_cli_tool/openssl_cli_tool.md
     - Info:
         - info.md
         - About: info/about.md
-        - GPG Key: info/gpg.md
+        - GPG Key: info/gpg/gpg.md
         - GDPR/DSGVO: info/gdpr.md
         - License: info/license.md
         - Sources: info/sources.md
