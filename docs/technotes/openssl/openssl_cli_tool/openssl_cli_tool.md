@@ -765,7 +765,7 @@ $ cat private_ed448.key
 MIG...
 ...
 ...l/Y
----s--END ENCRYPTED PRIVATE KEY-----
+-----END ENCRYPTED PRIVATE KEY-----
 ```
 
 ### Private Key File Without Passphrase
@@ -792,18 +792,9 @@ $ file public_rsa.pem
 public_rsa.pem: ASCII text
 $ cat public_rsa.pem
 -----BEGIN PUBLIC KEY-----
-MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA19RDMSbWbVtC59BWtPHJ
-emoyZgKIVEuJ8YlamWhhTnf87Tqq2YefJlQ1pLTx+drUnn3yU0M6a5duZqULdS9c
-NqMB+6ybFZZ13qD2GU7yTqAqPiyhIAP5fmaoTNp8KBH0gTo/KeBYxbbiQqiO/kTk
-mW/aCXf0oeSWbYX176qMz0eBRMJ4a6MXu/eJVgdFX7oHGBvR+8bhn+JLnlwCmPMp
-8OrClHHq+loUXM+O8j0hwsoQDFLyL/t2bhkuCH91UFkQsUdDZIfxSgSX7tbUxKZb
-LqxRBsTEl3nSKcIX6tJSKavOFkPdLG4ZLzS/D0uAqabAhVQZKysI/NuNg66Mwkm0
-3wVgkDanM8CvBiXq5y8tQZTB1yVZoL2hcNc2w6bAhZjeVST2m3CgnhnMbJP5bELT
-AWrPyZuHjcNeYVxXv34goOTgOsp+T3GAVn22DwStALdXQrycQRVkyiWR0T4NEn70
-CedKrRRRcrxz2OwXxurQMkvQXgZl+QfmWj8VN56v8KLSNn5LfoPprP0TOCm5D+f8
-Vs5Sh/pwfcpQ3khMPl8FnU4DKABXto1uX+4Vsh8phtEIs4oP2UpQ1krQql3Bmd5W
-bndvZS8G5O2ne3e3kSwchSY8vAzeazQtA2D6dNhzgYokzX0wBS9reFJWLIXGbuul
-v28F34GnmZ7MUmXHms3Vq/MCAwEAAQ==
+MII...
+...
+...Q==
 -----END PUBLIC KEY-----
 ```
 
@@ -831,4 +822,3 @@ $ chmod 644 public_rsa.der
 $ file public_rsa.der
 public_rsa.der: data
 ```
-
