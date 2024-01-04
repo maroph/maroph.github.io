@@ -44,7 +44,8 @@ theme:
         - navigation.indexes
         - navigation.instant
         - navigation.instant.progress
-        - navigation.prune
+#        - navigation.prune
+#        - navigation.sections
         - navigation.tracking
         - navigation.tabs
         - navigation.tabs.sticky
@@ -52,7 +53,7 @@ theme:
         - search.suggest
         - search.highlight
         - toc.follow
-        - toc.integrate
+#        - toc.integrate
     icon:
         repo: fontawesome/brands/github
         edit: material/pencil 
@@ -60,6 +61,7 @@ theme:
 
 nav:
     - Home: index.md
+    - Blog: blog/index.md
     - Links:
         - links.md
         - My Sites:
@@ -134,13 +136,15 @@ nav:
             - WildFly: https://www.wildfly.org/
             - XAMPP: https://www.apachefriends.org/
     - TechNotes:
-        - links_technotes.md
+        - technotes.md
         - GnuPG: technotes/gnupg/gnupg.md
-        - OpenSSL CLI Tool: technotes/openssl_cli_tool/openssl_cli_tool.md
+        - OpenSSL:
+            - technotes/openssl/openssl.md
+            - OpenSSL CLI Tool: technotes/openssl/openssl_cli_tool/openssl_cli_tool.md
     - Info:
         - info.md
         - About: info/about.md
-        - GPG Key: info/gpg/gpg.md
+        - OpenPGP Key: info/openpgp/openpgp.md
         - GDPR/DSGVO: info/gdpr.md
         - License: info/license.md
         - Sources: info/sources.md
@@ -152,7 +156,7 @@ site_dir: site
 use_directory_urls: false
 strict: true
 
-copyright: Copyright (c) 2020-2023 <a href="https://maroph.github.io/">Manfred Rosenboom</a>
+copyright: Copyright (c) 2020-2024 <a href="https://maroph.github.io/">Manfred Rosenboom</a>
 
 markdown_extensions:
     - attr_list
@@ -173,6 +177,34 @@ plugins:
         enabled: false
     - search:
         lang: en
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#writing-your-first-post
+    - blog:
+        enabled: true
+        authors: false
+        blog_dir: blog
+        blog_toc: true
+        draft: false
+        draft_on_serve: false
+        draft_if_future_date: true
+        pagination: true
+        pagination_per_page: 10
+        pagination_url_format: "page/{page}"
+        post_date_format: EEEE, MMMM d, yyyy
+        pagination_if_single_page: false
+        post_excerpt: optional
+        post_excerpt_separator: "<!--more-->"
+        post_readtime: false
+        archive: true
+        archive_name: Archive
+        archive_date_format: yyyy
+        archive_url_format: "archive/{date}"
+        archive_toc: true
+        categories: false
+        categories_name: Categories
+        categories_url_format: "category/{slug}"
+        categories_toc: true
+        categories_allowed:
+            - General
 
 extra:
 #icons: https://fontawesome.com/search?o=r&f=brands

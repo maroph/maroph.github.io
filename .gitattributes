@@ -4,6 +4,7 @@
 #
 build.bash text eol=lf
 #
+*.asc text
 *.md text
 *.yml text
 #

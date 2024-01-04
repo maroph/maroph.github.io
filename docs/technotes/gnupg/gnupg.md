@@ -1,6 +1,7 @@
 # GnuPG
 ![GnuPG Logo](logo-gnupg-light-purple-bg.png)  
-Logo: <https://www.gnupg.org/share/logo-gnupg-light-purple-bg.png>
+Logo: <https://www.gnupg.org/share/logo-gnupg-light-purple-bg.png>  
+__Last updated: 31-DEC-2023__
 
 ## Introduction
 This document contains a number of samples to show,
@@ -8,7 +9,7 @@ how to use the GnuPG (GNU Privacy Guard) software
 on a Linux system.
 
 The samples are executed on a Debian 12.4 system with
-the GNU Privacy Guard 2.2.40 software.
+the __GNU Privacy Guard 2.2.40__ software.
  
 ### GnuPG Site and Documentation
 - [GnuPG Site](https://www.gnupg.org/)
@@ -443,6 +444,10 @@ pub   rsa4096 2023-12-19 [SC] [expires: 2025-12-21]
 uid           [ unknown] Zaphod Beeblebrox <Zaphod.Beeblebrox@universe.gov>
 sub   rsa4096 2023-12-19 [E] [expires: 2025-12-21]
 ```
+
+### Remove Key from the Keyserver
+Enter the related mail address on the folloiwng page:  
+[keys.openpgp.org/manage](https://keys.openpgp.org/manage).
 
 
 ### Refresh Keyring Data from the Keyserver
