@@ -209,10 +209,9 @@ $ file private_rsa.key
 private_rsa.key: ASCII text
 $ cat private_rsa.key
 -----BEGIN ENCRYPTED PRIVATE KEY-----
-MIIJrTBXBgkqhkiG9w0BBQ0wSjApBgkqhkiG9w0BBQwwHAQIt4tbeQmF+bwCAggA
+MII...
 ...
-xg0QeEL7LLREZWdB/FFOS1gXpalbuZUq8ZOhmb/xHE+8bivL4oott2CjNRUx0Ogl
-ZkKAfCHRpRE6VUR2tVqgIh+71s4dAuvICdGkACDMr3uo
+...3uo
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
@@ -222,10 +221,9 @@ $ openssl genpkey -algorithm RSA-PSS -pkeyopt rsa_keygen_bits:4096 -aes128 -out 
 $ chmod 600 private_rsapss.key
 $ cat private_rsapss.key
 -----BEGIN ENCRYPTED PRIVATE KEY-----
-MIIJrTBXBgkqhkiG9w0BBQ0wSjApBgkqhkiG9w0BBQwwHAQIyZ3NqMycr3ECAggA
+MII...
 ...
-JxeU6zhSsQbgR4RoE6155ELL7zk+mXeZqJnRqvBydMtInvguQ0veplmeul+wZ9Gj
-lcfYd7nDPADp4podu2TX4cCqyriKY0SVqsusdqnrHKvy
+...Kvy
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
@@ -235,11 +233,9 @@ $ openssl genpkey -algorithm ec -pkeyopt ec_paramgen_curve:prime256v1 -aes128 -o
 $ chmod 600 private_ecprime256v1.key
 $ cat  private_ecprime256v1.key
 -----BEGIN ENCRYPTED PRIVATE KEY-----
-MIHsMFcGCSqGSIb3DQEFDTBKMCkGCSqGSIb3DQEFDDAcBAj2sK5qGlndagICCAAw
-DAYIKoZIhvcNAgkFADAdBglghkgBZQMEAQIEEFNK4kOOPe5pM66tVQBx0BcEgZAy
-tRGY7ykz0dlrzJ2HL9kNzKSSG3yMRIopc1Hptwh66hQjmnRkzee/YAuNwoa8Df91
-lUuczl802NXAxRB0GImKNMS2woqZebtVWcdwTtcnu8ic1acZrRBqbDz8WyTw+HRq
-9JbyF3fY6nlmLZboTIa86FgwX5bo+90KzEJrfzZG9gbVHxVbVfgDsy07TVfl9XU=
+MIH...
+...
+...XU=
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
@@ -730,10 +726,9 @@ ASN1 OID: wap-wsg-idm-ecid-wtls9
 $ chmod 600 private_x25519.key
 $ cat private_x25519.key
 -----BEGIN ENCRYPTED PRIVATE KEY-----
-MIGbMFcGCSqGSIb3DQEFDTBKMCkGCSqGSIb3DQEFDDAcBAiuTK9xio8YhwICCAAw
-DAYIKoZIhvcNAgkFADAdBglghkgBZQMEAQIEEGeSI/rmBN/U5STaDjeD2X8EQLKM
-SkCVg8TKFfA9+L/eMJ57CGu6SDOhCncxU3PaY1cSgjDiAVi8Bjmp7YqvX5rFmdMk
-gT5LvMJTn1r5Hajt6kw=
+MIG...
+...
+...kw=
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
@@ -743,10 +738,9 @@ $ openssl genpkey -algorithm x448 -aes128 -out private_x448.key -pass pass:chang
 $ chmod 600 private_x448.key
 $ cat private_x448.key
 -----BEGIN ENCRYPTED PRIVATE KEY-----
-MIGrMFcGCSqGSIb3DQEFDTBKMCkGCSqGSIb3DQEFDDAcBAhdex2yTsF1nAICCAAw
-DAYIKoZIhvcNAgkFADAdBglghkgBZQMEAQIEELDqI7nvPzU6uAf6r7ivCkoEUEkC
-4AMPA+mObh9Q6I7i5/y42UZHVICqGXSaSiLRRtgHnDKA9fJlgeluv9xBdqe7R/XR
-LTxD0K6OdXZSnTznhPlJ3R5y5dvpL06Zr97sNRwg
+MIG...
+...
+...Rwg
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
@@ -756,10 +750,9 @@ $ openssl genpkey -algorithm ed25519 -aes128 -out private_ed25519.key -pass pass
 $ chmod 600 private_ed25519.key
 $ cat private_ed25519.key
 -----BEGIN ENCRYPTED PRIVATE KEY-----
-MIGbMFcGCSqGSIb3DQEFDTBKMCkGCSqGSIb3DQEFDDAcBAhGY4v7zWqNxgICCAAw
-DAYIKoZIhvcNAgkFADAdBglghkgBZQMEAQIEENzOIekOvChzWsxeMTDjYxcEQPLC
-/ELbHMIeqdj3YeHVEcRdm+St3Ldnc8Z+p6DxSk8DceuYbCHAs6Uy4RWn9yXitAIy
-t5ieAnoH7s39WHVsWis=
+MIG...
+...
+...is=
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
@@ -769,11 +762,10 @@ $ openssl genpkey -algorithm ed448 -aes128 -out private_ed448.key -pass pass:cha
 $ chmod 600 private_ed448.key
 $ cat private_ed448.key
 -----BEGIN ENCRYPTED PRIVATE KEY-----
-MIGrMFcGCSqGSIb3DQEFDTBKMCkGCSqGSIb3DQEFDDAcBAjLp4y7qZ1KAQICCAAw
-DAYIKoZIhvcNAgkFADAdBglghkgBZQMEAQIEEN0q+TyD1aPrDR4z9wO7PiYEULfq
-ae4VZufz9jMWO6fJbSrEVa4qqP7hQcyQi87gDawc9me7KEX5Vv9PBVUpZTNuQthP
-IqyL5Cu9JPw3peVKZvzm7KTIvzkboc7bZR5V9l/Y
------END ENCRYPTED PRIVATE KEY-----
+MIG...
+...
+...l/Y
+---s--END ENCRYPTED PRIVATE KEY-----
 ```
 
 ### Private Key File Without Passphrase
@@ -781,8 +773,8 @@ IqyL5Cu9JPw3peVKZvzm7KTIvzkboc7bZR5V9l/Y
 $ openssl pkey -in private_ed448.key -passin pass:changeit -out private_ed448_noenc.key
 cat private_ed448_noenc.key
 -----BEGIN PRIVATE KEY-----
-MEcCAQAwBQYDK2VxBDsEOewIKrJu2CjTGJgIrNC827G9hbq7NaWf6fqfgmHfAnq2
-E8egp7d5W2gjETx5mDTqUwwETn2xAePZkw==
+MEc...
+...w==
 -----END PRIVATE KEY-----
 ```
 
