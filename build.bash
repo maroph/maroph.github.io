@@ -8,19 +8,19 @@
 # https://choosealicense.com/licenses/mit/   #
 ##############################################
 #
-declare -r SCRIPT_NAME=`basename $0`
-declare -r VERSION="${SCRIPT_NAME}  1  (05-AUG-2023)"
+declare -r SCRIPT_NAME=$(basename $0)
+declare -r VERSION="${SCRIPT_NAME}  1  (05-JAN-2024)"
 #
 ###############################################################################
 #
-SCRIPT_DIR=`dirname $0`
-cwd=`pwd`
+SCRIPT_DIR=$(dirname $0)
+cwd=$(pwd)
 if [ "${SCRIPT_DIR}" = "." ]
 then
     SCRIPT_DIR=$cwd
 else
     cd ${SCRIPT_DIR}
-    SCRIPT_DIR=`pwd`
+    SCRIPT_DIR=$(pwd)
     cd $cwd
 fi
 cwd=
