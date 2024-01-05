@@ -2,14 +2,14 @@
 #
 #
 ##############################################
-# Copyright (c) 2023 by Manfred Rosenboom    #
+# Copyright (c) 2024 by Manfred Rosenboom    #
 #                                            #
 # This work is licensed under a MIT License. #
 # https://choosealicense.com/licenses/mit/   #
 ##############################################
 #
 declare -r SCRIPT_NAME=`basename $0`
-declare -r VERSION="${SCRIPT_NAME}  1  (09-AUG-2023)"
+declare -r VERSION="${SCRIPT_NAME}  1  (05-AUG-2023)"
 #
 ###############################################################################
 #
@@ -149,6 +149,8 @@ then
     python -m pip install --upgrade mkdocs-material || exit 1
     echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs-git-revision-date-localized-plugin"
     python -m pip install --upgrade mkdocs-git-revision-date-localized-plugin || exit 1
+    echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs-macros-plugin"
+    python -m pip install --upgrade mkdocs-macros-plugin || exit 1
 #
     echo "${SCRIPT_NAME}: python -m pip freeze >requirements.txt"
     python -m pip freeze >${SCRIPT_DIR}/venv/requirements.txt || exit 1
@@ -212,6 +214,16 @@ then
     if [ $? -ne 0 ]
     then
         echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-localized-plugin not available"
+        exit 1
+    fi
+    echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
+    echo "----------"
+    echo ""
+#
+    data=$(python -m pip show mkdocs-macros-plugin 2>/dev/null)
+    if [ $? -ne 0 ]
+    then
+        echo "${SCRIPT_NAME}: Python module mkdocs-macros-plugin not available"
         exit 1
     fi
     echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'

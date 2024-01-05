@@ -13,10 +13,12 @@ of the directory.
 * [MkDocs]{:target="blank"}
 * [Material for MkDocs]{:target="blank"}
 * MkDocs plugin [mkdocs-git-revision-date-localized-plugin]{:target="blank"}
+* MkDocs plugin [mkdocs-macros-plugin]{:target="blank"}
 
 [MkDocs]: https://pypi.org/project/mkdocs/
 [Material for MkDocs]: https://pypi.org/project/mkdocs-material/
 [mkdocs-git-revision-date-localized-plugin]: https://pypi.org/project/mkdocs-git-revision-date-localized-plugin/
+[mkdocs-macros-plugin]: https://pypi.org/project/mkdocs-macros-plugin/
 
 ## Python Virtual Environment
 I use a virtual environment with the above Python modules.
@@ -32,15 +34,17 @@ $ python -m pip install --upgrade setuptools
 $ python -m pip install --upgrade wheel
 $ python -m pip install --upgrade mkdocs-material
 $ python -m pip install --upgrade mkdocs-git-revision-date-localized-plugin
+$ python -m pip install --upgrade mkdocs-macros-plugin
 ```
 
 The current installed module versions are:
 
 ```
-mkdocs==1.5.2
-mkdocs-git-revision-date-localized-plugin==1.2.0
-mkdocs-material==9.1.21
-mkdocs-material-extensions==1.1.1
+mkdocs==1.5.3
+mkdocs-git-revision-date-localized-plugin==1.2.2
+mkdocs-macros-plugin==1.0.5
+mkdocs-material==9.5.3
+mkdocs-material-extensions==1.3.1
 ```
 
 ### Create the virtual environment with the build.bash script
@@ -110,4 +114,3 @@ $ ./build.bash deploy
 $ git commit -m "my commit message"
 $ git push
 ```
-
