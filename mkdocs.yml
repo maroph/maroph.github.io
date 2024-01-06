@@ -71,7 +71,7 @@ nav:
             - GitHub: https://github.com/maroph/
             - GitHub Gist: https://gist.github.com/maroph/
             - Gravatar: https://en.gravatar.com/maroph
-            - Mastodon: https://muenchen.social/@maroph
+            - Mastodon: https://mastodon.social/@maroph
             - Pastebin: https://pastebin.com/u/maroph
             - Personal Home Page: https://manfred.rosenboom.name/
         - GitHub Pages:
@@ -222,4 +222,4 @@ extra:
         - icon: fontawesome/brands/github
           link: https://github.com/maroph
         - icon: fontawesome/brands/mastodon 
-          link: https://muenchen.social/@maroph
+          link: https://mastodon.social/@maroph
