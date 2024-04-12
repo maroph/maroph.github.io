@@ -9,7 +9,7 @@
 ##############################################
 #
 declare -r SCRIPT_NAME=$(basename $0)
-declare -r VERSION="${SCRIPT_NAME}  1  (05-JAN-2024)"
+declare -r VERSION="${SCRIPT_NAME}  1  (12-APR-2024)"
 #
 ###############################################################################
 #
@@ -279,6 +279,12 @@ then
 else
     echo "${SCRIPT_NAME}: mkdocs build --clean"
     mkdocs build --clean || exit 1
+#
+    if [ ! -f site/.nojekyll ]
+    then
+        touch site/.nojekyll
+        chmod 640 site/.nojekyll
+    fi
 fi
 echo ""
 #

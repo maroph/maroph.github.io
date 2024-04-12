@@ -1,0 +1,4214 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="My main GitHub Page">
+      
+      
+        <meta name="author" content="Manfred Rosenboom (maroph)">
+      
+      
+        <link rel="canonical" href="https://maroph.github.io/technotes/openssl/openssl_cli_tool/openssl_cli_tool.html">
+      
+      
+        <link rel="prev" href="../openssl.html">
+      
+      
+        <link rel="next" href="../../../info.html">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>OpenSSL CLI Tool - My Main GitHub Page</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.bcfcd587.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#openssl-cli-tool" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../index.html" title="My Main GitHub Page" class="md-header__button md-logo" aria-label="My Main GitHub Page" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My Main GitHub Page
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OpenSSL CLI Tool
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/maroph/maroph.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    maroph/maroph.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../links.html" class="md-tabs__link">
+          
+  
+    
+  
+  Links
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../technotes.html" class="md-tabs__link">
+          
+  
+    
+  
+  TechNotes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../info.html" class="md-tabs__link">
+          
+  
+    
+  
+  Info
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="My Main GitHub Page" class="md-nav__button md-logo" aria-label="My Main GitHub Page" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    My Main GitHub Page
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/maroph/maroph.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    maroph/maroph.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Links
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    My Sites
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            My Sites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links_my_sites.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links: My Sites
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://bsky.app/profile/maroph.bsky.social" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bluesky
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://codepen.io/maroph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CodePen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/maroph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://gist.github.com/maroph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub Gist
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://en.gravatar.com/maroph" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gravatar
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://mastodon.social/@maroph" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mastodon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://pastebin.com/u/maroph" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pastebin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://manfred.rosenboom.name/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Personal Home Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GitHub Pages
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            GitHub Pages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links_github_pages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links: GitHub Pages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://maroph.github.io/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://maroph.github.io/ex-vi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    My vi Site
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://maroph.github.io/mvhs_html_css/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MVHS Kurs HTML & CSS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://maroph.github.io/openhpi_linux-cli_2022/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    openHPI Kurs Linux CLI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Collaboration
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Collaboration
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links_collaboration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links: Collaboration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://cryptpad.digitalcourage.de/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cryptpad (Digitalcourage)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://terminplaner4.dfn.de/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DFN Terminplaner
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ffmuc.net/pad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Etherpad (ffmuc.net)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://meet.ffmuc.net/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jitsi Meet (ffmuc.net)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://nopaste.dnshome.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NoPaste
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://nuudel.digitalcourage.de/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nuudel (Digitalcourage)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://padlet.com/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Padlet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://privatebin.net/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PrivateBin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GPT
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            GPT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links_gpt.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links: GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://bard.google.com/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Google Bard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://labs.perplexity.ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Meta LLaMa Chat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://chat.openai.com/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenAI ChatGPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Rankings
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Rankings
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links_rankings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links: Rankings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://db-engines.com/en/ranking" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DB-Engines Ranking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://pypl.github.io/PYPL.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PYPL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.tiobe.com/tiobe-index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TIOBE Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Security
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Security
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links_security.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links: Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.cert-bund.de/overview/AdvisoryShort" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BSI CERT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://crt.sh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Certificate Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.cvedetails.com/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CVE Details
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://security-tracker.debian.org/tracker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debian Security Bug Tracker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.debian.org/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debian Security Information
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.debian.org/lts/security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debian LTS Security Information
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.exploit-db.com/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exploit DB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://gf.dev/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Geekflare Tools for Webmasters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://haveibeenpwned.com/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Have I been pwned
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://sec.hpi.de/ilc/d?lang=en" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HPI Identity Leak Checker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://securityheaders.com/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTP Security Headers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://curl.haxx.se/docs/caextract.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mozilla CA PEM File
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ssl-config.mozilla.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mozilla SSL Configuration Generator
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://nvd.nist.gov/vuln/data-feeds" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NVD Feeds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://securityheaders.com/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Security Headers (Web Server)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.ssllabs.com/ssltest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSL Server Test
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../links_software.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Links: Software
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ant.apache.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://bouncycastle.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bouncy Castle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.debian.org/index.en.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debian
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://git-scm.com/download/win" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git for Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://maven.apache.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Maven
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.mkdocs.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://squidfunk.github.io/mkdocs-material/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Material for MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://adoptium.net/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenJDK
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.openssl.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenSSL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://pandoc.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pandoc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.python.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.raspberrypi.org/software/operating-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Raspberry Pi OS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://tomcat.apache.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tomcat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.wildfly.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WildFly
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.apachefriends.org/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XAMPP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    TechNotes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            TechNotes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../technotes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TechNotes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gnupg/gnupg.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GnuPG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    OpenSSL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            OpenSSL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openssl.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenSSL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    OpenSSL CLI Tool
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="openssl_cli_tool.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    OpenSSL CLI Tool
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hashing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hmac-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      HMAC Hashing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-hash-digest-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Hash (Digest) Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base64-encodingdecoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      BASE64 Encoding/Decoding
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BASE64 Encoding/Decoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encoding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decoding
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#symmetric-encryptiondecryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Symmetric Encryption/Decryption
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Symmetric Encryption/Decryption">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-symmetric-encryption-cipher-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Symmetric Encryption (Cipher) Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publicprivate-key-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public/Private Key Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public/Private Key Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#private-key-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Private Key Creation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Private Key Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rsa-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      RSA Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsa-pss-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      RSA-PSS Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elliptic-curve-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elliptic Curve Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x25519-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      X25519 Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x448-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      X448 Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ed25519-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      ED25519 Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ed448-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      ED448 Key
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#private-key-file-without-passphrase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Private Key File Without Passphrase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-private-key-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Private Key Consistency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract-public-key-from-private-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract Public Key from Private Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-public-key-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Public Key Consistency
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check Public Key Consistency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rsa-and-rsa-pss-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      RSA and RSA-PSS Keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-public-key-from-pem-to-der-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert Public Key from PEM to DER Format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Info
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Info
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Info
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info/about.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info/openpgp/openpgp.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OpenPGP Key
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info/gdpr.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GDPR/DSGVO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info/license.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info/sources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../info/site.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    This Site
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hashing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hmac-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      HMAC Hashing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-hash-digest-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Hash (Digest) Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#base64-encodingdecoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      BASE64 Encoding/Decoding
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BASE64 Encoding/Decoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encoding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decoding
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#symmetric-encryptiondecryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Symmetric Encryption/Decryption
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Symmetric Encryption/Decryption">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-symmetric-encryption-cipher-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Symmetric Encryption (Cipher) Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#publicprivate-key-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Public/Private Key Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Public/Private Key Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#private-key-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Private Key Creation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Private Key Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rsa-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      RSA Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsa-pss-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      RSA-PSS Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elliptic-curve-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elliptic Curve Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x25519-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      X25519 Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x448-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      X448 Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ed25519-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      ED25519 Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ed448-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      ED448 Key
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#private-key-file-without-passphrase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Private Key File Without Passphrase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-private-key-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Private Key Consistency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extract-public-key-from-private-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extract Public Key from Private Key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-public-key-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Public Key Consistency
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Check Public Key Consistency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rsa-and-rsa-pss-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      RSA and RSA-PSS Keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-public-key-from-pem-to-der-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convert Public Key from PEM to DER Format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/maroph/maroph.github.io/edit/master/docs/technotes/openssl/openssl_cli_tool/openssl_cli_tool.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/maroph/maroph.github.io/raw/master/docs/technotes/openssl/openssl_cli_tool/openssl_cli_tool.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5Z"/></svg>
+    </a>
+  
+
+
+<h1 id="openssl-cli-tool">OpenSSL CLI Tool</h1>
+<p><strong>Last updated: 04-JAN-2024</strong></p>
+<h2 id="introduction">Introduction</h2>
+<p>This document contains a number of samples to show,
+how to use the OpenSSL CLI tool <em>openssl</em> on a 
+Linux system.</p>
+<p>The samples are executed on a Debian 12.4 system with
+the <strong>OpenSSL 3.0.11</strong> software.</p>
+<h2 id="hashing">Hashing</h2>
+<p>Sample file to hash:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ cat text.txt
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Don&#39;t Panic!
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$ openssl dgst -sha256 &lt;file&gt;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  or
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>$ openssl dgst -sha256 -out &lt;file&gt;.sha256 &lt;file&gt; 
+</code></pre></div>
+<p><strong>Samples</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$ openssl dgst -sha256 text.txt
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>SHA2-256(text.txt)= 9538e1742668b3ab26f7b5c77a817b74089c0a1cb38c73ec1ab4550f43f4312e
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>or
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>$ openssl dgst -r -sha256 text.txt
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>9538e1742668b3ab26f7b5c77a817b74089c0a1cb38c73ec1ab4550f43f4312e *text.txt
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$ openssl dgst -sha256 -out text.txt.sha256 text.txt
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$ cat text.txt.sha256
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>SHA2-256(text.txt)= 9538e1742668b3ab26f7b5c77a817b74089c0a1cb38c73ec1ab4550f43f4312e
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>or
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>$ openssl dgst -r -sha256 -out text.txt.sha256 text.txt
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>maro@zwijger:~/develop/OpenSSL$ cat text.txt.sha256
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>9538e1742668b3ab26f7b5c77a817b74089c0a1cb38c73ec1ab4550f43f4312e *text.txt
+</code></pre></div>
+<p>Usually the following digests (hash algorithms) are used</p>
+<ul>
+<li>-md5</li>
+<li>-sha1</li>
+<li>-sha224</li>
+<li>-sha256</li>
+<li>-sha384</li>
+<li>-sha512</li>
+<li>-sha3-224</li>
+<li>-sha3-256</li>
+<li>-sha3-384</li>
+<li>-sha3-512</li>
+</ul>
+<h3 id="hmac-hashing">HMAC Hashing</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$ openssl dgst -sha256 -hmac &lt;password&gt; &lt;file&gt;
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  or
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>$ openssl dgst -sha256 -hmac &lt;password&gt; -out &lt;file&gt;.hmac-sha256 &lt;file&gt; 
+</code></pre></div>
+<p><strong>Sample</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$ openssl dgst -sha256 -hmac secret text.txt
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>HMAC-SHA2-256(text.txt)= fb6edba3a69cadb92c9cb754953f8ac424ff7e08d59a0d525e38af8e976679ae
+</code></pre></div></p>
+<h3 id="available-hash-digest-algorithms">Available Hash (Digest) Algorithms</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$ openssl dgst -list
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Supported digests:
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>-blake2b512                -blake2s256                -md4
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>-md5                       -md5-sha1                  -ripemd
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>-ripemd160                 -rmd160                    -sha1
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>-sha224                    -sha256                    -sha3-224
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>-sha3-256                  -sha3-384                  -sha3-512
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>-sha384                    -sha512                    -sha512-224
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>-sha512-256                -shake128                  -shake256
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>-sm3                       -ssl3-md5                  -ssl3-sha1
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>-whirlpool
+</code></pre></div>
+<h2 id="base64-encodingdecoding">BASE64 Encoding/Decoding</h2>
+<p>Sample file:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$ cat text.txt
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Don&#39;t Panic!
+</code></pre></div></p>
+<h3 id="encoding">Encoding</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$ openssl enc -e -base64 -in text.txt
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>RG9uJ3QgUGFuaWMhCg==
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>#
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>$ openssl enc -e -base64 -in text.txt -out text.txt.base64
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>$ cat text.txt.base64
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>RG9uJ3QgUGFuaWMhCg==
+</code></pre></div>
+<p>Longer BASE64 output is wrapped into lines with 
+64 characters:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>IyEvYmluL2Jhc2gKIwojIDIwLU9DVC0yMDIyCiMKc2V0IC14CmNkIG9wZW5zc2wg
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>...
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>dGVNaW5pbWFsUnVudGltZUVudmlyb25tZW50IC1mCmZpCiMKZXhpdCAwCgo=
+</code></pre></div>
+<h3 id="decoding">Decoding</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$ openssl enc -d -base64 -in text.txt.base64
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Don&#39;t Panic!
+</code></pre></div>
+<h2 id="symmetric-encryptiondecryption">Symmetric Encryption/Decryption</h2>
+<h3 id="encryption">Encryption</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$ openssl enc -aes256 -e -a -in &lt;file&gt; -pbkdf2 -pass pass:&lt;passphrase&gt; -out &lt;file&gt;.enc
+</code></pre></div>
+<p><strong>Sample</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$ openssl enc -aes256 -e -a -in text.txt -pbkdf2 -pass pass:secret -out text.txt.enc
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>$ cat text.txt.enc
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>U2FsdGVkX19VrTiWm0ydFabNrTp7MS9kjg4gKsQo5O8=
+</code></pre></div></p>
+<h3 id="decryption">Decryption</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$ openssl enc -aes256 -d -a -in &lt;file&gt;.enc -pbkdf2 -pass pass:secret -out &lt;file&gt;
+</code></pre></div>
+<p><strong>Sample</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$ openssl enc -aes256 -d -a -in text.txt.enc -pbkdf2 -pass pass:secret -out text2.txt
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>$ cat text2.txt
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>Don&#39;t Panic!
+</code></pre></div></p>
+<h3 id="available-symmetric-encryption-cipher-algorithms">Available Symmetric Encryption (Cipher) Algorithms</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$ openssl enc -list
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>Supported ciphers:
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>-aes-128-cbc               -aes-128-cfb               -aes-128-cfb1
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>-aes-128-cfb8              -aes-128-ctr               -aes-128-ecb
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>-aes-128-ofb               -aes-192-cbc               -aes-192-cfb
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>-aes-192-cfb1              -aes-192-cfb8              -aes-192-ctr
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>-aes-192-ecb               -aes-192-ofb               -aes-256-cbc
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>-aes-256-cfb               -aes-256-cfb1              -aes-256-cfb8
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>-aes-256-ctr               -aes-256-ecb               -aes-256-ofb
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>-aes128                    -aes128-wrap               -aes192
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>-aes192-wrap               -aes256                    -aes256-wrap
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>-aria-128-cbc              -aria-128-cfb              -aria-128-cfb1
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>-aria-128-cfb8             -aria-128-ctr              -aria-128-ecb
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>-aria-128-ofb              -aria-192-cbc              -aria-192-cfb
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>-aria-192-cfb1             -aria-192-cfb8             -aria-192-ctr
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>-aria-192-ecb              -aria-192-ofb              -aria-256-cbc
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>-aria-256-cfb              -aria-256-cfb1             -aria-256-cfb8
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>-aria-256-ctr              -aria-256-ecb              -aria-256-ofb
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a>-aria128                   -aria192                   -aria256
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>-bf                        -bf-cbc                    -bf-cfb
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>-bf-ecb                    -bf-ofb                    -blowfish
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>-camellia-128-cbc          -camellia-128-cfb          -camellia-128-cfb1
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>-camellia-128-cfb8         -camellia-128-ctr          -camellia-128-ecb
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>-camellia-128-ofb          -camellia-192-cbc          -camellia-192-cfb
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>-camellia-192-cfb1         -camellia-192-cfb8         -camellia-192-ctr
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>-camellia-192-ecb          -camellia-192-ofb          -camellia-256-cbc
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>-camellia-256-cfb          -camellia-256-cfb1         -camellia-256-cfb8
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>-camellia-256-ctr          -camellia-256-ecb          -camellia-256-ofb
+<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>-camellia128               -camellia192               -camellia256
+<a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>-cast                      -cast-cbc                  -cast5-cbc
+<a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>-cast5-cfb                 -cast5-ecb                 -cast5-ofb
+<a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>-chacha20                  -des                       -des-cbc
+<a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>-des-cfb                   -des-cfb1                  -des-cfb8
+<a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>-des-ecb                   -des-ede                   -des-ede-cbc
+<a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a>-des-ede-cfb               -des-ede-ecb               -des-ede-ofb
+<a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a>-des-ede3                  -des-ede3-cbc              -des-ede3-cfb
+<a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a>-des-ede3-cfb1             -des-ede3-cfb8             -des-ede3-ecb
+<a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a>-des-ede3-ofb              -des-ofb                   -des3
+<a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a>-des3-wrap                 -desx                      -desx-cbc
+<a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a>-id-aes128-wrap            -id-aes128-wrap-pad        -id-aes192-wrap
+<a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a>-id-aes192-wrap-pad        -id-aes256-wrap            -id-aes256-wrap-pad
+<a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a>-id-smime-alg-CMS3DESwrap  -rc2                       -rc2-128
+<a id="__codelineno-15-43" name="__codelineno-15-43" href="#__codelineno-15-43"></a>-rc2-40                    -rc2-40-cbc                -rc2-64
+<a id="__codelineno-15-44" name="__codelineno-15-44" href="#__codelineno-15-44"></a>-rc2-64-cbc                -rc2-cbc                   -rc2-cfb
+<a id="__codelineno-15-45" name="__codelineno-15-45" href="#__codelineno-15-45"></a>-rc2-ecb                   -rc2-ofb                   -rc4
+<a id="__codelineno-15-46" name="__codelineno-15-46" href="#__codelineno-15-46"></a>-rc4-40                    -seed                      -seed-cbc
+<a id="__codelineno-15-47" name="__codelineno-15-47" href="#__codelineno-15-47"></a>-seed-cfb                  -seed-ecb                  -seed-ofb
+<a id="__codelineno-15-48" name="__codelineno-15-48" href="#__codelineno-15-48"></a>-sm4                       -sm4-cbc                   -sm4-cfb
+<a id="__codelineno-15-49" name="__codelineno-15-49" href="#__codelineno-15-49"></a>-sm4-ctr                   -sm4-ecb                   -sm4-ofb
+</code></pre></div>
+<h2 id="publicprivate-key-handling">Public/Private Key Handling</h2>
+<h3 id="private-key-creation">Private Key Creation</h3>
+<h4 id="rsa-key">RSA Key</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$ openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 \
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    -aes128 -out private_rsa.key -pass pass:changeit
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>$ chmod 600 private_rsa.key
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>$ file private_rsa.key
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>private_rsa.key: ASCII text
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>$ cat private_rsa.key
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>-----BEGIN ENCRYPTED PRIVATE KEY-----
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>MII...
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>...
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>...3uo
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>-----END ENCRYPTED PRIVATE KEY-----
+</code></pre></div>
+<h4 id="rsa-pss-key">RSA-PSS Key</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$ openssl genpkey -algorithm RSA-PSS -pkeyopt rsa_keygen_bits:4096 -aes128 -out private_rsapss.key -pass pass:changeit
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>$ chmod 600 private_rsapss.key
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>$ cat private_rsapss.key
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>-----BEGIN ENCRYPTED PRIVATE KEY-----
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>MII...
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>...
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>...Kvy
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>-----END ENCRYPTED PRIVATE KEY-----
+</code></pre></div>
+<h4 id="elliptic-curve-key">Elliptic Curve Key</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$ openssl genpkey -algorithm ec -pkeyopt ec_paramgen_curve:prime256v1 -aes128 -out private_ecprime256v1.key -pass pass:changeit
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>$ chmod 600 private_ecprime256v1.key
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>$ cat  private_ecprime256v1.key
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>-----BEGIN ENCRYPTED PRIVATE KEY-----
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>MIH...
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>...
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>...XU=
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>-----END ENCRYPTED PRIVATE KEY-----
+</code></pre></div>
+<p>List of all available elliptic curves:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$ openssl ecparam -list_curves
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>  secp112r1 : SECG/WTLS curve over a 112 bit prime field
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>  secp112r2 : SECG curve over a 112 bit prime field
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>  secp128r1 : SECG curve over a 128 bit prime field
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>  secp128r2 : SECG curve over a 128 bit prime field
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>  secp160k1 : SECG curve over a 160 bit prime field
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>  secp160r1 : SECG curve over a 160 bit prime field
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>  secp160r2 : SECG/WTLS curve over a 160 bit prime field
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>  secp192k1 : SECG curve over a 192 bit prime field
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>  secp224k1 : SECG curve over a 224 bit prime field
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>  secp224r1 : NIST/SECG curve over a 224 bit prime field
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>  secp256k1 : SECG curve over a 256 bit prime field
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>  secp384r1 : NIST/SECG curve over a 384 bit prime field
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>  secp521r1 : NIST/SECG curve over a 521 bit prime field
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>  prime192v1: NIST/X9.62/SECG curve over a 192 bit prime field
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>  prime192v2: X9.62 curve over a 192 bit prime field
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>  prime192v3: X9.62 curve over a 192 bit prime field
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>  prime239v1: X9.62 curve over a 239 bit prime field
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>  prime239v2: X9.62 curve over a 239 bit prime field
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>  prime239v3: X9.62 curve over a 239 bit prime field
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>  prime256v1: X9.62/SECG curve over a 256 bit prime field
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>  sect113r1 : SECG curve over a 113 bit binary field
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>  sect113r2 : SECG curve over a 113 bit binary field
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>  sect131r1 : SECG/WTLS curve over a 131 bit binary field
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>  sect131r2 : SECG curve over a 131 bit binary field
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>  sect163k1 : NIST/SECG/WTLS curve over a 163 bit binary field
+<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>  sect163r1 : SECG curve over a 163 bit binary field
+<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>  sect163r2 : NIST/SECG curve over a 163 bit binary field
+<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>  sect193r1 : SECG curve over a 193 bit binary field
+<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>  sect193r2 : SECG curve over a 193 bit binary field
+<a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>  sect233k1 : NIST/SECG/WTLS curve over a 233 bit binary field
+<a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>  sect233r1 : NIST/SECG/WTLS curve over a 233 bit binary field
+<a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>  sect239k1 : SECG curve over a 239 bit binary field
+<a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>  sect283k1 : NIST/SECG curve over a 283 bit binary field
+<a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>  sect283r1 : NIST/SECG curve over a 283 bit binary field
+<a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>  sect409k1 : NIST/SECG curve over a 409 bit binary field
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>  sect409r1 : NIST/SECG curve over a 409 bit binary field
+<a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>  sect571k1 : NIST/SECG curve over a 571 bit binary field
+<a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>  sect571r1 : NIST/SECG curve over a 571 bit binary field
+<a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>  c2pnb163v1: X9.62 curve over a 163 bit binary field
+<a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>  c2pnb163v2: X9.62 curve over a 163 bit binary field
+<a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a>  c2pnb163v3: X9.62 curve over a 163 bit binary field
+<a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a>  c2pnb176v1: X9.62 curve over a 176 bit binary field
+<a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a>  c2tnb191v1: X9.62 curve over a 191 bit binary field
+<a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a>  c2tnb191v2: X9.62 curve over a 191 bit binary field
+<a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a>  c2tnb191v3: X9.62 curve over a 191 bit binary field
+<a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a>  c2pnb208w1: X9.62 curve over a 208 bit binary field
+<a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a>  c2tnb239v1: X9.62 curve over a 239 bit binary field
+<a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a>  c2tnb239v2: X9.62 curve over a 239 bit binary field
+<a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a>  c2tnb239v3: X9.62 curve over a 239 bit binary field
+<a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a>  c2pnb272w1: X9.62 curve over a 272 bit binary field
+<a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a>  c2pnb304w1: X9.62 curve over a 304 bit binary field
+<a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a>  c2tnb359v1: X9.62 curve over a 359 bit binary field
+<a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a>  c2pnb368w1: X9.62 curve over a 368 bit binary field
+<a id="__codelineno-19-55" name="__codelineno-19-55" href="#__codelineno-19-55"></a>  c2tnb431r1: X9.62 curve over a 431 bit binary field
+<a id="__codelineno-19-56" name="__codelineno-19-56" href="#__codelineno-19-56"></a>  wap-wsg-idm-ecid-wtls1: WTLS curve over a 113 bit binary field
+<a id="__codelineno-19-57" name="__codelineno-19-57" href="#__codelineno-19-57"></a>  wap-wsg-idm-ecid-wtls3: NIST/SECG/WTLS curve over a 163 bit binary field
+<a id="__codelineno-19-58" name="__codelineno-19-58" href="#__codelineno-19-58"></a>  wap-wsg-idm-ecid-wtls4: SECG curve over a 113 bit binary field
+<a id="__codelineno-19-59" name="__codelineno-19-59" href="#__codelineno-19-59"></a>  wap-wsg-idm-ecid-wtls5: X9.62 curve over a 163 bit binary field
+<a id="__codelineno-19-60" name="__codelineno-19-60" href="#__codelineno-19-60"></a>  wap-wsg-idm-ecid-wtls6: SECG/WTLS curve over a 112 bit prime field
+<a id="__codelineno-19-61" name="__codelineno-19-61" href="#__codelineno-19-61"></a>  wap-wsg-idm-ecid-wtls7: SECG/WTLS curve over a 160 bit prime field
+<a id="__codelineno-19-62" name="__codelineno-19-62" href="#__codelineno-19-62"></a>  wap-wsg-idm-ecid-wtls8: WTLS curve over a 112 bit prime field
+<a id="__codelineno-19-63" name="__codelineno-19-63" href="#__codelineno-19-63"></a>  wap-wsg-idm-ecid-wtls9: WTLS curve over a 160 bit prime field
+<a id="__codelineno-19-64" name="__codelineno-19-64" href="#__codelineno-19-64"></a>  wap-wsg-idm-ecid-wtls10: NIST/SECG/WTLS curve over a 233 bit binary field
+<a id="__codelineno-19-65" name="__codelineno-19-65" href="#__codelineno-19-65"></a>  wap-wsg-idm-ecid-wtls11: NIST/SECG/WTLS curve over a 233 bit binary field
+<a id="__codelineno-19-66" name="__codelineno-19-66" href="#__codelineno-19-66"></a>  wap-wsg-idm-ecid-wtls12: WTLS curve over a 224 bit prime field
+<a id="__codelineno-19-67" name="__codelineno-19-67" href="#__codelineno-19-67"></a>  Oakley-EC2N-3:
+<a id="__codelineno-19-68" name="__codelineno-19-68" href="#__codelineno-19-68"></a>        IPSec/IKE/Oakley curve #3 over a 155 bit binary field.
+<a id="__codelineno-19-69" name="__codelineno-19-69" href="#__codelineno-19-69"></a>        Not suitable for ECDSA.
+<a id="__codelineno-19-70" name="__codelineno-19-70" href="#__codelineno-19-70"></a>        Questionable extension field!
+<a id="__codelineno-19-71" name="__codelineno-19-71" href="#__codelineno-19-71"></a>  Oakley-EC2N-4:
+<a id="__codelineno-19-72" name="__codelineno-19-72" href="#__codelineno-19-72"></a>        IPSec/IKE/Oakley curve #4 over a 185 bit binary field.
+<a id="__codelineno-19-73" name="__codelineno-19-73" href="#__codelineno-19-73"></a>        Not suitable for ECDSA.
+<a id="__codelineno-19-74" name="__codelineno-19-74" href="#__codelineno-19-74"></a>        Questionable extension field!
+<a id="__codelineno-19-75" name="__codelineno-19-75" href="#__codelineno-19-75"></a>  brainpoolP160r1: RFC 5639 curve over a 160 bit prime field
+<a id="__codelineno-19-76" name="__codelineno-19-76" href="#__codelineno-19-76"></a>  brainpoolP160t1: RFC 5639 curve over a 160 bit prime field
+<a id="__codelineno-19-77" name="__codelineno-19-77" href="#__codelineno-19-77"></a>  brainpoolP192r1: RFC 5639 curve over a 192 bit prime field
+<a id="__codelineno-19-78" name="__codelineno-19-78" href="#__codelineno-19-78"></a>  brainpoolP192t1: RFC 5639 curve over a 192 bit prime field
+<a id="__codelineno-19-79" name="__codelineno-19-79" href="#__codelineno-19-79"></a>  brainpoolP224r1: RFC 5639 curve over a 224 bit prime field
+<a id="__codelineno-19-80" name="__codelineno-19-80" href="#__codelineno-19-80"></a>  brainpoolP224t1: RFC 5639 curve over a 224 bit prime field
+<a id="__codelineno-19-81" name="__codelineno-19-81" href="#__codelineno-19-81"></a>  brainpoolP256r1: RFC 5639 curve over a 256 bit prime field
+<a id="__codelineno-19-82" name="__codelineno-19-82" href="#__codelineno-19-82"></a>  brainpoolP256t1: RFC 5639 curve over a 256 bit prime field
+<a id="__codelineno-19-83" name="__codelineno-19-83" href="#__codelineno-19-83"></a>  brainpoolP320r1: RFC 5639 curve over a 320 bit prime field
+<a id="__codelineno-19-84" name="__codelineno-19-84" href="#__codelineno-19-84"></a>  brainpoolP320t1: RFC 5639 curve over a 320 bit prime field
+<a id="__codelineno-19-85" name="__codelineno-19-85" href="#__codelineno-19-85"></a>  brainpoolP384r1: RFC 5639 curve over a 384 bit prime field
+<a id="__codelineno-19-86" name="__codelineno-19-86" href="#__codelineno-19-86"></a>  brainpoolP384t1: RFC 5639 curve over a 384 bit prime field
+<a id="__codelineno-19-87" name="__codelineno-19-87" href="#__codelineno-19-87"></a>  brainpoolP512r1: RFC 5639 curve over a 512 bit prime field
+<a id="__codelineno-19-88" name="__codelineno-19-88" href="#__codelineno-19-88"></a>  brainpoolP512t1: RFC 5639 curve over a 512 bit prime field
+<a id="__codelineno-19-89" name="__codelineno-19-89" href="#__codelineno-19-89"></a>  SM2       : SM2 curve over a 256 bit prime field
+</code></pre></div></p>
+<p>Get the related ASN1 OID and/or NIST CURVE names:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$ openssl ecparam -list_curves | grep &#39;:&#39; | awk -F: &#39;{print $1;}&#39; | sed -e &#39;s/^[t ]*//g;s/[t ]*$//g&#39; | sort | awk &#39;
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>        BEGIN {
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>            print &quot;List all available elliptic curves&quot;;
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>            print &quot;----------&quot;;
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>        }
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>        {
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>            print $1;
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>            system(&quot;openssl ecparam -name &quot;$1&quot; -noout -text&quot;);
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>            print &quot;----------&quot;;
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>        }
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>    &#39;
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>List all available elliptic curves
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>----------
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>brainpoolP160r1
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>EC-Parameters: (160 bit)
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>ASN1 OID: brainpoolP160r1
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>----------
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>brainpoolP160t1
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>EC-Parameters: (160 bit)
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>ASN1 OID: brainpoolP160t1
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>----------
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>brainpoolP192r1
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>EC-Parameters: (192 bit)
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>ASN1 OID: brainpoolP192r1
+<a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>----------
+<a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a>brainpoolP192t1
+<a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a>EC-Parameters: (192 bit)
+<a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a>ASN1 OID: brainpoolP192t1
+<a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a>----------
+<a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a>brainpoolP224r1
+<a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>EC-Parameters: (224 bit)
+<a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>ASN1 OID: brainpoolP224r1
+<a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a>----------
+<a id="__codelineno-20-34" name="__codelineno-20-34" href="#__codelineno-20-34"></a>brainpoolP224t1
+<a id="__codelineno-20-35" name="__codelineno-20-35" href="#__codelineno-20-35"></a>EC-Parameters: (224 bit)
+<a id="__codelineno-20-36" name="__codelineno-20-36" href="#__codelineno-20-36"></a>ASN1 OID: brainpoolP224t1
+<a id="__codelineno-20-37" name="__codelineno-20-37" href="#__codelineno-20-37"></a>----------
+<a id="__codelineno-20-38" name="__codelineno-20-38" href="#__codelineno-20-38"></a>brainpoolP256r1
+<a id="__codelineno-20-39" name="__codelineno-20-39" href="#__codelineno-20-39"></a>EC-Parameters: (256 bit)
+<a id="__codelineno-20-40" name="__codelineno-20-40" href="#__codelineno-20-40"></a>ASN1 OID: brainpoolP256r1
+<a id="__codelineno-20-41" name="__codelineno-20-41" href="#__codelineno-20-41"></a>----------
+<a id="__codelineno-20-42" name="__codelineno-20-42" href="#__codelineno-20-42"></a>brainpoolP256t1
+<a id="__codelineno-20-43" name="__codelineno-20-43" href="#__codelineno-20-43"></a>EC-Parameters: (256 bit)
+<a id="__codelineno-20-44" name="__codelineno-20-44" href="#__codelineno-20-44"></a>ASN1 OID: brainpoolP256t1
+<a id="__codelineno-20-45" name="__codelineno-20-45" href="#__codelineno-20-45"></a>----------
+<a id="__codelineno-20-46" name="__codelineno-20-46" href="#__codelineno-20-46"></a>brainpoolP320r1
+<a id="__codelineno-20-47" name="__codelineno-20-47" href="#__codelineno-20-47"></a>EC-Parameters: (320 bit)
+<a id="__codelineno-20-48" name="__codelineno-20-48" href="#__codelineno-20-48"></a>ASN1 OID: brainpoolP320r1
+<a id="__codelineno-20-49" name="__codelineno-20-49" href="#__codelineno-20-49"></a>----------
+<a id="__codelineno-20-50" name="__codelineno-20-50" href="#__codelineno-20-50"></a>brainpoolP320t1
+<a id="__codelineno-20-51" name="__codelineno-20-51" href="#__codelineno-20-51"></a>EC-Parameters: (320 bit)
+<a id="__codelineno-20-52" name="__codelineno-20-52" href="#__codelineno-20-52"></a>ASN1 OID: brainpoolP320t1
+<a id="__codelineno-20-53" name="__codelineno-20-53" href="#__codelineno-20-53"></a>----------
+<a id="__codelineno-20-54" name="__codelineno-20-54" href="#__codelineno-20-54"></a>brainpoolP384r1
+<a id="__codelineno-20-55" name="__codelineno-20-55" href="#__codelineno-20-55"></a>EC-Parameters: (384 bit)
+<a id="__codelineno-20-56" name="__codelineno-20-56" href="#__codelineno-20-56"></a>ASN1 OID: brainpoolP384r1
+<a id="__codelineno-20-57" name="__codelineno-20-57" href="#__codelineno-20-57"></a>----------
+<a id="__codelineno-20-58" name="__codelineno-20-58" href="#__codelineno-20-58"></a>brainpoolP384t1
+<a id="__codelineno-20-59" name="__codelineno-20-59" href="#__codelineno-20-59"></a>EC-Parameters: (384 bit)
+<a id="__codelineno-20-60" name="__codelineno-20-60" href="#__codelineno-20-60"></a>ASN1 OID: brainpoolP384t1
+<a id="__codelineno-20-61" name="__codelineno-20-61" href="#__codelineno-20-61"></a>----------
+<a id="__codelineno-20-62" name="__codelineno-20-62" href="#__codelineno-20-62"></a>brainpoolP512r1
+<a id="__codelineno-20-63" name="__codelineno-20-63" href="#__codelineno-20-63"></a>EC-Parameters: (512 bit)
+<a id="__codelineno-20-64" name="__codelineno-20-64" href="#__codelineno-20-64"></a>ASN1 OID: brainpoolP512r1
+<a id="__codelineno-20-65" name="__codelineno-20-65" href="#__codelineno-20-65"></a>----------
+<a id="__codelineno-20-66" name="__codelineno-20-66" href="#__codelineno-20-66"></a>brainpoolP512t1
+<a id="__codelineno-20-67" name="__codelineno-20-67" href="#__codelineno-20-67"></a>EC-Parameters: (512 bit)
+<a id="__codelineno-20-68" name="__codelineno-20-68" href="#__codelineno-20-68"></a>ASN1 OID: brainpoolP512t1
+<a id="__codelineno-20-69" name="__codelineno-20-69" href="#__codelineno-20-69"></a>----------
+<a id="__codelineno-20-70" name="__codelineno-20-70" href="#__codelineno-20-70"></a>c2pnb163v1
+<a id="__codelineno-20-71" name="__codelineno-20-71" href="#__codelineno-20-71"></a>EC-Parameters: (163 bit)
+<a id="__codelineno-20-72" name="__codelineno-20-72" href="#__codelineno-20-72"></a>ASN1 OID: c2pnb163v1
+<a id="__codelineno-20-73" name="__codelineno-20-73" href="#__codelineno-20-73"></a>----------
+<a id="__codelineno-20-74" name="__codelineno-20-74" href="#__codelineno-20-74"></a>c2pnb163v2
+<a id="__codelineno-20-75" name="__codelineno-20-75" href="#__codelineno-20-75"></a>EC-Parameters: (162 bit)
+<a id="__codelineno-20-76" name="__codelineno-20-76" href="#__codelineno-20-76"></a>ASN1 OID: c2pnb163v2
+<a id="__codelineno-20-77" name="__codelineno-20-77" href="#__codelineno-20-77"></a>----------
+<a id="__codelineno-20-78" name="__codelineno-20-78" href="#__codelineno-20-78"></a>c2pnb163v3
+<a id="__codelineno-20-79" name="__codelineno-20-79" href="#__codelineno-20-79"></a>EC-Parameters: (162 bit)
+<a id="__codelineno-20-80" name="__codelineno-20-80" href="#__codelineno-20-80"></a>ASN1 OID: c2pnb163v3
+<a id="__codelineno-20-81" name="__codelineno-20-81" href="#__codelineno-20-81"></a>----------
+<a id="__codelineno-20-82" name="__codelineno-20-82" href="#__codelineno-20-82"></a>c2pnb176v1
+<a id="__codelineno-20-83" name="__codelineno-20-83" href="#__codelineno-20-83"></a>EC-Parameters: (161 bit)
+<a id="__codelineno-20-84" name="__codelineno-20-84" href="#__codelineno-20-84"></a>ASN1 OID: c2pnb176v1
+<a id="__codelineno-20-85" name="__codelineno-20-85" href="#__codelineno-20-85"></a>----------
+<a id="__codelineno-20-86" name="__codelineno-20-86" href="#__codelineno-20-86"></a>c2pnb208w1
+<a id="__codelineno-20-87" name="__codelineno-20-87" href="#__codelineno-20-87"></a>EC-Parameters: (193 bit)
+<a id="__codelineno-20-88" name="__codelineno-20-88" href="#__codelineno-20-88"></a>ASN1 OID: c2pnb208w1
+<a id="__codelineno-20-89" name="__codelineno-20-89" href="#__codelineno-20-89"></a>----------
+<a id="__codelineno-20-90" name="__codelineno-20-90" href="#__codelineno-20-90"></a>c2pnb272w1
+<a id="__codelineno-20-91" name="__codelineno-20-91" href="#__codelineno-20-91"></a>EC-Parameters: (257 bit)
+<a id="__codelineno-20-92" name="__codelineno-20-92" href="#__codelineno-20-92"></a>ASN1 OID: c2pnb272w1
+<a id="__codelineno-20-93" name="__codelineno-20-93" href="#__codelineno-20-93"></a>----------
+<a id="__codelineno-20-94" name="__codelineno-20-94" href="#__codelineno-20-94"></a>c2pnb304w1
+<a id="__codelineno-20-95" name="__codelineno-20-95" href="#__codelineno-20-95"></a>EC-Parameters: (289 bit)
+<a id="__codelineno-20-96" name="__codelineno-20-96" href="#__codelineno-20-96"></a>ASN1 OID: c2pnb304w1
+<a id="__codelineno-20-97" name="__codelineno-20-97" href="#__codelineno-20-97"></a>----------
+<a id="__codelineno-20-98" name="__codelineno-20-98" href="#__codelineno-20-98"></a>c2pnb368w1
+<a id="__codelineno-20-99" name="__codelineno-20-99" href="#__codelineno-20-99"></a>EC-Parameters: (353 bit)
+<a id="__codelineno-20-100" name="__codelineno-20-100" href="#__codelineno-20-100"></a>ASN1 OID: c2pnb368w1
+<a id="__codelineno-20-101" name="__codelineno-20-101" href="#__codelineno-20-101"></a>----------
+<a id="__codelineno-20-102" name="__codelineno-20-102" href="#__codelineno-20-102"></a>c2tnb191v1
+<a id="__codelineno-20-103" name="__codelineno-20-103" href="#__codelineno-20-103"></a>EC-Parameters: (191 bit)
+<a id="__codelineno-20-104" name="__codelineno-20-104" href="#__codelineno-20-104"></a>ASN1 OID: c2tnb191v1
+<a id="__codelineno-20-105" name="__codelineno-20-105" href="#__codelineno-20-105"></a>----------
+<a id="__codelineno-20-106" name="__codelineno-20-106" href="#__codelineno-20-106"></a>c2tnb191v2
+<a id="__codelineno-20-107" name="__codelineno-20-107" href="#__codelineno-20-107"></a>EC-Parameters: (190 bit)
+<a id="__codelineno-20-108" name="__codelineno-20-108" href="#__codelineno-20-108"></a>ASN1 OID: c2tnb191v2
+<a id="__codelineno-20-109" name="__codelineno-20-109" href="#__codelineno-20-109"></a>----------
+<a id="__codelineno-20-110" name="__codelineno-20-110" href="#__codelineno-20-110"></a>c2tnb191v3
+<a id="__codelineno-20-111" name="__codelineno-20-111" href="#__codelineno-20-111"></a>EC-Parameters: (189 bit)
+<a id="__codelineno-20-112" name="__codelineno-20-112" href="#__codelineno-20-112"></a>ASN1 OID: c2tnb191v3
+<a id="__codelineno-20-113" name="__codelineno-20-113" href="#__codelineno-20-113"></a>----------
+<a id="__codelineno-20-114" name="__codelineno-20-114" href="#__codelineno-20-114"></a>c2tnb239v1
+<a id="__codelineno-20-115" name="__codelineno-20-115" href="#__codelineno-20-115"></a>EC-Parameters: (238 bit)
+<a id="__codelineno-20-116" name="__codelineno-20-116" href="#__codelineno-20-116"></a>ASN1 OID: c2tnb239v1
+<a id="__codelineno-20-117" name="__codelineno-20-117" href="#__codelineno-20-117"></a>----------
+<a id="__codelineno-20-118" name="__codelineno-20-118" href="#__codelineno-20-118"></a>c2tnb239v2
+<a id="__codelineno-20-119" name="__codelineno-20-119" href="#__codelineno-20-119"></a>EC-Parameters: (237 bit)
+<a id="__codelineno-20-120" name="__codelineno-20-120" href="#__codelineno-20-120"></a>ASN1 OID: c2tnb239v2
+<a id="__codelineno-20-121" name="__codelineno-20-121" href="#__codelineno-20-121"></a>----------
+<a id="__codelineno-20-122" name="__codelineno-20-122" href="#__codelineno-20-122"></a>c2tnb239v3
+<a id="__codelineno-20-123" name="__codelineno-20-123" href="#__codelineno-20-123"></a>EC-Parameters: (236 bit)
+<a id="__codelineno-20-124" name="__codelineno-20-124" href="#__codelineno-20-124"></a>ASN1 OID: c2tnb239v3
+<a id="__codelineno-20-125" name="__codelineno-20-125" href="#__codelineno-20-125"></a>----------
+<a id="__codelineno-20-126" name="__codelineno-20-126" href="#__codelineno-20-126"></a>c2tnb359v1
+<a id="__codelineno-20-127" name="__codelineno-20-127" href="#__codelineno-20-127"></a>EC-Parameters: (353 bit)
+<a id="__codelineno-20-128" name="__codelineno-20-128" href="#__codelineno-20-128"></a>ASN1 OID: c2tnb359v1
+<a id="__codelineno-20-129" name="__codelineno-20-129" href="#__codelineno-20-129"></a>----------
+<a id="__codelineno-20-130" name="__codelineno-20-130" href="#__codelineno-20-130"></a>c2tnb431r1
+<a id="__codelineno-20-131" name="__codelineno-20-131" href="#__codelineno-20-131"></a>EC-Parameters: (418 bit)
+<a id="__codelineno-20-132" name="__codelineno-20-132" href="#__codelineno-20-132"></a>ASN1 OID: c2tnb431r1
+<a id="__codelineno-20-133" name="__codelineno-20-133" href="#__codelineno-20-133"></a>----------
+<a id="__codelineno-20-134" name="__codelineno-20-134" href="#__codelineno-20-134"></a>Oakley-EC2N-3
+<a id="__codelineno-20-135" name="__codelineno-20-135" href="#__codelineno-20-135"></a>EC-Parameters: (154 bit)
+<a id="__codelineno-20-136" name="__codelineno-20-136" href="#__codelineno-20-136"></a>Field Type: characteristic-two-field
+<a id="__codelineno-20-137" name="__codelineno-20-137" href="#__codelineno-20-137"></a>Basis Type: tpBasis
+<a id="__codelineno-20-138" name="__codelineno-20-138" href="#__codelineno-20-138"></a>Polynomial:
+<a id="__codelineno-20-139" name="__codelineno-20-139" href="#__codelineno-20-139"></a>    08:00:00:00:00:00:00:00:00:00:00:00:40:00:00:
+<a id="__codelineno-20-140" name="__codelineno-20-140" href="#__codelineno-20-140"></a>    00:00:00:00:01
+<a id="__codelineno-20-141" name="__codelineno-20-141" href="#__codelineno-20-141"></a>A:    0
+<a id="__codelineno-20-142" name="__codelineno-20-142" href="#__codelineno-20-142"></a>B:    471951 (0x7338f)
+<a id="__codelineno-20-143" name="__codelineno-20-143" href="#__codelineno-20-143"></a>Generator (uncompressed):
+<a id="__codelineno-20-144" name="__codelineno-20-144" href="#__codelineno-20-144"></a>    04:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
+<a id="__codelineno-20-145" name="__codelineno-20-145" href="#__codelineno-20-145"></a>    00:00:00:00:00:7b:00:00:00:00:00:00:00:00:00:
+<a id="__codelineno-20-146" name="__codelineno-20-146" href="#__codelineno-20-146"></a>    00:00:00:00:00:00:00:00:00:01:c8
+<a id="__codelineno-20-147" name="__codelineno-20-147" href="#__codelineno-20-147"></a>Order:
+<a id="__codelineno-20-148" name="__codelineno-20-148" href="#__codelineno-20-148"></a>    02:aa:aa:aa:aa:aa:aa:aa:aa:aa:c7:f3:c7:88:1b:
+<a id="__codelineno-20-149" name="__codelineno-20-149" href="#__codelineno-20-149"></a>    d0:86:8f:a8:6c
+<a id="__codelineno-20-150" name="__codelineno-20-150" href="#__codelineno-20-150"></a>Cofactor:  3 (0x3)
+<a id="__codelineno-20-151" name="__codelineno-20-151" href="#__codelineno-20-151"></a>----------
+<a id="__codelineno-20-152" name="__codelineno-20-152" href="#__codelineno-20-152"></a>Oakley-EC2N-4
+<a id="__codelineno-20-153" name="__codelineno-20-153" href="#__codelineno-20-153"></a>EC-Parameters: (184 bit)
+<a id="__codelineno-20-154" name="__codelineno-20-154" href="#__codelineno-20-154"></a>Field Type: characteristic-two-field
+<a id="__codelineno-20-155" name="__codelineno-20-155" href="#__codelineno-20-155"></a>Basis Type: tpBasis
+<a id="__codelineno-20-156" name="__codelineno-20-156" href="#__codelineno-20-156"></a>Polynomial:
+<a id="__codelineno-20-157" name="__codelineno-20-157" href="#__codelineno-20-157"></a>    02:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
+<a id="__codelineno-20-158" name="__codelineno-20-158" href="#__codelineno-20-158"></a>    20:00:00:00:00:00:00:00:01
+<a id="__codelineno-20-159" name="__codelineno-20-159" href="#__codelineno-20-159"></a>A:    0
+<a id="__codelineno-20-160" name="__codelineno-20-160" href="#__codelineno-20-160"></a>B:    7913 (0x1ee9)
+<a id="__codelineno-20-161" name="__codelineno-20-161" href="#__codelineno-20-161"></a>Generator (uncompressed):
+<a id="__codelineno-20-162" name="__codelineno-20-162" href="#__codelineno-20-162"></a>    04:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
+<a id="__codelineno-20-163" name="__codelineno-20-163" href="#__codelineno-20-163"></a>    00:00:00:00:00:00:00:00:00:18:00:00:00:00:00:
+<a id="__codelineno-20-164" name="__codelineno-20-164" href="#__codelineno-20-164"></a>    00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:
+<a id="__codelineno-20-165" name="__codelineno-20-165" href="#__codelineno-20-165"></a>    00:00:00:0d
+<a id="__codelineno-20-166" name="__codelineno-20-166" href="#__codelineno-20-166"></a>Order:
+<a id="__codelineno-20-167" name="__codelineno-20-167" href="#__codelineno-20-167"></a>    00:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ff:ed:f9:7c:
+<a id="__codelineno-20-168" name="__codelineno-20-168" href="#__codelineno-20-168"></a>    44:db:9f:24:20:ba:fc:a7:5e
+<a id="__codelineno-20-169" name="__codelineno-20-169" href="#__codelineno-20-169"></a>Cofactor:  2 (0x2)
+<a id="__codelineno-20-170" name="__codelineno-20-170" href="#__codelineno-20-170"></a>----------
+<a id="__codelineno-20-171" name="__codelineno-20-171" href="#__codelineno-20-171"></a>prime192v1
+<a id="__codelineno-20-172" name="__codelineno-20-172" href="#__codelineno-20-172"></a>EC-Parameters: (192 bit)
+<a id="__codelineno-20-173" name="__codelineno-20-173" href="#__codelineno-20-173"></a>ASN1 OID: prime192v1
+<a id="__codelineno-20-174" name="__codelineno-20-174" href="#__codelineno-20-174"></a>NIST CURVE: P-192
+<a id="__codelineno-20-175" name="__codelineno-20-175" href="#__codelineno-20-175"></a>----------
+<a id="__codelineno-20-176" name="__codelineno-20-176" href="#__codelineno-20-176"></a>prime192v2
+<a id="__codelineno-20-177" name="__codelineno-20-177" href="#__codelineno-20-177"></a>EC-Parameters: (192 bit)
+<a id="__codelineno-20-178" name="__codelineno-20-178" href="#__codelineno-20-178"></a>ASN1 OID: prime192v2
+<a id="__codelineno-20-179" name="__codelineno-20-179" href="#__codelineno-20-179"></a>----------
+<a id="__codelineno-20-180" name="__codelineno-20-180" href="#__codelineno-20-180"></a>prime192v3
+<a id="__codelineno-20-181" name="__codelineno-20-181" href="#__codelineno-20-181"></a>EC-Parameters: (192 bit)
+<a id="__codelineno-20-182" name="__codelineno-20-182" href="#__codelineno-20-182"></a>ASN1 OID: prime192v3
+<a id="__codelineno-20-183" name="__codelineno-20-183" href="#__codelineno-20-183"></a>----------
+<a id="__codelineno-20-184" name="__codelineno-20-184" href="#__codelineno-20-184"></a>prime239v1
+<a id="__codelineno-20-185" name="__codelineno-20-185" href="#__codelineno-20-185"></a>EC-Parameters: (239 bit)
+<a id="__codelineno-20-186" name="__codelineno-20-186" href="#__codelineno-20-186"></a>ASN1 OID: prime239v1
+<a id="__codelineno-20-187" name="__codelineno-20-187" href="#__codelineno-20-187"></a>----------
+<a id="__codelineno-20-188" name="__codelineno-20-188" href="#__codelineno-20-188"></a>prime239v2
+<a id="__codelineno-20-189" name="__codelineno-20-189" href="#__codelineno-20-189"></a>EC-Parameters: (239 bit)
+<a id="__codelineno-20-190" name="__codelineno-20-190" href="#__codelineno-20-190"></a>ASN1 OID: prime239v2
+<a id="__codelineno-20-191" name="__codelineno-20-191" href="#__codelineno-20-191"></a>----------
+<a id="__codelineno-20-192" name="__codelineno-20-192" href="#__codelineno-20-192"></a>prime239v3
+<a id="__codelineno-20-193" name="__codelineno-20-193" href="#__codelineno-20-193"></a>EC-Parameters: (239 bit)
+<a id="__codelineno-20-194" name="__codelineno-20-194" href="#__codelineno-20-194"></a>ASN1 OID: prime239v3
+<a id="__codelineno-20-195" name="__codelineno-20-195" href="#__codelineno-20-195"></a>----------
+<a id="__codelineno-20-196" name="__codelineno-20-196" href="#__codelineno-20-196"></a>prime256v1
+<a id="__codelineno-20-197" name="__codelineno-20-197" href="#__codelineno-20-197"></a>EC-Parameters: (256 bit)
+<a id="__codelineno-20-198" name="__codelineno-20-198" href="#__codelineno-20-198"></a>ASN1 OID: prime256v1
+<a id="__codelineno-20-199" name="__codelineno-20-199" href="#__codelineno-20-199"></a>NIST CURVE: P-256
+<a id="__codelineno-20-200" name="__codelineno-20-200" href="#__codelineno-20-200"></a>----------
+<a id="__codelineno-20-201" name="__codelineno-20-201" href="#__codelineno-20-201"></a>secp112r1
+<a id="__codelineno-20-202" name="__codelineno-20-202" href="#__codelineno-20-202"></a>EC-Parameters: (112 bit)
+<a id="__codelineno-20-203" name="__codelineno-20-203" href="#__codelineno-20-203"></a>ASN1 OID: secp112r1
+<a id="__codelineno-20-204" name="__codelineno-20-204" href="#__codelineno-20-204"></a>----------
+<a id="__codelineno-20-205" name="__codelineno-20-205" href="#__codelineno-20-205"></a>secp112r2
+<a id="__codelineno-20-206" name="__codelineno-20-206" href="#__codelineno-20-206"></a>EC-Parameters: (110 bit)
+<a id="__codelineno-20-207" name="__codelineno-20-207" href="#__codelineno-20-207"></a>ASN1 OID: secp112r2
+<a id="__codelineno-20-208" name="__codelineno-20-208" href="#__codelineno-20-208"></a>----------
+<a id="__codelineno-20-209" name="__codelineno-20-209" href="#__codelineno-20-209"></a>secp128r1
+<a id="__codelineno-20-210" name="__codelineno-20-210" href="#__codelineno-20-210"></a>EC-Parameters: (128 bit)
+<a id="__codelineno-20-211" name="__codelineno-20-211" href="#__codelineno-20-211"></a>ASN1 OID: secp128r1
+<a id="__codelineno-20-212" name="__codelineno-20-212" href="#__codelineno-20-212"></a>----------
+<a id="__codelineno-20-213" name="__codelineno-20-213" href="#__codelineno-20-213"></a>secp128r2
+<a id="__codelineno-20-214" name="__codelineno-20-214" href="#__codelineno-20-214"></a>EC-Parameters: (126 bit)
+<a id="__codelineno-20-215" name="__codelineno-20-215" href="#__codelineno-20-215"></a>ASN1 OID: secp128r2
+<a id="__codelineno-20-216" name="__codelineno-20-216" href="#__codelineno-20-216"></a>----------
+<a id="__codelineno-20-217" name="__codelineno-20-217" href="#__codelineno-20-217"></a>secp160k1
+<a id="__codelineno-20-218" name="__codelineno-20-218" href="#__codelineno-20-218"></a>EC-Parameters: (161 bit)
+<a id="__codelineno-20-219" name="__codelineno-20-219" href="#__codelineno-20-219"></a>ASN1 OID: secp160k1
+<a id="__codelineno-20-220" name="__codelineno-20-220" href="#__codelineno-20-220"></a>----------
+<a id="__codelineno-20-221" name="__codelineno-20-221" href="#__codelineno-20-221"></a>secp160r1
+<a id="__codelineno-20-222" name="__codelineno-20-222" href="#__codelineno-20-222"></a>EC-Parameters: (161 bit)
+<a id="__codelineno-20-223" name="__codelineno-20-223" href="#__codelineno-20-223"></a>ASN1 OID: secp160r1
+<a id="__codelineno-20-224" name="__codelineno-20-224" href="#__codelineno-20-224"></a>----------
+<a id="__codelineno-20-225" name="__codelineno-20-225" href="#__codelineno-20-225"></a>secp160r2
+<a id="__codelineno-20-226" name="__codelineno-20-226" href="#__codelineno-20-226"></a>EC-Parameters: (161 bit)
+<a id="__codelineno-20-227" name="__codelineno-20-227" href="#__codelineno-20-227"></a>ASN1 OID: secp160r2
+<a id="__codelineno-20-228" name="__codelineno-20-228" href="#__codelineno-20-228"></a>----------
+<a id="__codelineno-20-229" name="__codelineno-20-229" href="#__codelineno-20-229"></a>secp192k1
+<a id="__codelineno-20-230" name="__codelineno-20-230" href="#__codelineno-20-230"></a>EC-Parameters: (192 bit)
+<a id="__codelineno-20-231" name="__codelineno-20-231" href="#__codelineno-20-231"></a>ASN1 OID: secp192k1
+<a id="__codelineno-20-232" name="__codelineno-20-232" href="#__codelineno-20-232"></a>----------
+<a id="__codelineno-20-233" name="__codelineno-20-233" href="#__codelineno-20-233"></a>secp224k1
+<a id="__codelineno-20-234" name="__codelineno-20-234" href="#__codelineno-20-234"></a>EC-Parameters: (225 bit)
+<a id="__codelineno-20-235" name="__codelineno-20-235" href="#__codelineno-20-235"></a>ASN1 OID: secp224k1
+<a id="__codelineno-20-236" name="__codelineno-20-236" href="#__codelineno-20-236"></a>----------
+<a id="__codelineno-20-237" name="__codelineno-20-237" href="#__codelineno-20-237"></a>secp224r1
+<a id="__codelineno-20-238" name="__codelineno-20-238" href="#__codelineno-20-238"></a>EC-Parameters: (224 bit)
+<a id="__codelineno-20-239" name="__codelineno-20-239" href="#__codelineno-20-239"></a>ASN1 OID: secp224r1
+<a id="__codelineno-20-240" name="__codelineno-20-240" href="#__codelineno-20-240"></a>NIST CURVE: P-224
+<a id="__codelineno-20-241" name="__codelineno-20-241" href="#__codelineno-20-241"></a>----------
+<a id="__codelineno-20-242" name="__codelineno-20-242" href="#__codelineno-20-242"></a>secp256k1
+<a id="__codelineno-20-243" name="__codelineno-20-243" href="#__codelineno-20-243"></a>EC-Parameters: (256 bit)
+<a id="__codelineno-20-244" name="__codelineno-20-244" href="#__codelineno-20-244"></a>ASN1 OID: secp256k1
+<a id="__codelineno-20-245" name="__codelineno-20-245" href="#__codelineno-20-245"></a>----------
+<a id="__codelineno-20-246" name="__codelineno-20-246" href="#__codelineno-20-246"></a>secp384r1
+<a id="__codelineno-20-247" name="__codelineno-20-247" href="#__codelineno-20-247"></a>EC-Parameters: (384 bit)
+<a id="__codelineno-20-248" name="__codelineno-20-248" href="#__codelineno-20-248"></a>ASN1 OID: secp384r1
+<a id="__codelineno-20-249" name="__codelineno-20-249" href="#__codelineno-20-249"></a>NIST CURVE: P-384
+<a id="__codelineno-20-250" name="__codelineno-20-250" href="#__codelineno-20-250"></a>----------
+<a id="__codelineno-20-251" name="__codelineno-20-251" href="#__codelineno-20-251"></a>secp521r1
+<a id="__codelineno-20-252" name="__codelineno-20-252" href="#__codelineno-20-252"></a>EC-Parameters: (521 bit)
+<a id="__codelineno-20-253" name="__codelineno-20-253" href="#__codelineno-20-253"></a>ASN1 OID: secp521r1
+<a id="__codelineno-20-254" name="__codelineno-20-254" href="#__codelineno-20-254"></a>NIST CURVE: P-521
+<a id="__codelineno-20-255" name="__codelineno-20-255" href="#__codelineno-20-255"></a>----------
+<a id="__codelineno-20-256" name="__codelineno-20-256" href="#__codelineno-20-256"></a>sect113r1
+<a id="__codelineno-20-257" name="__codelineno-20-257" href="#__codelineno-20-257"></a>EC-Parameters: (113 bit)
+<a id="__codelineno-20-258" name="__codelineno-20-258" href="#__codelineno-20-258"></a>ASN1 OID: sect113r1
+<a id="__codelineno-20-259" name="__codelineno-20-259" href="#__codelineno-20-259"></a>----------
+<a id="__codelineno-20-260" name="__codelineno-20-260" href="#__codelineno-20-260"></a>sect113r2
+<a id="__codelineno-20-261" name="__codelineno-20-261" href="#__codelineno-20-261"></a>EC-Parameters: (113 bit)
+<a id="__codelineno-20-262" name="__codelineno-20-262" href="#__codelineno-20-262"></a>ASN1 OID: sect113r2
+<a id="__codelineno-20-263" name="__codelineno-20-263" href="#__codelineno-20-263"></a>----------
+<a id="__codelineno-20-264" name="__codelineno-20-264" href="#__codelineno-20-264"></a>sect131r1
+<a id="__codelineno-20-265" name="__codelineno-20-265" href="#__codelineno-20-265"></a>EC-Parameters: (131 bit)
+<a id="__codelineno-20-266" name="__codelineno-20-266" href="#__codelineno-20-266"></a>ASN1 OID: sect131r1
+<a id="__codelineno-20-267" name="__codelineno-20-267" href="#__codelineno-20-267"></a>----------
+<a id="__codelineno-20-268" name="__codelineno-20-268" href="#__codelineno-20-268"></a>sect131r2
+<a id="__codelineno-20-269" name="__codelineno-20-269" href="#__codelineno-20-269"></a>EC-Parameters: (131 bit)
+<a id="__codelineno-20-270" name="__codelineno-20-270" href="#__codelineno-20-270"></a>ASN1 OID: sect131r2
+<a id="__codelineno-20-271" name="__codelineno-20-271" href="#__codelineno-20-271"></a>----------
+<a id="__codelineno-20-272" name="__codelineno-20-272" href="#__codelineno-20-272"></a>sect163k1
+<a id="__codelineno-20-273" name="__codelineno-20-273" href="#__codelineno-20-273"></a>EC-Parameters: (163 bit)
+<a id="__codelineno-20-274" name="__codelineno-20-274" href="#__codelineno-20-274"></a>ASN1 OID: sect163k1
+<a id="__codelineno-20-275" name="__codelineno-20-275" href="#__codelineno-20-275"></a>NIST CURVE: K-163
+<a id="__codelineno-20-276" name="__codelineno-20-276" href="#__codelineno-20-276"></a>----------
+<a id="__codelineno-20-277" name="__codelineno-20-277" href="#__codelineno-20-277"></a>sect163r1
+<a id="__codelineno-20-278" name="__codelineno-20-278" href="#__codelineno-20-278"></a>EC-Parameters: (162 bit)
+<a id="__codelineno-20-279" name="__codelineno-20-279" href="#__codelineno-20-279"></a>ASN1 OID: sect163r1
+<a id="__codelineno-20-280" name="__codelineno-20-280" href="#__codelineno-20-280"></a>----------
+<a id="__codelineno-20-281" name="__codelineno-20-281" href="#__codelineno-20-281"></a>sect163r2
+<a id="__codelineno-20-282" name="__codelineno-20-282" href="#__codelineno-20-282"></a>EC-Parameters: (163 bit)
+<a id="__codelineno-20-283" name="__codelineno-20-283" href="#__codelineno-20-283"></a>ASN1 OID: sect163r2
+<a id="__codelineno-20-284" name="__codelineno-20-284" href="#__codelineno-20-284"></a>NIST CURVE: B-163
+<a id="__codelineno-20-285" name="__codelineno-20-285" href="#__codelineno-20-285"></a>----------
+<a id="__codelineno-20-286" name="__codelineno-20-286" href="#__codelineno-20-286"></a>sect193r1
+<a id="__codelineno-20-287" name="__codelineno-20-287" href="#__codelineno-20-287"></a>EC-Parameters: (193 bit)
+<a id="__codelineno-20-288" name="__codelineno-20-288" href="#__codelineno-20-288"></a>ASN1 OID: sect193r1
+<a id="__codelineno-20-289" name="__codelineno-20-289" href="#__codelineno-20-289"></a>----------
+<a id="__codelineno-20-290" name="__codelineno-20-290" href="#__codelineno-20-290"></a>sect193r2
+<a id="__codelineno-20-291" name="__codelineno-20-291" href="#__codelineno-20-291"></a>EC-Parameters: (193 bit)
+<a id="__codelineno-20-292" name="__codelineno-20-292" href="#__codelineno-20-292"></a>ASN1 OID: sect193r2
+<a id="__codelineno-20-293" name="__codelineno-20-293" href="#__codelineno-20-293"></a>----------
+<a id="__codelineno-20-294" name="__codelineno-20-294" href="#__codelineno-20-294"></a>sect233k1
+<a id="__codelineno-20-295" name="__codelineno-20-295" href="#__codelineno-20-295"></a>EC-Parameters: (232 bit)
+<a id="__codelineno-20-296" name="__codelineno-20-296" href="#__codelineno-20-296"></a>ASN1 OID: sect233k1
+<a id="__codelineno-20-297" name="__codelineno-20-297" href="#__codelineno-20-297"></a>NIST CURVE: K-233
+<a id="__codelineno-20-298" name="__codelineno-20-298" href="#__codelineno-20-298"></a>----------
+<a id="__codelineno-20-299" name="__codelineno-20-299" href="#__codelineno-20-299"></a>sect233r1
+<a id="__codelineno-20-300" name="__codelineno-20-300" href="#__codelineno-20-300"></a>EC-Parameters: (233 bit)
+<a id="__codelineno-20-301" name="__codelineno-20-301" href="#__codelineno-20-301"></a>ASN1 OID: sect233r1
+<a id="__codelineno-20-302" name="__codelineno-20-302" href="#__codelineno-20-302"></a>NIST CURVE: B-233
+<a id="__codelineno-20-303" name="__codelineno-20-303" href="#__codelineno-20-303"></a>----------
+<a id="__codelineno-20-304" name="__codelineno-20-304" href="#__codelineno-20-304"></a>sect239k1
+<a id="__codelineno-20-305" name="__codelineno-20-305" href="#__codelineno-20-305"></a>EC-Parameters: (238 bit)
+<a id="__codelineno-20-306" name="__codelineno-20-306" href="#__codelineno-20-306"></a>ASN1 OID: sect239k1
+<a id="__codelineno-20-307" name="__codelineno-20-307" href="#__codelineno-20-307"></a>----------
+<a id="__codelineno-20-308" name="__codelineno-20-308" href="#__codelineno-20-308"></a>sect283k1
+<a id="__codelineno-20-309" name="__codelineno-20-309" href="#__codelineno-20-309"></a>EC-Parameters: (281 bit)
+<a id="__codelineno-20-310" name="__codelineno-20-310" href="#__codelineno-20-310"></a>ASN1 OID: sect283k1
+<a id="__codelineno-20-311" name="__codelineno-20-311" href="#__codelineno-20-311"></a>NIST CURVE: K-283
+<a id="__codelineno-20-312" name="__codelineno-20-312" href="#__codelineno-20-312"></a>----------
+<a id="__codelineno-20-313" name="__codelineno-20-313" href="#__codelineno-20-313"></a>sect283r1
+<a id="__codelineno-20-314" name="__codelineno-20-314" href="#__codelineno-20-314"></a>EC-Parameters: (282 bit)
+<a id="__codelineno-20-315" name="__codelineno-20-315" href="#__codelineno-20-315"></a>ASN1 OID: sect283r1
+<a id="__codelineno-20-316" name="__codelineno-20-316" href="#__codelineno-20-316"></a>NIST CURVE: B-283
+<a id="__codelineno-20-317" name="__codelineno-20-317" href="#__codelineno-20-317"></a>----------
+<a id="__codelineno-20-318" name="__codelineno-20-318" href="#__codelineno-20-318"></a>sect409k1
+<a id="__codelineno-20-319" name="__codelineno-20-319" href="#__codelineno-20-319"></a>EC-Parameters: (407 bit)
+<a id="__codelineno-20-320" name="__codelineno-20-320" href="#__codelineno-20-320"></a>ASN1 OID: sect409k1
+<a id="__codelineno-20-321" name="__codelineno-20-321" href="#__codelineno-20-321"></a>NIST CURVE: K-409
+<a id="__codelineno-20-322" name="__codelineno-20-322" href="#__codelineno-20-322"></a>----------
+<a id="__codelineno-20-323" name="__codelineno-20-323" href="#__codelineno-20-323"></a>sect409r1
+<a id="__codelineno-20-324" name="__codelineno-20-324" href="#__codelineno-20-324"></a>EC-Parameters: (409 bit)
+<a id="__codelineno-20-325" name="__codelineno-20-325" href="#__codelineno-20-325"></a>ASN1 OID: sect409r1
+<a id="__codelineno-20-326" name="__codelineno-20-326" href="#__codelineno-20-326"></a>NIST CURVE: B-409
+<a id="__codelineno-20-327" name="__codelineno-20-327" href="#__codelineno-20-327"></a>----------
+<a id="__codelineno-20-328" name="__codelineno-20-328" href="#__codelineno-20-328"></a>sect571k1
+<a id="__codelineno-20-329" name="__codelineno-20-329" href="#__codelineno-20-329"></a>EC-Parameters: (570 bit)
+<a id="__codelineno-20-330" name="__codelineno-20-330" href="#__codelineno-20-330"></a>ASN1 OID: sect571k1
+<a id="__codelineno-20-331" name="__codelineno-20-331" href="#__codelineno-20-331"></a>NIST CURVE: K-571
+<a id="__codelineno-20-332" name="__codelineno-20-332" href="#__codelineno-20-332"></a>----------
+<a id="__codelineno-20-333" name="__codelineno-20-333" href="#__codelineno-20-333"></a>sect571r1
+<a id="__codelineno-20-334" name="__codelineno-20-334" href="#__codelineno-20-334"></a>EC-Parameters: (570 bit)
+<a id="__codelineno-20-335" name="__codelineno-20-335" href="#__codelineno-20-335"></a>ASN1 OID: sect571r1
+<a id="__codelineno-20-336" name="__codelineno-20-336" href="#__codelineno-20-336"></a>NIST CURVE: B-571
+<a id="__codelineno-20-337" name="__codelineno-20-337" href="#__codelineno-20-337"></a>----------
+<a id="__codelineno-20-338" name="__codelineno-20-338" href="#__codelineno-20-338"></a>SM2
+<a id="__codelineno-20-339" name="__codelineno-20-339" href="#__codelineno-20-339"></a>EC-Parameters: (256 bit)
+<a id="__codelineno-20-340" name="__codelineno-20-340" href="#__codelineno-20-340"></a>ASN1 OID: SM2
+<a id="__codelineno-20-341" name="__codelineno-20-341" href="#__codelineno-20-341"></a>----------
+<a id="__codelineno-20-342" name="__codelineno-20-342" href="#__codelineno-20-342"></a>wap-wsg-idm-ecid-wtls1
+<a id="__codelineno-20-343" name="__codelineno-20-343" href="#__codelineno-20-343"></a>EC-Parameters: (112 bit)
+<a id="__codelineno-20-344" name="__codelineno-20-344" href="#__codelineno-20-344"></a>ASN1 OID: wap-wsg-idm-ecid-wtls1
+<a id="__codelineno-20-345" name="__codelineno-20-345" href="#__codelineno-20-345"></a>----------
+<a id="__codelineno-20-346" name="__codelineno-20-346" href="#__codelineno-20-346"></a>wap-wsg-idm-ecid-wtls10
+<a id="__codelineno-20-347" name="__codelineno-20-347" href="#__codelineno-20-347"></a>EC-Parameters: (232 bit)
+<a id="__codelineno-20-348" name="__codelineno-20-348" href="#__codelineno-20-348"></a>ASN1 OID: wap-wsg-idm-ecid-wtls10
+<a id="__codelineno-20-349" name="__codelineno-20-349" href="#__codelineno-20-349"></a>----------
+<a id="__codelineno-20-350" name="__codelineno-20-350" href="#__codelineno-20-350"></a>wap-wsg-idm-ecid-wtls11
+<a id="__codelineno-20-351" name="__codelineno-20-351" href="#__codelineno-20-351"></a>EC-Parameters: (233 bit)
+<a id="__codelineno-20-352" name="__codelineno-20-352" href="#__codelineno-20-352"></a>ASN1 OID: wap-wsg-idm-ecid-wtls11
+<a id="__codelineno-20-353" name="__codelineno-20-353" href="#__codelineno-20-353"></a>----------
+<a id="__codelineno-20-354" name="__codelineno-20-354" href="#__codelineno-20-354"></a>wap-wsg-idm-ecid-wtls12
+<a id="__codelineno-20-355" name="__codelineno-20-355" href="#__codelineno-20-355"></a>EC-Parameters: (224 bit)
+<a id="__codelineno-20-356" name="__codelineno-20-356" href="#__codelineno-20-356"></a>ASN1 OID: wap-wsg-idm-ecid-wtls12
+<a id="__codelineno-20-357" name="__codelineno-20-357" href="#__codelineno-20-357"></a>----------
+<a id="__codelineno-20-358" name="__codelineno-20-358" href="#__codelineno-20-358"></a>wap-wsg-idm-ecid-wtls3
+<a id="__codelineno-20-359" name="__codelineno-20-359" href="#__codelineno-20-359"></a>EC-Parameters: (163 bit)
+<a id="__codelineno-20-360" name="__codelineno-20-360" href="#__codelineno-20-360"></a>ASN1 OID: wap-wsg-idm-ecid-wtls3
+<a id="__codelineno-20-361" name="__codelineno-20-361" href="#__codelineno-20-361"></a>----------
+<a id="__codelineno-20-362" name="__codelineno-20-362" href="#__codelineno-20-362"></a>wap-wsg-idm-ecid-wtls4
+<a id="__codelineno-20-363" name="__codelineno-20-363" href="#__codelineno-20-363"></a>EC-Parameters: (113 bit)
+<a id="__codelineno-20-364" name="__codelineno-20-364" href="#__codelineno-20-364"></a>ASN1 OID: wap-wsg-idm-ecid-wtls4
+<a id="__codelineno-20-365" name="__codelineno-20-365" href="#__codelineno-20-365"></a>----------
+<a id="__codelineno-20-366" name="__codelineno-20-366" href="#__codelineno-20-366"></a>wap-wsg-idm-ecid-wtls5
+<a id="__codelineno-20-367" name="__codelineno-20-367" href="#__codelineno-20-367"></a>EC-Parameters: (163 bit)
+<a id="__codelineno-20-368" name="__codelineno-20-368" href="#__codelineno-20-368"></a>ASN1 OID: wap-wsg-idm-ecid-wtls5
+<a id="__codelineno-20-369" name="__codelineno-20-369" href="#__codelineno-20-369"></a>----------
+<a id="__codelineno-20-370" name="__codelineno-20-370" href="#__codelineno-20-370"></a>wap-wsg-idm-ecid-wtls6
+<a id="__codelineno-20-371" name="__codelineno-20-371" href="#__codelineno-20-371"></a>EC-Parameters: (112 bit)
+<a id="__codelineno-20-372" name="__codelineno-20-372" href="#__codelineno-20-372"></a>ASN1 OID: wap-wsg-idm-ecid-wtls6
+<a id="__codelineno-20-373" name="__codelineno-20-373" href="#__codelineno-20-373"></a>----------
+<a id="__codelineno-20-374" name="__codelineno-20-374" href="#__codelineno-20-374"></a>wap-wsg-idm-ecid-wtls7
+<a id="__codelineno-20-375" name="__codelineno-20-375" href="#__codelineno-20-375"></a>EC-Parameters: (161 bit)
+<a id="__codelineno-20-376" name="__codelineno-20-376" href="#__codelineno-20-376"></a>ASN1 OID: wap-wsg-idm-ecid-wtls7
+<a id="__codelineno-20-377" name="__codelineno-20-377" href="#__codelineno-20-377"></a>----------
+<a id="__codelineno-20-378" name="__codelineno-20-378" href="#__codelineno-20-378"></a>wap-wsg-idm-ecid-wtls8
+<a id="__codelineno-20-379" name="__codelineno-20-379" href="#__codelineno-20-379"></a>EC-Parameters: (113 bit)
+<a id="__codelineno-20-380" name="__codelineno-20-380" href="#__codelineno-20-380"></a>ASN1 OID: wap-wsg-idm-ecid-wtls8
+<a id="__codelineno-20-381" name="__codelineno-20-381" href="#__codelineno-20-381"></a>----------
+<a id="__codelineno-20-382" name="__codelineno-20-382" href="#__codelineno-20-382"></a>wap-wsg-idm-ecid-wtls9
+<a id="__codelineno-20-383" name="__codelineno-20-383" href="#__codelineno-20-383"></a>EC-Parameters: (161 bit)
+<a id="__codelineno-20-384" name="__codelineno-20-384" href="#__codelineno-20-384"></a>ASN1 OID: wap-wsg-idm-ecid-wtls9
+<a id="__codelineno-20-385" name="__codelineno-20-385" href="#__codelineno-20-385"></a>----------
+</code></pre></div></p>
+<h4 id="x25519-key">X25519 Key</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>$ chmod 600 private_x25519.key
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>$ cat private_x25519.key
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>-----BEGIN ENCRYPTED PRIVATE KEY-----
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>MIG...
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>...
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>...kw=
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>-----END ENCRYPTED PRIVATE KEY-----
+</code></pre></div>
+<h4 id="x448-key">X448 Key</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$ openssl genpkey -algorithm x448 -aes128 -out private_x448.key -pass pass:changeit
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>$ chmod 600 private_x448.key
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>$ cat private_x448.key
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>-----BEGIN ENCRYPTED PRIVATE KEY-----
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>MIG...
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>...
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>...Rwg
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>-----END ENCRYPTED PRIVATE KEY-----
+</code></pre></div>
+<h4 id="ed25519-key">ED25519 Key</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>$ openssl genpkey -algorithm ed25519 -aes128 -out private_ed25519.key -pass pass:changeit
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>$ chmod 600 private_ed25519.key
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>$ cat private_ed25519.key
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>-----BEGIN ENCRYPTED PRIVATE KEY-----
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>MIG...
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>...
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>...is=
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>-----END ENCRYPTED PRIVATE KEY-----
+</code></pre></div>
+<h4 id="ed448-key">ED448 Key</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>$ openssl genpkey -algorithm ed448 -aes128 -out private_ed448.key -pass pass:changeit
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>$ chmod 600 private_ed448.key
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>$ cat private_ed448.key
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>-----BEGIN ENCRYPTED PRIVATE KEY-----
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>MIG...
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>...
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>...l/Y
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>-----END ENCRYPTED PRIVATE KEY-----
+</code></pre></div>
+<h3 id="private-key-file-without-passphrase">Private Key File Without Passphrase</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>$ openssl pkey -in private_ed448.key -passin pass:changeit -out private_ed448_noenc.key
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>cat private_ed448_noenc.key
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>-----BEGIN PRIVATE KEY-----
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>MEc...
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>...w==
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>-----END PRIVATE KEY-----
+</code></pre></div>
+<h3 id="check-private-key-consistency">Check Private Key Consistency</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>$ openssl pkey -check -noout -in private_ed448.key -passin pass:changeit
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>Key is valid
+</code></pre></div>
+<h3 id="extract-public-key-from-private-key">Extract Public Key from Private Key</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>$ openssl pkey -pubout -in private_rsa.key -passin pass:changeit -out public_rsa.pem
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>$ chmod 644 public_rsa.pem
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>$ file public_rsa.pem
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>public_rsa.pem: ASCII text
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>$ cat public_rsa.pem
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>-----BEGIN PUBLIC KEY-----
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>MII...
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>...
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>...Q==
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>-----END PUBLIC KEY-----
+</code></pre></div>
+<h3 id="check-public-key-consistency">Check Public Key  Consistency</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>$ openssl pkey -pubcheck -noout -in private_rsa.key -passin pass:changeit
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>Key is valid
+</code></pre></div>
+<h4 id="rsa-and-rsa-pss-keys">RSA and RSA-PSS Keys</h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>[source]
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>$ openssl rsa -noout -modulus -in private_rsa.key -passin pass:changeit | openssl dgst -md5
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>MD5(stdin)= 12b7a3255a94eba1cb6427622c303ead
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>#
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>$ openssl rsa -noout -pubin -modulus -in public_rsa.pem | openssl dgst -md5
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>MD5(stdin)= 12b7a3255a94eba1cb6427622c303ead
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>----
+</code></pre></div>
+<h3 id="convert-public-key-from-pem-to-der-format">Convert Public Key from PEM to DER Format</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>$ openssl pkey -pubin -in public_rsa.pem  -outform der -out public_rsa.der
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>$ chmod 644 public_rsa.der
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>$ file public_rsa.der
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>public_rsa.der: data
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-01-04 17:28:00</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../openssl.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: OpenSSL">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                OpenSSL
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../info.html" class="md-footer__link md-footer__link--next" aria-label="Next: Info">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Info
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright (c) 2020-2024 <a href="https://maroph.github.io/">Manfred Rosenboom</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://codepen.io/maroph/" target="_blank" rel="noopener" title="codepen.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="m502.285 159.704-234-156c-7.987-4.915-16.511-4.96-24.571 0l-234 156C3.714 163.703 0 170.847 0 177.989v155.999c0 7.143 3.714 14.286 9.715 18.286l234 156.022c7.987 4.915 16.511 4.96 24.571 0l234-156.022c6-3.999 9.715-11.143 9.715-18.286V177.989c-.001-7.142-3.715-14.286-9.716-18.285zM278 63.131l172.286 114.858-76.857 51.429L278 165.703V63.131zm-44 0v102.572l-95.429 63.715-76.857-51.429L234 63.131zM44 219.132l55.143 36.857L44 292.846v-73.714zm190 229.715L61.714 333.989l76.857-51.429L234 346.275v102.572zm22-140.858-77.715-52 77.715-52 77.715 52-77.715 52zm22 140.858V346.275l95.429-63.715 76.857 51.429L278 448.847zm190-156.001-55.143-36.857L468 219.132v73.714z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/maroph" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+    
+    
+    
+      
+      
+    
+    <a href="https://mastodon.social/@maroph" target="_blank" rel="noopener me" title="mastodon.social" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48 0 0 0-63.72 28.5-63.72 125.7 0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33 11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54 102.54 0 0 1-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9 9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9 18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8 103.83-6.1 23.71 27.3 18.4 53 18.4 175z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["header.autohide", "content.action.edit", "content.action.view", "content.code.copy", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
