@@ -25,6 +25,5 @@ You can contact me via
 * [Mastodon]{:target="blank" rel="me"}
 * [Personal Home Page]{:target="blank"}
 
-[Mastodon]: https://muenchen.social/@maroph
+[Mastodon]: https://mastodon.social/@maroph
 [Personal Home Page]: https://manfred.rosenboom.name/
-

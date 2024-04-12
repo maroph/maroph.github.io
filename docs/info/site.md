@@ -41,9 +41,9 @@ The current installed module versions are:
 
 ```
 mkdocs==1.5.3
-mkdocs-git-revision-date-localized-plugin==1.2.2
+mkdocs-git-revision-date-localized-plugin==1.2.4
 mkdocs-macros-plugin==1.0.5
-mkdocs-material==9.5.3
+mkdocs-material==9.5.17
 mkdocs-material-extensions==1.3.1
 ```
 
@@ -83,13 +83,13 @@ $ ./build.bash serve
 build.bash: check for needed Python modules
 ----------
 Name: mkdocs
-Version: 1.5.2
+Version: 1.5.3
 
 Name: mkdocs-material
-Version: 9.1.21
+Version: 9.5.17
 
 Name: mkdocs-git-revision-date-localized-plugin
-Version: 1.2.0
+Version: 1.2.4
 ----------
 
 build.bash: mkdocs serve
