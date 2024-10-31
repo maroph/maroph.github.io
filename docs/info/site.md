@@ -40,10 +40,11 @@ $ python -m pip install --upgrade mkdocs-macros-plugin
 The current installed module versions are:
 
 ```
-mkdocs==1.5.3
-mkdocs-git-revision-date-localized-plugin==1.2.4
-mkdocs-macros-plugin==1.0.5
-mkdocs-material==9.5.17
+mkdocs==1.6.1
+mkdocs-get-deps==0.2.0
+mkdocs-git-revision-date-localized-plugin==1.3.0
+mkdocs-macros-plugin==1.3.7
+mkdocs-material==9.5.42
 mkdocs-material-extensions==1.3.1
 ```
 
@@ -83,13 +84,17 @@ $ ./build.bash serve
 build.bash: check for needed Python modules
 ----------
 Name: mkdocs
-Version: 1.5.3
+Version: 1.6.1
 
 Name: mkdocs-material
-Version: 9.5.17
+Version: 9.5.42
 
 Name: mkdocs-git-revision-date-localized-plugin
-Version: 1.2.4
+Version: 1.3.0
+----------
+
+Name: mkdocs-macros-plugin
+Version: 1.3.7
 ----------
 
 build.bash: mkdocs serve
@@ -104,6 +109,11 @@ shutdown MkDocs server: ./mkdocs.shut
 
 
 ## Build the docs for publishing
+The build step is done by the GitHub Actions 
+file _.github/workflows/ci.yml_ by every checkin in
+the branch.
+
+### Old way: MkDocs deploy
 
 ```bash
 $ source venv/bin/activate

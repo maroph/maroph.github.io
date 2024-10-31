@@ -161,6 +161,8 @@ markdown_extensions:
     - attr_list
     - pymdownx.highlight:
           anchor_linenums: true
+          line_spans: __span
+          pygments_lang_class: true
     - pymdownx.inlinehilite
     - pymdownx.snippets
     - pymdownx.superfences
@@ -183,10 +185,14 @@ plugins:
 extra:
 #    macros:
 #        openssl_1_1_1: 1.1.1w
-#        openssl_3_0: 3.0.12
-#        openssl_3_1: 3.1.4
-#        openssl_3_2: 3.2.0
-    #icons: https://fontawesome.com/search?o=r&f=brands
+#        openssl_3_0: 3.0.15
+#        openssl_3_1: 3.1.7
+#        openssl_3_2: 3.2.2
+#        openssl_3_3: 3.3.2
+#        tomcat_9.0: 9.0.95
+#        tomcat_10.1: 10.1.30
+#        tomcat_11.0: 11.0.0-M26
+#icons: https://fontawesome.com/search?o=r&f=brands
     social:
         - icon: fontawesome/brands/codepen
           link: https://codepen.io/maroph/
