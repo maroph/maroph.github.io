@@ -44,7 +44,7 @@ mkdocs==1.6.1
 mkdocs-get-deps==0.2.0
 mkdocs-git-revision-date-localized-plugin==1.3.0
 mkdocs-macros-plugin==1.3.7
-mkdocs-material==9.5.42
+mkdocs-material==9.5.44
 mkdocs-material-extensions==1.3.1
 ```
 

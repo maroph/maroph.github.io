@@ -91,9 +91,12 @@ nav:
             - PrivateBin: https://privatebin.net/
         - GPT:
             - links_gpt.md
-            - Google Bard: https://bard.google.com/
-            - Meta LLaMa Chat: https://labs.perplexity.ai/
-            - OpenAI ChatGPT: https://chat.openai.com/
+            - ChatGPT: https://chat.openai.com/
+            - ChatPDF: https://www.chatpdf.com/
+            - Claude: https://claude.ai/
+            - Gemini: https://gemini.google.com/app
+            - LlaMa Chat: https://labs.perplexity.ai/
+            - Perplexity: https://labs.perplexity.ai/
         - Rankings:
             - links_rankings.md
             - DB-Engines Ranking: https://db-engines.com/en/ranking
@@ -122,6 +125,7 @@ nav:
             - Ant: https://ant.apache.org/
             - Bouncy Castle: https://bouncycastle.org/
             - Debian: https://www.debian.org/index.en.html
+            - European Alternatives: https://european-alternatives.eu/alternatives-to
             - Git for Windows: https://git-scm.com/download/win
             - Maven: https://maven.apache.org/
             - MkDocs: https://www.mkdocs.org/
@@ -187,11 +191,12 @@ extra:
 #        openssl_1_1_1: 1.1.1w
 #        openssl_3_0: 3.0.15
 #        openssl_3_1: 3.1.7
-#        openssl_3_2: 3.2.2
+#        openssl_3_2: 3.2.3
 #        openssl_3_3: 3.3.2
-#        tomcat_9.0: 9.0.95
-#        tomcat_10.1: 10.1.30
-#        tomcat_11.0: 11.0.0-M26
+#        openssl_3_4: 3.4.0
+#        tomcat_9.0: 9.0.97
+#        tomcat_10.1: 10.1.31
+#        tomcat_11.0: 11.0.0
 #icons: https://fontawesome.com/search?o=r&f=brands
     social:
         - icon: fontawesome/brands/codepen
