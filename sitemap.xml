@@ -41,6 +41,10 @@
          <lastmod>2025-04-15</lastmod>
     </url>
     <url>
+         <loc>https://maroph.github.io/technotes.html</loc>
+         <lastmod>2025-04-15</lastmod>
+    </url>
+    <url>
          <loc>https://maroph.github.io/info/about.html</loc>
          <lastmod>2025-04-15</lastmod>
     </url>
@@ -62,6 +66,18 @@
     </url>
     <url>
          <loc>https://maroph.github.io/info/openpgp/openpgp.html</loc>
+         <lastmod>2025-04-15</lastmod>
+    </url>
+    <url>
+         <loc>https://maroph.github.io/technotes/gnupg/gnupg.html</loc>
+         <lastmod>2025-04-15</lastmod>
+    </url>
+    <url>
+         <loc>https://maroph.github.io/technotes/openssl/openssl.html</loc>
+         <lastmod>2025-04-15</lastmod>
+    </url>
+    <url>
+         <loc>https://maroph.github.io/technotes/openssl/openssl_cli_tool/openssl_cli_tool.html</loc>
          <lastmod>2025-04-15</lastmod>
     </url>
 </urlset>
