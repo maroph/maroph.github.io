@@ -1,3 +1,0 @@
-# TechNotes
-TODO
-
