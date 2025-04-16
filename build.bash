@@ -1,26 +1,28 @@
 #!/bin/bash
 #
-#
-##############################################
-# Copyright (c) 2024 by Manfred Rosenboom    #
-#                                            #
-# This work is licensed under a MIT License. #
-# https://choosealicense.com/licenses/mit/   #
-##############################################
+####################################################
+# Copyright (c) 2025 by Manfred Rosenboom          #
+# https://maroph.github.io/ (maroph@pm.me)         #
+#                                                  #
+# This work is licensed under a CC-BY 4.0 License. #
+# https://creativecommons.org/licenses/by/4.0/     #
+####################################################
 #
 declare -r SCRIPT_NAME=$(basename $0)
-declare -r VERSION="${SCRIPT_NAME}  1  (12-APR-2024)"
+declare -r VERSION="0.1.0"
+declare -r VERSION_DATE="16-APR-2025"
+declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
 #
-SCRIPT_DIR=$(dirname $0)
-cwd=$(pwd)
+SCRIPT_DIR=`dirname $0`
+cwd=`pwd`
 if [ "${SCRIPT_DIR}" = "." ]
 then
     SCRIPT_DIR=$cwd
 else
     cd ${SCRIPT_DIR}
-    SCRIPT_DIR=$(pwd)
+    SCRIPT_DIR=`pwd`
     cd $cwd
 fi
 cwd=
@@ -73,7 +75,7 @@ do
             exit 0
             ;;
         -V | --version)
-            echo ${VERSION}
+            echo ${VERSION_STRING}
             exit 0
             ;;
         -c | --check-only)
@@ -134,7 +136,7 @@ then
     fi
 #
     rm -fr ${SCRIPT_DIR}/venv
-    echo "${SCRIPT_NAME}: python3 -m venv v --prompt ven venv"
+    echo "${SCRIPT_NAME}: python3 -m venv --prompt venv venv"
     python3 -m venv --prompt venv ${SCRIPT_DIR}/venv || exit 1
     echo "${SCRIPT_NAME}: . venv/bin/activate"
     . ${SCRIPT_DIR}/venv/bin/activate
@@ -279,12 +281,6 @@ then
 else
     echo "${SCRIPT_NAME}: mkdocs build --clean"
     mkdocs build --clean || exit 1
-#
-    if [ ! -f site/.nojekyll ]
-    then
-        touch site/.nojekyll
-        chmod 640 site/.nojekyll
-    fi
 fi
 echo ""
 #
