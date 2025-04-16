@@ -42,9 +42,9 @@ The current installed module versions are:
 ```
 mkdocs==1.6.1
 mkdocs-get-deps==0.2.0
-mkdocs-git-revision-date-localized-plugin==1.3.0
+mkdocs-git-revision-date-localized-plugin==1.4.5
 mkdocs-macros-plugin==1.3.7
-mkdocs-material==9.5.44
+mkdocs-material==9.6.11
 mkdocs-material-extensions==1.3.1
 ```
 
@@ -74,6 +74,7 @@ $ mkdocs build
 or
 
 ```bash
+$ source venv/bin/activate
 $ ./build.bash
 ```
 
@@ -87,22 +88,22 @@ Name: mkdocs
 Version: 1.6.1
 
 Name: mkdocs-material
-Version: 9.5.42
+Version: 9.6.11
 
 Name: mkdocs-git-revision-date-localized-plugin
-Version: 1.3.0
+Version: 1.4.5
 ----------
 
 Name: mkdocs-macros-plugin
 Version: 1.3.7
 ----------
 
-build.bash: mkdocs serve
+build.bash: mkdocs serve ...
 INFO    -  Building documentation...
 INFO    -  Cleaning site directory
-INFO    -  Documentation built in 0.35 seconds
-INFO    -  [10:03:56] Watching paths for changes: 'docs', 'mkdocs.yml'
-INFO    -  [10:03:56] Serving on http://127.0.0.1:8000/
+INFO    -  Documentation built in 0.54 seconds
+INFO    -  [17:37:08] Watching paths for changes: 'docs', 'mkdocs.yml'
+INFO    -  [17:37:08] Serving on http://127.0.0.1:8000/
 
 shutdown MkDocs server: ./mkdocs.shut
 ```
@@ -111,9 +112,9 @@ shutdown MkDocs server: ./mkdocs.shut
 ## Build the docs for publishing
 The build step is done by the GitHub Actions 
 file _.github/workflows/ci.yml_ by every checkin in
-the branch.
+the branch main.
 
-### Old way: MkDocs deploy
+### Manually: MkDocs deploy
 
 ```bash
 $ source venv/bin/activate
