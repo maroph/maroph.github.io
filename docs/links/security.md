@@ -1,0 +1,18 @@
+# Links: Security
+
+* [BSI CERT](https://www.cert-bund.de/overview/AdvisoryShort)
+* [Certificate Search](https://crt.sh/)
+* [CVE Details](https://www.cvedetails.com/)
+* [Debian Security Bug Tracker](https://security-tracker.debian.org/tracker/)
+* [Debian Security Information](https://www.debian.org/security/)
+* [Debian LTS Security Information](https://www.debian.org/lts/security/)
+* [Exploit DB](https://www.exploit-db.com/)
+* [Geekflare Tools for Webmasters](https://gf.dev/)
+* [Have I been pwned](https://haveibeenpwned.com/)
+* [HPI Identity Leak Checker](https://sec.hpi.de/ilc/d?lang=en)
+* [HTTP Security Headers](https://securityheaders.com/)
+* [Mozilla CA PEM File](https://curl.haxx.se/docs/caextract.html)
+* [Mozilla SSL Configuration Generator](https://ssl-config.mozilla.org/)
+* [NVD Feeds](https://nvd.nist.gov/vuln/data-feeds)
+* [Security Headers (Web Server)](https://securityheaders.com/)
+* [SSL Server Test](https://www.ssllabs.com/ssltest/)

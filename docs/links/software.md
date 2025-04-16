@@ -1,0 +1,18 @@
+# Links: Software
+
+* [Ant](https://ant.apache.org/)
+* [Bouncy Castle](https://bouncycastle.org/)
+* [Debian](https://www.debian.org/index.en.html)
+* [Git for Windows](https://git-scm.com/download/win)
+* [Maven](https://maven.apache.org/)
+* [MkDocs](https://www.mkdocs.org/)
+* [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+* [Node.js](https://nodejs.org/en)
+* [OpenJDK](https://adoptium.net/)
+* [OpenSSL](https://openssl-library.org/)
+* [Pandoc](https://pandoc.org/)
+* [Python](https://www.python.org/)
+* [Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/)
+* [Tomcat](https://tomcat.apache.org/)
+* [WildFly](https://www.wildfly.org/)
+* [XAMPP](https://www.apachefriends.org/)

@@ -1,4 +1,7 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+# https://www.mkdocs.org/getting-started/
+# https://www.mkdocs.org/user-guide/
+# https://squidfunk.github.io/mkdocs-material/
 site_name: My Main GitHub Page
 site_url: https://maroph.github.io/
 site_description: My main GitHub Page
@@ -6,18 +9,12 @@ site_author: Manfred Rosenboom (maroph)
 
 repo_name: maroph/maroph.github.io
 repo_url: https://github.com/maroph/maroph.github.io/
-edit_uri: edit/master/docs
-# view readonly version
-# edit_uri: blob/master/docs
-# link to GitHub repository site
-# edit_uri: ""
+edit_uri: edit/main/docs
+# view readonly version                  edit_uri: blob/main/docs
+# link to GitHub repository site only    edit_uri: ""
 
-# MkDocs Site: https://www.mkdocs.org/
-# MkDocs Theme: Material for MkDocs
-# https://squidfunk.github.io/mkdocs-material/
 theme:
     name: material
-# https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/
     palette:
         - scheme: default
           primary: indigo
@@ -31,21 +28,23 @@ theme:
           toggle:
             icon: material/brightness-4
             name: Switch to light mode
-#    favicon: assets/Vi_logo.ico
     font: false
     language: en
+#    logo: assets/python-logo-only2.png
     direction: ltr
+#    favicon: assets/Vi_logo.ico
     features:
         - header.autohide
         - content.action.edit
         - content.action.view
         - content.code.copy
+        - content.tooltips
+        - navigation.expand
         - navigation.footer
         - navigation.indexes
         - navigation.instant
-        - navigation.instant.progress
-#        - navigation.prune
-#        - navigation.sections
+        - navigation.prune
+        - navigation.sections
         - navigation.tracking
         - navigation.tabs
         - navigation.tabs.sticky
@@ -56,88 +55,22 @@ theme:
 #        - toc.integrate
     icon:
         repo: fontawesome/brands/github
-        edit: material/pencil 
+        edit: material/pencil
         view: material/eye
+        previous: fontawesome/solid/angle-left
+        next: fontawesome/solid/angle-right
 
 nav:
     - Home: index.md
     - Links:
         - links.md
-        - My Sites:
-            - links_my_sites.md
-            - Bluesky: https://bsky.app/profile/maroph.bsky.social
-            - CodePen: https://codepen.io/maroph/
-            - GitHub: https://github.com/maroph/
-            - GitHub Gist: https://gist.github.com/maroph/
-            - Gravatar: https://en.gravatar.com/maroph
-            - Mastodon: https://mastodon.social/@maroph
-            - Pastebin: https://pastebin.com/u/maroph
-            - Personal Home Page: https://manfred.rosenboom.name/
-        - GitHub Pages:
-            - links_github_pages.md
-            - Main Page: https://maroph.github.io/
-            - My vi Site: https://maroph.github.io/ex-vi/
-            - MVHS Kurs HTML & CSS: https://maroph.github.io/mvhs_html_css/
-            - openHPI Kurs Linux CLI: https://maroph.github.io/openhpi_linux-cli_2022/
-        - Collaboration:
-            - links_collaboration.md
-            - Cryptpad (Digitalcourage): https://cryptpad.digitalcourage.de/
-            - DFN Terminplaner: https://terminplaner4.dfn.de/
-            - Etherpad (ffmuc.net): https://ffmuc.net/pad/
-            - Jitsi Meet (ffmuc.net): https://meet.ffmuc.net/
-            - NoPaste: https://nopaste.dnshome.org/
-            - Nuudel (Digitalcourage): https://nuudel.digitalcourage.de/
-            - Padlet: https://padlet.com/
-            - PrivateBin: https://privatebin.net/
-        - GPT:
-            - links_gpt.md
-            - ChatGPT: https://chat.openai.com/
-            - ChatPDF: https://www.chatpdf.com/
-            - Claude: https://claude.ai/
-            - Gemini: https://gemini.google.com/app
-            - LlaMa Chat: https://labs.perplexity.ai/
-            - Perplexity: https://labs.perplexity.ai/
-        - Rankings:
-            - links_rankings.md
-            - DB-Engines Ranking: https://db-engines.com/en/ranking
-            - PYPL: https://pypl.github.io/PYPL.html
-            - TIOBE Index: https://www.tiobe.com/tiobe-index/
-        - Security:
-            - links_security.md
-            - BSI CERT: https://www.cert-bund.de/overview/AdvisoryShort
-            - Certificate Search: https://crt.sh/
-            - CVE Details: https://www.cvedetails.com/
-            - Debian Security Bug Tracker: https://security-tracker.debian.org/tracker/
-            - Debian Security Information: https://www.debian.org/security/
-            - Debian LTS Security Information: https://www.debian.org/lts/security/
-            - Exploit DB: https://www.exploit-db.com/
-            - Geekflare Tools for Webmasters: https://gf.dev/
-            - Have I been pwned: https://haveibeenpwned.com/
-            - HPI Identity Leak Checker: https://sec.hpi.de/ilc/d?lang=en
-            - HTTP Security Headers: https://securityheaders.com/
-            - Mozilla CA PEM File: https://curl.haxx.se/docs/caextract.html
-            - Mozilla SSL Configuration Generator: https://ssl-config.mozilla.org/
-            - NVD Feeds: https://nvd.nist.gov/vuln/data-feeds
-            - Security Headers (Web Server): https://securityheaders.com/
-            - SSL Server Test: https://www.ssllabs.com/ssltest/
-        - Software:
-            - links_software.md
-            - Ant: https://ant.apache.org/
-            - Bouncy Castle: https://bouncycastle.org/
-            - Debian: https://www.debian.org/index.en.html
-            - European Alternatives: https://european-alternatives.eu/alternatives-to
-            - Git for Windows: https://git-scm.com/download/win
-            - Maven: https://maven.apache.org/
-            - MkDocs: https://www.mkdocs.org/
-            - Material for MkDocs: https://squidfunk.github.io/mkdocs-material/
-            - OpenJDK: https://adoptium.net/
-            - OpenSSL: https://www.openssl.org/
-            - Pandoc: https://pandoc.org/
-            - Python: https://www.python.org/
-            - Raspberry Pi OS: https://www.raspberrypi.org/software/operating-systems/
-            - Tomcat: https://tomcat.apache.org/
-            - WildFly: https://www.wildfly.org/
-            - XAMPP: https://www.apachefriends.org/
+        - My Sites: links/my_sites.md
+        - GitHub Pages: links/github_pages.md
+        - Collaboration: links/collaboration.md
+        - GPT: links/gpt.md
+        - Rankings: links/rankings.md
+        - Security: links/security.md
+        - Software: links/software.md
     - Info:
         - info.md
         - About: info/about.md
@@ -157,6 +90,10 @@ copyright: Copyright (c) 2020-2025 CC-BY 4.0 <a href="https://maroph.github.io/"
 
 markdown_extensions:
     - attr_list
+# available icons, emojis: https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/#search
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg
     - pymdownx.highlight:
           anchor_linenums: true
           line_spans: __span
@@ -164,6 +101,8 @@ markdown_extensions:
     - pymdownx.inlinehilite
     - pymdownx.snippets
     - pymdownx.superfences
+    - tables
+
 
 plugins:
 # https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
@@ -177,25 +116,36 @@ plugins:
 # https://mkdocs-macros-plugin.readthedocs.io/en/latest/
 #    - macros:
 #          on_undefined: keep
+    - offline:
+          enabled: false
+    - privacy:
+          enabled: true
+          cache: true
     - search:
+          enabled: true
           lang: en
 
 extra:
 #    macros:
 #        openssl_1_1_1: 1.1.1w
-#        openssl_3_0: 3.0.15
-#        openssl_3_1: 3.1.7
-#        openssl_3_2: 3.2.3
-#        openssl_3_3: 3.3.2
-#        openssl_3_4: 3.4.0
-#        tomcat_9.0: 9.0.97
-#        tomcat_10.1: 10.1.31
-#        tomcat_11.0: 11.0.0
+#        openssl_3_0: 3.0.16
+#        openssl_3_1: 3.1.8
+#        openssl_3_2: 3.2.4
+#        openssl_3_3: 3.3.3
+#        openssl_3_4: 3.4.1
+#        openssl_3_5: 3.5.0
+#        tomcat_9.0: 9.0.104
+#        tomcat_10.1: 10.1.40
+#        tomcat_11.0: 11.0.6
 #icons: https://fontawesome.com/search?o=r&f=brands
+    generator: true
     social:
         - icon: fontawesome/brands/codepen
           link: https://codepen.io/maroph/
+          name: codepen.io/maroph/
         - icon: fontawesome/brands/github
           link: https://github.com/maroph
-        - icon: fontawesome/brands/mastodon 
+          name: github.com/maroph
+        - icon: fontawesome/brands/mastodon
           link: https://mastodon.social/@maroph
+          name: mastodon.social/@maroph
