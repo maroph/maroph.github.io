@@ -10,7 +10,7 @@
 #
 declare -r SCRIPT_NAME=$(basename $0)
 declare -r VERSION="0.1.0"
-declare -r VERSION_DATE="16-APR-2025"
+declare -r VERSION_DATE="17-APR-2025"
 declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
@@ -283,6 +283,9 @@ else
     mkdocs build --clean || exit 1
 fi
 echo ""
+#
+touch site/.nojekyll
+chmod 640 site/.nojekyll
 #
 if [ -d ${SCRIPT_DIR}/.git ]
 then
