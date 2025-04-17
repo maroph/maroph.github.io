@@ -2,6 +2,7 @@
 
 * [Ant](https://ant.apache.org/)
 * [Bouncy Castle](https://bouncycastle.org/)
+* [cURL](https://curl.se/)
 * [Debian](https://www.debian.org/index.en.html)
 * [Git for Windows](https://git-scm.com/download/win)
 * [Maven](https://maven.apache.org/)
