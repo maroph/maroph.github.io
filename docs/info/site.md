@@ -41,11 +41,9 @@ The current installed module versions are:
 
 ```
 mkdocs==1.6.1
-mkdocs-get-deps==0.2.0
 mkdocs-git-revision-date-localized-plugin==1.4.5
 mkdocs-macros-plugin==1.3.7
-mkdocs-material==9.6.11
-mkdocs-material-extensions==1.3.1
+mkdocs-material==9.6.12
 ```
 
 ### Create the virtual environment with the build.bash script
@@ -88,7 +86,7 @@ Name: mkdocs
 Version: 1.6.1
 
 Name: mkdocs-material
-Version: 9.6.11
+Version: 9.6.12
 
 Name: mkdocs-git-revision-date-localized-plugin
 Version: 1.4.5

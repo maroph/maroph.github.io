@@ -1,7 +1,10 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+# Documentation:
 # https://www.mkdocs.org/getting-started/
 # https://www.mkdocs.org/user-guide/
 # https://squidfunk.github.io/mkdocs-material/
+# https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html
+# https://mkdocs-macros-plugin.readthedocs.io/en/latest/
 site_name: My Main GitHub Page
 site_url: https://maroph.github.io/
 site_description: My main GitHub Page
