@@ -131,15 +131,16 @@ plugins:
 extra:
 #    macros:
 #        openssl_1_1_1: 1.1.1w
-#        openssl_3_0: 3.0.16
+#        openssl_3_0: 3.0.17
 #        openssl_3_1: 3.1.8
-#        openssl_3_2: 3.2.4
-#        openssl_3_3: 3.3.3
-#        openssl_3_4: 3.4.1
-#        openssl_3_5: 3.5.0
-#        tomcat_9.0: 9.0.104
-#        tomcat_10.1: 10.1.40
-#        tomcat_11.0: 11.0.6
+#        openssl_3_2: 3.2.5
+#        openssl_3_3: 3.3.4
+#        openssl_3_4: 3.4.2
+#        openssl_3_5: 3.5.1
+#        openssl_3_6: 3.6.0alpha1
+#        tomcat_9.0: 9.0.107
+#        tomcat_10.1: 10.1.44
+#        tomcat_11.0: 11.0.9
 #icons: https://fontawesome.com/search?o=r&f=brands
     generator: true
     social:
