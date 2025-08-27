@@ -1,6 +1,6 @@
 # Links: My Sites
 
-* [Bluesky](https://bsky.app/profile/maroph.bsky.social)
+* [Codeberg](https://codeberg.org/maroph/)
 * [CodePen](https://codepen.io/maroph/)
 * [GitHub](https://github.com/maroph/)
 * [GitHub Gist](https://gist.github.com/maroph/)
