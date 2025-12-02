@@ -10,7 +10,7 @@
 #
 declare -r SCRIPT_NAME=$(basename $0)
 declare -r VERSION="0.1.0"
-declare -r VERSION_DATE="30-NOV-2025"
+declare -r VERSION_DATE="02-DEC-2025"
 declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
@@ -39,9 +39,9 @@ else
 fi
 #
 GHP_IMPORT=""
-if [ -x ~/bin/ghp-import.bash ]
+if [ -x $HOME/bin/ghp-import.bash ]
 then
-    GHP_IMPORT="~/bin/ghp-import.bash"
+    GHP_IMPORT="$HOME/bin/ghp-import.bash"
 fi
 
 #
@@ -65,7 +65,7 @@ Options:
   -h|--help       : show this help and exit
   -V|--version    : show version information and exit
   -c|--check-only : check for needed Python3 modules and exit
-  -f|--force      : use option --no-strict for zensical build
+  -f|--force      : use option --no-strict for zensical build (not yet available)
   -n|--no-check   : no check for needed Python3 modules
 
   Arguments
@@ -98,7 +98,8 @@ do
             checkOnly=1
             ;;
         -f | --force)
-            force=1
+            # force=1
+            force=0
             ;;
         -n | --no-check)
             check=0
@@ -262,7 +263,7 @@ then
     echo ""
 #
     echo "${SCRIPT_NAME}: ghp-import --no-jekyll --push --no-history ./site"
-    ${GHP_IMPORT} --no-jekyll --push --no-history ./public || exit 1
+    ${GHP_IMPORT} --no-jekyll --push --no-history ./site || exit 1
     echo ""
     exit 0
 fi
