@@ -9,8 +9,8 @@ on:
     workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
+  contents: read, write
+  pages: read, write
   id-token: write
 
 jobs:
