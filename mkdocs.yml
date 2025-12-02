@@ -1,10 +1,5 @@
-# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
-# Documentation:
-# https://www.mkdocs.org/getting-started/
-# https://www.mkdocs.org/user-guide/
-# https://squidfunk.github.io/mkdocs-material/
-# https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/index.html
-# https://mkdocs-macros-plugin.readthedocs.io/en/latest/
+# Zensical Documentation:
+# https://zensical.org/docs/get-started/
 site_name: My Main GitHub Page
 site_url: https://maroph.github.io/
 site_description: My main GitHub Page
@@ -18,6 +13,7 @@ edit_uri: edit/main/docs
 
 theme:
     name: material
+    # variant: classic
     palette:
         - scheme: default
           primary: indigo
@@ -35,7 +31,7 @@ theme:
     language: en
 #    logo: assets/python-logo-only2.png
     direction: ltr
-#    favicon: assets/Vi_logo.ico
+    favicon: assets/zensical_32x32.png
     features:
         - header.autohide
         - content.action.edit
@@ -93,7 +89,6 @@ copyright: Copyright (c) 2020-2025 CC-BY 4.0 <a href="https://maroph.github.io/"
 
 markdown_extensions:
     - attr_list
-# available icons, emojis: https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/#search
     - pymdownx.emoji:
           emoji_index: !!python/name:material.extensions.emoji.twemoji
           emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -108,17 +103,8 @@ markdown_extensions:
 
 
 plugins:
-# https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/options/
-    - git-revision-date-localized:
-          enable_creation_date: false
-          fallback_to_build_date: true
-          timezone: Europe/Amsterdam
-          type: iso_datetime
     - info:
           enabled: false
-# https://mkdocs-macros-plugin.readthedocs.io/en/latest/
-#    - macros:
-#          on_undefined: keep
     - offline:
           enabled: false
     - privacy:
@@ -129,19 +115,6 @@ plugins:
           lang: en
 
 extra:
-#    macros:
-#        openssl_1_1_1: 1.1.1w
-#        openssl_3_0: 3.0.17
-#        openssl_3_1: 3.1.8
-#        openssl_3_2: 3.2.5
-#        openssl_3_3: 3.3.4
-#        openssl_3_4: 3.4.2
-#        openssl_3_5: 3.5.2
-#        openssl_3_6: 3.6.0alpha1
-#        tomcat_9.0: 9.0.107
-#        tomcat_10.1: 10.1.44
-#        tomcat_11.0: 11.0.9
-#icons: https://fontawesome.com/search?o=r&f=brands
     generator: true
     social:
         - icon: fontawesome/brands/codepen
@@ -153,3 +126,4 @@ extra:
         - icon: fontawesome/brands/mastodon
           link: https://mastodon.social/@maroph
           name: mastodon.social/@maroph
+

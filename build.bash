@@ -10,7 +10,7 @@
 #
 declare -r SCRIPT_NAME=$(basename $0)
 declare -r VERSION="0.1.0"
-declare -r VERSION_DATE="17-APR-2025"
+declare -r VERSION_DATE="30-NOV-2025"
 declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
@@ -31,6 +31,22 @@ declare -r SCRIPT_DIR
 #
 ###############################################################################
 #
+if [ -d ${SCRIPT_DIR}/.git ]
+then
+    gitrepo=1
+else
+    gitrepo=0
+fi
+#
+GHP_IMPORT=""
+if [ -x ~/bin/ghp-import.bash ]
+then
+    GHP_IMPORT="~/bin/ghp-import.bash"
+fi
+
+#
+###############################################################################
+#
 export LANG="en_US.UTF-8"
 #
 check=1
@@ -43,23 +59,23 @@ print_usage() {
     cat - <<EOT
 
 Usage: ${SCRIPT_NAME} [option(s)] [venv|deploy|serve]
-       Call mkdocs to build the site related files
+       Call zensical to build the site related files
 
 Options:
   -h|--help       : show this help and exit
   -V|--version    : show version information and exit
   -c|--check-only : check for needed Python3 modules and exit
-  -f|--force      : use option --no-strict for mkdocs build
+  -f|--force      : use option --no-strict for zensical build
   -n|--no-check   : no check for needed Python3 modules
 
   Arguments
   venv          : create the required virtual environment and exit
   deploy        : create the site and push all data to branch gh-pages
-                  (mkdocs gh-deploy)
-  serve         : Run the MkDocs builtin development server
-                  (mkdocs serve)
+                  (zensical gh-deploy)
+  serve         : Run the Zensical builtin development server
+                  (zensical serve)
 
-  Default: call 'mkdocs build'
+  Default: call 'zensical build'
 
 EOT
 }
@@ -147,12 +163,10 @@ then
     python -m pip install --upgrade setuptools || exit 1
     echo "${SCRIPT_NAME}: python -m pip install --upgrade wheel"
     python -m pip install --upgrade wheel || exit 1
-    echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs-material"
-    python -m pip install --upgrade mkdocs-material || exit 1
-    echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs-git-revision-date-localized-plugin"
-    python -m pip install --upgrade mkdocs-git-revision-date-localized-plugin || exit 1
-    echo "${SCRIPT_NAME}: python -m pip install --upgrade mkdocs-macros-plugin"
-    python -m pip install --upgrade mkdocs-macros-plugin || exit 1
+    echo "${SCRIPT_NAME}: python -m pip install --upgrade zensical"
+    python -m pip install --upgrade zensical || exit 1
+    echo "${SCRIPT_NAME}: python -m pip install --upgrade ghp-import"
+    python -m pip install --upgrade ghp-import || exit 1
 #
     echo "${SCRIPT_NAME}: python -m pip freeze >requirements.txt"
     python -m pip freeze >${SCRIPT_DIR}/venv/requirements.txt || exit 1
@@ -160,7 +174,7 @@ then
     echo ""
     echo ""
     echo "----------"
-    grep -E 'mkdocs' ${SCRIPT_DIR}/venv/requirements.txt
+    cat ${SCRIPT_DIR}/venv/requirements.txt | sort
     echo "----------"
     echo ""
 #
@@ -194,38 +208,19 @@ then
 #
     echo "${SCRIPT_NAME}: check for needed Python modules"
     echo "----------"
-    data=$(python -m pip show mkdocs 2>/dev/null)
+    data=$(python -m pip show zensical 2>/dev/null)
     if [ $? -ne 0 ]
     then
-        echo "${SCRIPT_NAME}: Python module mkdocs not available"
+        echo "${SCRIPT_NAME}: Python module zensical not available"
         exit 1
     fi
     echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
     echo ""
 #
-    data=$(python -m pip show mkdocs-material 2>/dev/null)
+    data=$(python -m pip show ghp-import 2>/dev/null)
     if [ $? -ne 0 ]
     then
-        echo "${SCRIPT_NAME}: Python module mkdocs-material not available"
-        exit 1
-    fi
-    echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
-    echo ""
-#
-    data=$(python -m pip show mkdocs-git-revision-date-localized-plugin 2>/dev/null)
-    if [ $? -ne 0 ]
-    then
-        echo "${SCRIPT_NAME}: Python module mkdocs-git-revision-date-localized-plugin not available"
-        exit 1
-    fi
-    echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
-    echo "----------"
-    echo ""
-#
-    data=$(python -m pip show mkdocs-macros-plugin 2>/dev/null)
-    if [ $? -ne 0 ]
-    then
-        echo "${SCRIPT_NAME}: Python module mkdocs-macros-plugin not available"
+        echo "${SCRIPT_NAME}: Python module ghp-import not available"
         exit 1
     fi
     echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
@@ -243,8 +238,31 @@ fi
 #
 if [ "$1" = "deploy" ]
 then
-    echo "${SCRIPT_NAME}: mkdocs gh-deploy"
-    mkdocs gh-deploy || exit 1
+    if [ ${gitrepo} -eq 0 ]
+    then
+        echo "${SCRIPT_NAME}: current directory is not a Git repository"
+        exit 1
+    fi
+#
+    if [ "${GHP_IMPORT}" = "" ]
+    then
+        python3 -m pip show ghp-import >/dev/null 2>/dev/null
+        if [ $? -ne 0 ]
+        then
+            echo "${SCRIPT_NAME}: Python module ghp-import not available"
+            exit 1
+        fi
+
+#
+        GHP_IMPORT="ghp-import"
+    fi
+#
+    echo "${SCRIPT_NAME}: zensical build --clean"
+    zensical build --clean || exit 1
+    echo ""
+#
+    echo "${SCRIPT_NAME}: ghp-import --no-jekyll --push --no-history ./site"
+    ${GHP_IMPORT} --no-jekyll --push --no-history ./public || exit 1
     echo ""
     exit 0
 fi
@@ -255,19 +273,19 @@ if [ "$1" = "serve" ]
 then
     if [ ${force} -eq 1 ]
     then
-        echo "${SCRIPT_NAME}: mkdocs serve --no-strict ..."
-        mkdocs serve --no-strict &
+        echo "${SCRIPT_NAME}: zensical serve --no-strict ..."
+        zensical serve --no-strict &
     else
-        echo "${SCRIPT_NAME}: mkdocs serve ..."
-        mkdocs serve &
+        echo "${SCRIPT_NAME}: zensical serve ..."
+        zensical serve &
     fi
-    echo "#!/bin/bash" >./mkdocs.shut
-    echo "kill -15 $!" >>./mkdocs.shut
-    echo "rm ./mkdocs.shut" >>./mkdocs.shut
-    chmod 700 ./mkdocs.shut
+    echo "#!/bin/bash" >./zensical.shut
+    echo "kill -15 $!" >>./zensical.shut
+    echo "rm ./zensical.shut" >>./zensical.shut
+    chmod 700 ./zensical.shut
     sleep 1
     echo ""
-    echo "shutdown MkDocs server: ./mkdocs.shut"
+    echo "shutdown Zensical server: ./zensical.shut"
     echo ""
     exit 0
 fi
@@ -276,11 +294,11 @@ fi
 #
 if [ ${force} -eq 1 ]
 then
-    echo "${SCRIPT_NAME}: mkdocs build --clean --no-strict"
-    mkdocs build --clean --no-strict || exit 1
+    echo "${SCRIPT_NAME}: zensical build --clean --no-strict"
+    zensical build --clean --no-strict || exit 1
 else
-    echo "${SCRIPT_NAME}: mkdocs build --clean"
-    mkdocs build --clean || exit 1
+    echo "${SCRIPT_NAME}: zensical build --clean"
+    zensical build --clean || exit 1
 fi
 echo ""
 #

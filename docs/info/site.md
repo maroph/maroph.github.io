@@ -4,21 +4,17 @@ This is my main GitHub Page. The data are stored in my GitHub repository
 
 ## How I create the pages on this site
 My pages are written in Markdown (directory docs) an transformed into HTML 
-pages (local directory site) with the [MkDocs](https://www.mkdocs.org/)
+pages (local directory site) with the [Zensical](https://www.zensical.org/)
 static site generator. The site data are published in the gh-pages branch 
 of the directory.
 
 ### Python modules in use to produce this site:
 
-* [MkDocs]{:target="blank"}
-* [Material for MkDocs]{:target="blank"}
-* MkDocs plugin [mkdocs-git-revision-date-localized-plugin]{:target="blank"}
-* MkDocs plugin [mkdocs-macros-plugin]{:target="blank"}
+* [Zensical]{:target="blank"}
+* [ghp-import]{:target="blank"}
 
-[MkDocs]: https://pypi.org/project/mkdocs/
-[Material for MkDocs]: https://pypi.org/project/mkdocs-material/
-[mkdocs-git-revision-date-localized-plugin]: https://pypi.org/project/mkdocs-git-revision-date-localized-plugin/
-[mkdocs-macros-plugin]: https://pypi.org/project/mkdocs-macros-plugin/
+[Zensical]: https://pypi.org/project/zensical/
+[ghp-import]: https://pypi.org/project/ghp-import/
 
 ## Python Virtual Environment
 I use a virtual environment with the above Python modules.
@@ -32,18 +28,8 @@ $ source ./venv/bin/activate
 $ python -m pip install --upgrade pip
 $ python -m pip install --upgrade setuptools
 $ python -m pip install --upgrade wheel
-$ python -m pip install --upgrade mkdocs-material
-$ python -m pip install --upgrade mkdocs-git-revision-date-localized-plugin
-$ python -m pip install --upgrade mkdocs-macros-plugin
-```
-
-The current installed module versions are:
-
-```
-mkdocs==1.6.1
-mkdocs-git-revision-date-localized-plugin==1.4.5
-mkdocs-macros-plugin==1.3.7
-mkdocs-material==9.6.12
+$ python -m pip install --upgrade zensical
+$ python -m pip install --upgrade ghp-import
 ```
 
 ### Create the virtual environment with the build.bash script
@@ -66,7 +52,7 @@ $ sudo apt install python3-venv
 
 ```bash
 $ source venv/bin/activate
-$ mkdocs build
+$ zensical build
 ```
 
 or
@@ -82,28 +68,34 @@ $ source venv/bin/activate
 $ ./build.bash serve
 build.bash: check for needed Python modules
 ----------
-Name: mkdocs
-Version: 1.6.1
+Name: zensical
+Version: 0.0.10
 
-Name: mkdocs-material
-Version: 9.6.12
-
-Name: mkdocs-git-revision-date-localized-plugin
-Version: 1.4.5
+Name: ghp-import
+Version: 2.1.0
 ----------
 
-Name: mkdocs-macros-plugin
-Version: 1.3.7
-----------
+build.bash: zensical serve ...
+Serving .../maroph.github.io/site on http://localhost:8000
+Build started
++ /links/my_sites.html
++ /links/rankings.html
++ /links/github_pages.html
++ /links/gpt.html
++ /info/license.html
++ /info/sources.html
++ /links/software.html
++ /info/about.html
++ /index.html
++ /links.html
++ /links/security.html
++ /info/openpgp/openpgp.html
++ /info.html
++ /links/collaboration.html
++ /info/gdpr.html
++ /info/site.html
 
-build.bash: mkdocs serve ...
-INFO    -  Building documentation...
-INFO    -  Cleaning site directory
-INFO    -  Documentation built in 0.54 seconds
-INFO    -  [17:37:08] Watching paths for changes: 'docs', 'mkdocs.yml'
-INFO    -  [17:37:08] Serving on http://127.0.0.1:8000/
-
-shutdown MkDocs server: ./mkdocs.shut
+shutdown Zensical server: ./zensical.shut
 ```
 
 
@@ -112,7 +104,7 @@ The build step is done by the GitHub Actions
 file _.github/workflows/ci.yml_ by every checkin in
 the branch main.
 
-### Manually: MkDocs deploy
+### Manually: ghp-import deploy
 
 ```bash
 $ source venv/bin/activate
