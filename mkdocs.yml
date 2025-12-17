@@ -85,7 +85,7 @@ site_dir: site
 use_directory_urls: false
 strict: true
 
-copyright: Copyright (c) 2020-2025 CC-BY 4.0 <a href="https://maroph.github.io/">Manfred Rosenboom</a>
+copyright: Copyright (c) 2020-2025 <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> by <a href="https://maroph.github.io/">Manfred Rosenboom</a>
 
 markdown_extensions:
     - attr_list
