@@ -1,0 +1,6 @@
+# Created: 17-DEC-2025
+Contact: mailto:maroph@pm.me
+Expires: 2027-12-31T22:59:00.000Z
+Encryption: https://maroph.github.io/info/openpgp/pub_maroph_at_pm.me_20280106.asc
+Preferred-Languages: de, en, nl
+Canonical: https://maroph.github.io/.well-known/security.txt

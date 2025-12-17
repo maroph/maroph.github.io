@@ -10,7 +10,7 @@
 #
 declare -r SCRIPT_NAME=$(basename $0)
 declare -r VERSION="0.1.0"
-declare -r VERSION_DATE="02-DEC-2025"
+declare -r VERSION_DATE="17-DEC-2025"
 declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
@@ -262,6 +262,14 @@ then
     zensical build --clean || exit 1
     echo ""
 #
+    if [ -d docs/.well-known ]
+    then
+        if [ ! -d site/.well-known ]
+        then
+            cp -rp docs/.well-known site || exit 1
+        fi
+    fi
+#
     echo "${SCRIPT_NAME}: ghp-import --no-jekyll --push --no-history ./site"
     ${GHP_IMPORT} --no-jekyll --push --no-history ./site || exit 1
     echo ""
@@ -305,6 +313,14 @@ echo ""
 #
 touch site/.nojekyll
 chmod 640 site/.nojekyll
+#
+if [ -d docs/.well-known ]
+then
+    if [ ! -d site/.well-known ]
+    then
+        cp -rp docs/.well-known site || exit 1
+    fi
+fi
 #
 if [ -d ${SCRIPT_DIR}/.git ]
 then
