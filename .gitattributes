@@ -1,5 +1,5 @@
 # my main .gitattributes file
-# Last updated: 18-AUG-2025
+# Last updated: 19-DEC-2025
 .* export-ignore
 #
 * text=auto
@@ -13,6 +13,7 @@ Makefile  text
 *.css     text
 *.css.map text
 *.csv     text
+*.h       text
 *.html    text
 *.java    text
 *.js      text
@@ -29,6 +30,7 @@ Makefile  text
 *.yaml    text
 *.yml     text
 #
+*.a     binary
 *.class binary
 *.ear   binary
 *.eot   binary
@@ -38,6 +40,8 @@ Makefile  text
 *.ico   binary
 *.jar   binary
 *.jpg   binary
+*.ld    binary
+*.o     binary
 *.pdf   binary
 *.png   binary
 *.rar   binary
