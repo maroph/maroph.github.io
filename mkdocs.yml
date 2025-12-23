@@ -29,9 +29,9 @@ theme:
             name: Switch to light mode
     font: false
     language: en
-#    logo: assets/python-logo-only2.png
     direction: ltr
     favicon: assets/zensical_32x32.png
+#    logo: assets/python-logo-only2.png
     features:
         - header.autohide
         - content.action.edit
@@ -117,9 +117,12 @@ plugins:
 extra:
     generator: true
     social:
+        - icon: fontawesome/solid/blog
+          link: https://maroph.github.io/nosense/
+          name: maroph.github.io/nosense
         - icon: fontawesome/brands/codepen
           link: https://codepen.io/maroph/
-          name: codepen.io/maroph/
+          name: codepen.io/maroph
         - icon: fontawesome/brands/github
           link: https://github.com/maroph
           name: github.com/maroph
