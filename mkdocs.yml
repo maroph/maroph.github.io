@@ -77,7 +77,6 @@ nav:
         - GDPR/DSGVO: info/gdpr.md
         - License: info/license.md
         - Sources: info/sources.md
-        - This Site: info/site.md
 
 docs_dir: docs
 site_dir: site
@@ -129,4 +128,3 @@ extra:
         - icon: fontawesome/brands/mastodon
           link: https://mastodon.social/@maroph
           name: mastodon.social/@maroph
-
