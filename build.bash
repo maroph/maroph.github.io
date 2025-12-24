@@ -10,7 +10,7 @@
 #
 declare -r SCRIPT_NAME=$(basename $0)
 declare -r VERSION="0.1.0"
-declare -r VERSION_DATE="17-DEC-2025"
+declare -r VERSION_DATE="24-DEC-2025"
 declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
@@ -267,6 +267,8 @@ then
         if [ ! -d site/.well-known ]
         then
             cp -rp docs/.well-known site || exit 1
+        else
+            cp -p --update=older docs/.well-known/security*.txt site/.wel-known || exit 1
         fi
     fi
 #
@@ -319,6 +321,8 @@ then
     if [ ! -d site/.well-known ]
     then
         cp -rp docs/.well-known site || exit 1
+    else
+        cp -p --update=older docs/.well-known/security*.txt site/.wel-known || exit 1
     fi
 fi
 #
