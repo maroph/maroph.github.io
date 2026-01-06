@@ -1,0 +1,159 @@
+# 06-JAN-2026
+# https://zensical.org/docs/
+[project]
+site_name = "My Main GitHub Page"
+site_description = "My main GitHub Page"
+site_author = "Manfred Rosenboom (maroph)"
+site_url = "https://maroph.github.io/"
+
+docs_dir = "docs"
+site_dir = "site"
+use_directory_urls = false
+
+repo_url = "https://github.com/maroph/maroph.github.io/"
+repo_name = "maroph/maroph.github.io"
+edit_uri = "edit/main/docs/"
+
+copyright = """
+Copyright &copy 2020-2026 <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> by <a href="https://maroph.github.io/">Manfred Rosenboom</a>
+"""
+
+nav = [
+  { "Home" = "index.md" },
+  { "Links" = [
+    { "" = "links.md" },
+    { "My Sites" = "links/my_sites.md" },
+    { "GitHub Pages" = "links/github_pages.md" },
+    { "Collaboration" = "links/collaboration.md" },
+    { "GPT" = "links/gpt.md" },
+    { "Rankings" = "links/rankings.md" },
+    { "Security" = "links/security.md" },
+    { "Software" = "links/software.md" }
+  ]},
+  { "Info" = [
+    { "" = "info.md" },
+    { "About" = "info/about.md" },
+    { "OpenPGP Key" = "info/openpgp/openpgp.md" },
+    { "GDPR/DSGVO" = "info/gdpr.md" },
+    { "License" = "info/license.md" },
+    { "Sources" = "info/sources.md" }
+  ]}
+]
+
+# extra_css = ["stylesheets/extra.css"]
+# extra_javascript = ["javascripts/extra.js"]
+
+
+[project.theme]
+
+#variant = "classic"
+
+#custom_dir = "overrides"
+
+favicon = "assets/zensical_32x32.png"
+language = "en"
+direction = "ltr"
+
+features = [
+    "announce.dismiss",
+    "content.action.edit",
+    "content.action.view",
+    "content.code.annotate",
+    "content.code.copy",
+    "content.code.select",
+    "content.footnote.tooltips",
+    "content.tabs.link",
+    "content.tooltips",
+    "header.autohide",
+    "navigation.expand",
+    "navigation.footer",
+    "navigation.indexes",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+
+    # In order to provide a better user experience on slow connections when
+    # using instant navigation, a progress indicator can be enabled.
+    # https://zensical.org/docs/setup/navigation/#progress-indicator
+    #"navigation.instant.progress",
+
+    "navigation.path",
+    "navigation.prune",
+    "navigation.sections",
+    "navigation.tabs",
+    "navigation.tabs.sticky",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+    "toc.follow"
+
+    # When navigation integration for the table of contents is enabled, it is
+    # always rendered as part of the navigation sidebar on the left.
+    # https://zensical.org/docs/setup/navigation/#navigation-integration
+    #"toc.integrate",
+]
+
+
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+
+[project.theme.font]
+font = false
+
+
+[project.theme.icon]
+# logo = "lucide/smile"
+repo = "fontawesome/brands/github"
+edit = "material/pencil"
+view = "material/eye"
+previous = "fontawesome/solid/angle-left"
+next = "fontawesome/solid/angle-right"
+
+
+[project.markdown_extensions.attr_list]
+
+[project.markdown_extensions.pymdownx.emoji]
+emoji_index = "zensical.extensions.emoji.twemoji" 
+emoji_generator = "zensical.extensions.emoji.to_svg"
+
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = "true"
+line_spans = "__span"
+pygments_lang_class = "true"
+
+[project.markdown_extensions.pymdownx.inlinehilite]
+
+[project.markdown_extensions.pymdownx.snippets]
+
+[project.markdown_extensions.pymdownx.superfences]
+
+[project.markdown_extensions.tables]
+
+[project.plugins.offline]
+enabled = false
+
+
+[[project.extra.social]]
+icon = "fontawesome/solid/blog"
+link = "https://maroph.github.io/nosense/"
+name = "maroph.github.io/nosense"
+[[project.extra.social]]
+icon = "fontawesome/brands/codepen"
+link = "https://codepen.io/maroph/"
+name = "codepen.io/maroph"
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/maroph"
+name = "github.com/maroph"
+[[project.extra.social]]
+icon = "fontawesome/brands/mastodon"
+link = "https://mastodon.social/@maroph"
+name = "mastodon.social/@maroph"
+
