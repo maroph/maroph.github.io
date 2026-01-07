@@ -1,6 +1,6 @@
 # 07-JAN-2026
-# Zensical Documentation:
 # https://zensical.org/docs/
+# Convert mkdocs.yml to zensical.toml
 [project]
 site_name = "My Main GitHub Page"
 site_description = "My main GitHub Page"
