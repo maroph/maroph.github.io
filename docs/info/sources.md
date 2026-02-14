@@ -9,3 +9,6 @@ game released in 1984.
 You can play a modernized version of this game at the following BBC site
 [The Hitchhiker's Guide to the Galaxy - 30th Anniversary Edition](https://www.bbc.co.uk/programmes/articles/1g84m0sXpnNCv84GpN2PLZG/the-game-30th-anniversary-edition)
 
+I use a local copy of the 
+[JetBrains Mono](https://www.jetbrains.com/lp/mono/) 
+v2.304 font for the code snippets.

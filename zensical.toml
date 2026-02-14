@@ -1,4 +1,4 @@
-# 07-JAN-2026
+# 08-JAN-2026
 # Zensical Documentation:
 # https://zensical.org/docs/
 [project]
@@ -46,15 +46,11 @@ extra_css = ["assets/extra/css/extra.css"]
 
 
 [project.theme]
-
 #variant = "classic"
-
 #custom_dir = "overrides"
-
 favicon = "assets/zensical_32x32.png"
 language = "en"
 direction = "ltr"
-
 features = [
     "announce.dismiss",
     "content.action.edit",
@@ -137,30 +133,27 @@ pygments_lang_class = "true"
 
 [project.markdown_extensions.tables]
 
+
 [project.plugins.offline]
 enabled = false
-
-# still missing
-# plugins:
-#     - privacy:
-#           enabled: true
-#           cache: true
 
 
 [[project.extra.social]]
 icon = "fontawesome/solid/blog"
 link = "https://maroph.github.io/nosense/"
 name = "maroph.github.io/nosense"
+
 [[project.extra.social]]
 icon = "fontawesome/brands/codepen"
 link = "https://codepen.io/maroph/"
 name = "codepen.io/maroph"
+
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
 link = "https://github.com/maroph"
 name = "github.com/maroph"
+
 [[project.extra.social]]
 icon = "fontawesome/brands/mastodon"
 link = "https://mastodon.social/@maroph"
 name = "mastodon.social/@maroph"
-
