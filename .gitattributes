@@ -9,7 +9,9 @@ Makefile  text
 *.adoc    text
 *.asc     text
 *.bash    text eol=lf
+*.bat     text eol=crlf
 *.c       text
+*.cmd     text eol=crlf
 *.css     text
 *.css.map text
 *.csv     text
@@ -42,6 +44,7 @@ Makefile  text
 *.jpg   binary
 *.ld    binary
 *.o     binary
+*.obj   binary
 *.pdf   binary
 *.png   binary
 *.rar   binary

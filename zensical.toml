@@ -1,6 +1,7 @@
-# 08-JAN-2026
+# 22-APR-2026
 # Zensical Documentation:
 # https://zensical.org/docs/
+# Zensical >= 0.0.34
 [project]
 site_name = "My Main GitHub Page"
 site_description = "My main GitHub Page"
@@ -89,16 +90,22 @@ features = [
     #"toc.integrate",
 ]
 
-
-[[project.theme.palette]]
-scheme = "default"
-toggle.icon = "lucide/sun"
-toggle.name = "Switch to dark mode"
-
-[[project.theme.palette]]
-scheme = "slate"
-toggle.icon = "lucide/moon"
-toggle.name = "Switch to light mode"
+palette = [
+  {
+    scheme = "default",
+    toggle = {
+      icon = "lucide/sun",
+      name = "Switch to dark mode"
+    }
+  },
+  {
+    scheme = "slate",
+    toggle = {
+      icon = "lucide/moon",
+      name = "Switch to light mode"
+    }
+  }
+]
 
 
 [project.theme.font]
@@ -138,22 +145,26 @@ pygments_lang_class = "true"
 enabled = false
 
 
-[[project.extra.social]]
-icon = "fontawesome/solid/blog"
-link = "https://maroph.github.io/nosense/"
-name = "maroph.github.io/nosense"
-
-[[project.extra.social]]
-icon = "fontawesome/brands/codepen"
-link = "https://codepen.io/maroph/"
-name = "codepen.io/maroph"
-
-[[project.extra.social]]
-icon = "fontawesome/brands/github"
-link = "https://github.com/maroph"
-name = "github.com/maroph"
-
-[[project.extra.social]]
-icon = "fontawesome/brands/mastodon"
-link = "https://mastodon.social/@maroph"
-name = "mastodon.social/@maroph"
+[project.extra]
+social = [
+    {
+        icon = "fontawesome/solid/blog",
+        link = "https://maroph.github.io/nosense/",
+        name = "maroph.github.io/nosense"
+    },
+    {
+        icon = "fontawesome/brands/codepen",
+        link = "https://codepen.io/maroph/",
+        name = "codepen.io/maroph"
+    },
+    {
+        icon = "fontawesome/brands/github",
+        link = "https://github.com/maroph",
+        name = "github.com/maroph"
+    },
+    {
+        icon = "fontawesome/brands/mastodon",
+        link = "https://mastodon.social/@maroph",
+        name = "mastodon.social/@maroph"
+    }
+]
