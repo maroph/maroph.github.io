@@ -1,8 +1,11 @@
-# 22-APR-2026
+# 08-MAY-2026
 # Zensical Documentation:
 # https://zensical.org/docs/
-# Zensical >= 0.0.34
+# Zensical >= 0.0.40
 [project]
+validation = true
+dev_addr = "localhost:8000"
+
 site_name = "My Main GitHub Page"
 site_description = "My main GitHub Page"
 site_author = "Manfred Rosenboom (maroph)"
@@ -17,13 +20,14 @@ repo_name = "maroph/maroph.github.io"
 edit_uri = "edit/main/docs/"
 
 copyright = """
-Copyright &copy 2020-2026 <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> by <a href="https://maroph.github.io/">Manfred Rosenboom</a>
+Copyright &copy 2020-2026 <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> by <a href="https://maroph.github.io/">Manfred Rosenboom</a><br/>
+<a href="#__consent">Change cookie settings</a>
 """
 
 nav = [
   { "Home" = "index.md" },
   { "Links" = [
-    { "" = "links.md" },
+    { "Links" = "links/index.md" },
     { "My Sites" = "links/my_sites.md" },
     { "GitHub Pages" = "links/github_pages.md" },
     { "Collaboration" = "links/collaboration.md" },
@@ -33,7 +37,7 @@ nav = [
     { "Software" = "links/software.md" }
   ]},
   { "Info" = [
-    { "" = "info.md" },
+    { "Info" = "info/index.md" },
     { "About" = "info/about.md" },
     { "OpenPGP Key" = "info/openpgp/openpgp.md" },
     { "GDPR/DSGVO" = "info/gdpr.md" },
@@ -43,12 +47,9 @@ nav = [
 ]
 
 extra_css = ["assets/extra/css/extra.css"]
-# extra_javascript = ["javascripts/extra.js"]
 
 
 [project.theme]
-#variant = "classic"
-#custom_dir = "overrides"
 favicon = "assets/zensical_32x32.png"
 language = "en"
 direction = "ltr"
@@ -68,12 +69,6 @@ features = [
     "navigation.indexes",
     "navigation.instant",
     "navigation.instant.prefetch",
-
-    # In order to provide a better user experience on slow connections when
-    # using instant navigation, a progress indicator can be enabled.
-    # https://zensical.org/docs/setup/navigation/#progress-indicator
-    #"navigation.instant.progress",
-
     "navigation.path",
     "navigation.prune",
     "navigation.sections",
@@ -83,11 +78,6 @@ features = [
     "navigation.tracking",
     "search.highlight",
     "toc.follow"
-
-    # When navigation integration for the table of contents is enabled, it is
-    # always rendered as part of the navigation sidebar on the left.
-    # https://zensical.org/docs/setup/navigation/#navigation-integration
-    #"toc.integrate",
 ]
 
 palette = [
@@ -168,3 +158,18 @@ social = [
         name = "mastodon.social/@maroph"
     }
 ]
+
+[project.extra.consent]
+title = "Cookie consent"
+description = """
+    We use cookies to recognize your repeated visits and preferences, as well
+    as to measure the effectiveness of our documentation and whether users
+    find what they're searching for. With your consent, you're helping us to
+    make our documentation better.
+"""
+actions = [
+    "accept",
+    "reject",
+    "manage" 
+]
+

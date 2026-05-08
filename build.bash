@@ -10,7 +10,7 @@
 #
 declare -r SCRIPT_NAME=$(basename $0)
 declare -r VERSION="0.1.0"
-declare -r VERSION_DATE="06-JAN-2026"
+declare -r VERSION_DATE="01-MAY-2026"
 declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
@@ -52,7 +52,7 @@ export LANG="en_US.UTF-8"
 check=1
 checkOnly=0
 force=0
-config="-f zensical.toml"
+port=8000
 #
 ###############################################################################
 #
@@ -64,12 +64,12 @@ Usage: ${SCRIPT_NAME} [option(s)] [venv|deploy|serve|shut]
        https://zensical.org/
 
 Options:
-  -h|--help       : show this help and exit
-  -V|--version    : show version information and exit
-  -c|--check-only : check for needed Python3 modules and exit
-  -f|--force      : use option --no-strict for zensical build (not yet available)
-  -m|--mkdocs     : use config file mkdocs.yml instead of zensical.toml
-  -n|--no-check   : no check for needed Python3 modules
+  -h|--help        : show this help and exit
+  -V|--version     : show version information and exit
+  -c|--check-only  : check for needed Python3 modules and exit
+  -f|--force       : use option --strict for zensical build
+  -n|--no-check    : no check for needed Python3 modules
+  -p|--port <port> : change port (default: ${port})
 
   Arguments
   venv          : create the required virtual environment and exit
@@ -77,6 +77,7 @@ Options:
                   (zensical build ; ghp-import - similar to: mkdocs gh-deploy)
   serve         : Run the Zensical builtin development server
                   (zensical serve)
+                  Default URL: http://localhost:${port}
   shut          : shutdown Zensical development web server
 
   Default: call 'zensical build'
@@ -105,11 +106,22 @@ do
             # force=1
             force=0
             ;;
-        -m | --mkdocs)
-            config="-f mkdocs.yml"
-            ;;
         -n | --no-check)
             check=0
+            ;;
+        -p | --port)
+            shift
+            if [ "$1" = "" ]
+            then
+                echo "${SCRIPT_NAME}: option ${option} : port number missing"
+                exit 1
+            fi
+            if ! [[ "$1" =~ ^[1-9][0-9]*$ ]]
+            then
+                echo "${SCRIPT_NAME}: option ${option}: value is not a positive integer number"
+                exit 1
+            fi
+            port=$1
             ;;
         --)
             shift 1
@@ -270,8 +282,8 @@ then
         GHP_IMPORT="ghp-import"
     fi
 #
-    echo "${SCRIPT_NAME}: zensical build ${config} --clean"
-    zensical build ${config} --clean || exit 1
+    echo "${SCRIPT_NAME}: zensical build --clean --strict"
+    zensical build --clean --strict || exit 1
     echo ""
 #
     if [ -d docs/.well-known ]
@@ -294,14 +306,8 @@ fi
 #
 if [ "$1" = "serve" ]
 then
-    if [ ${force} -eq 1 ]
-    then
-        echo "${SCRIPT_NAME}: zensical serve ${config} --no-strict ..."
-        zensical serve ${config} --no-strict &
-    else
-        echo "${SCRIPT_NAME}: zensical serve ${config} ..."
-        zensical serve ${config} &
-    fi
+    echo "${SCRIPT_NAME}: zensical serve --dev-addr "localhost:${port}" ..."
+    zensical serve --dev-addr "localhost:${port}" &
     # echo "#!/bin/bash" >./zensical.shut
     # echo "kill -15 $!" >>./zensical.shut
     # echo "rm ./zensical.shut" >>./zensical.shut
@@ -317,11 +323,11 @@ fi
 #
 if [ ${force} -eq 1 ]
 then
-    echo "${SCRIPT_NAME}: zensical build ${config} --clean --no-strict"
-    zensical build ${config} --clean --no-strict || exit 1
+    echo "${SCRIPT_NAME}: zensical build --clean"
+    zensical build --clean || exit 1
 else
-    echo "${SCRIPT_NAME}: zensical build ${config} --clean"
-    zensical build ${config} --clean || exit 1
+    echo "${SCRIPT_NAME}: zensical build --clean --strict"
+    zensical build --clean --strict || exit 1
 fi
 echo ""
 #

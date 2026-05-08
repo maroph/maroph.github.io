@@ -23,8 +23,6 @@ project.
 
 You can contact me via 
 
-* [Mastodon]{:target="blank" rel="me"}
-* [Personal Home Page]{:target="blank"}
+* [Mastodon](https://mastodon.social/@maroph){:target="blank" rel="me"}
+* [Personal Home Page](https://manfred.rosenboom.name/){:target="blank"}
 
-[Mastodon]: https://mastodon.social/@maroph
-[Personal Home Page]: https://manfred.rosenboom.name/
