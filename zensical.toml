@@ -1,9 +1,8 @@
-# 08-MAY-2026
+# 12-SEP-2026
 # Zensical Documentation:
 # https://zensical.org/docs/
-# Zensical >= 0.0.40
+# Zensical >= 0.0.58
 [project]
-validation = true
 dev_addr = "localhost:8000"
 
 site_name = "My Main GitHub Page"
@@ -15,7 +14,7 @@ docs_dir = "docs"
 site_dir = "site"
 use_directory_urls = false
 
-repo_url = "https://github.com/maroph/maroph.github.io/"
+repo_url = "https://github.com/maroph/maroph.github.io"
 repo_name = "maroph/maroph.github.io"
 edit_uri = "edit/main/docs/"
 
@@ -48,9 +47,21 @@ nav = [
 
 extra_css = ["assets/extra/css/extra.css"]
 
+# https://zensical.org/docs/setup/validation/
+[project.validation]
+invalid_links = true
+invalid_link_anchors = true
+# unresolved_references: 0.0.56: deprecated, will be remove in a future release
+unresolved_references = false
+# unresolved_footnotes = false
+# unused_definitions = false
+# unused_footnotes = false
+# shadowed_definitions = false
+# shadowed_footnotes = false
 
 [project.theme]
-favicon = "assets/zensical_32x32.png"
+favicon = "assets/great_wave_off_kanagawa_32x32.png"
+logo = "assets/great_wave_off_kanagawa_100x100.png"
 language = "en"
 direction = "ltr"
 features = [
@@ -131,17 +142,26 @@ pygments_lang_class = "true"
 [project.markdown_extensions.tables]
 
 
+# https://zensical.org/docs/setup/extensions/macros/
+# [project.markdown_extensions.zensical.extensions.macros]
+# https://zensical.org/docs/compatibility/mkdocs/plugins/#macros
+[project.plugins.macros]
+include_yaml = ["docs/assets/variables.yml"]
+on_undefined = "strict"
+on_error_fail = true
+
+# https://zensical.org/docs/compatibility/mkdocs/plugins/#minify
+[project.plugins.minify]
+minify_html = true
+
 [project.plugins.offline]
 enabled = false
 
 
 [project.extra]
+generator = true
+
 social = [
-    {
-        icon = "fontawesome/solid/blog",
-        link = "https://maroph.github.io/nosense/",
-        name = "maroph.github.io/nosense"
-    },
     {
         icon = "fontawesome/brands/codepen",
         link = "https://codepen.io/maroph/",
@@ -170,6 +190,5 @@ description = """
 actions = [
     "accept",
     "reject",
-    "manage" 
+    "manage"
 ]
-

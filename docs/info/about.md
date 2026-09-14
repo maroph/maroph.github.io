@@ -3,10 +3,8 @@ This is my main GitHub Page.
 
 ## Bio
 My name is Manfred Rosenboom (maroph). I worked as a
-software lead developer for 
-[Fujitsu Germany](https://global.fujitsu/de-de), mainly on the
-[SecDocs Archive Service](https://www.fujitsu.com/de/products/computing/servers/mainframe/bs2000/ccp/) 
-project.
+software lead developer for Fujitsu Germany, 
+mainly on the SecDocs Archive Service project.
 
 ## Skills
 
@@ -24,5 +22,3 @@ project.
 You can contact me via 
 
 * [Mastodon](https://mastodon.social/@maroph){:target="blank" rel="me"}
-* [Personal Home Page](https://manfred.rosenboom.name/){:target="blank"}
-

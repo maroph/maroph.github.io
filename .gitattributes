@@ -11,17 +11,23 @@ Makefile  text
 *.bash    text eol=lf
 *.bat     text eol=crlf
 *.c       text
+*.c_m4    text
 *.cmd     text eol=crlf
 *.css     text
 *.css.map text
 *.csv     text
 *.h       text
 *.html    text
+*.html_m4 text
 *.java    text
 *.js      text
 *.js.map  text
 *.json    text
+*.m4      text
+*.mak     text
+*.man     text
 *.md      text
+*.md_m4   text
 *.py      text
 *.sh      text eol=lf
 *.sql     text

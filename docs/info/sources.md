@@ -1,5 +1,6 @@
 # Sources
-This site is build with [Zensical](https://www.zensical.org/).
+This website was created using
+[Zensical](https://www.zensical.org/) {{ zensical_version }}.
 
 The intro picture (assets/THHGTTG_intro.png) at the home page is a renamed copy 
 of the image <https://ichef.bbci.co.uk/images/ic/480xn/p01td1v2.jpg>. This image 

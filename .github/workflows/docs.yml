@@ -24,9 +24,12 @@ jobs:
         with:
           python-version: 3.x
       - run: pip install zensical
-      - run: zensical build --clean
+      - run: zensical build --clean --strict
       - uses: actions/upload-pages-artifact@v4
         with:
           path: site
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.x
       - uses: actions/deploy-pages@v4
         id: deployment
