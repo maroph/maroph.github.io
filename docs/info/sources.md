@@ -1,5 +1,5 @@
 # Sources
-This website was created using
+This website was created by
 [Zensical](https://www.zensical.org/) {{ zensical_version }}.
 
 The intro picture (assets/THHGTTG_intro.png) at the home page is a renamed copy 

@@ -1,4 +1,4 @@
-# 12-SEP-2026
+# 25-SEP-2026
 # Zensical Documentation:
 # https://zensical.org/docs/
 # Zensical >= 0.0.58
@@ -60,14 +60,15 @@ unresolved_references = false
 # shadowed_footnotes = false
 
 [project.theme]
+font = false
 favicon = "assets/great_wave_off_kanagawa_32x32.png"
 logo = "assets/great_wave_off_kanagawa_100x100.png"
 language = "en"
 direction = "ltr"
 features = [
     "announce.dismiss",
-    "content.action.edit",
-    "content.action.view",
+    # "content.action.edit",
+    # "content.action.view",
     "content.code.annotate",
     "content.code.copy",
     "content.code.select",
@@ -109,10 +110,6 @@ palette = [
 ]
 
 
-[project.theme.font]
-font = false
-
-
 [project.theme.icon]
 # logo = "lucide/smile"
 repo = "fontawesome/brands/github"
@@ -146,13 +143,20 @@ pygments_lang_class = "true"
 # [project.markdown_extensions.zensical.extensions.macros]
 # https://zensical.org/docs/compatibility/mkdocs/plugins/#macros
 [project.plugins.macros]
+enabled = true
 include_yaml = ["docs/assets/variables.yml"]
 on_undefined = "strict"
 on_error_fail = true
 
 # https://zensical.org/docs/compatibility/mkdocs/plugins/#minify
 [project.plugins.minify]
+enabled = true
 minify_html = true
+minify_js = false
+minify_css = false
+htmlmin_opts = {
+    remove_comments = true
+}
 
 [project.plugins.offline]
 enabled = false
