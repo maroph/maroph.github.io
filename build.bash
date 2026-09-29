@@ -12,7 +12,7 @@ declare -r LICENSE="License: CC-BY 4.0 <https://creativecommons.org/licenses/by/
 #
 declare -r SCRIPT_NAME=$(basename $0)
 declare -r VERSION="0.1.0"
-declare -r VERSION_DATE="14-SEP-2026"
+declare -r VERSION_DATE="29-SEP-2026"
 declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
@@ -33,12 +33,17 @@ declare -r SCRIPT_DIR
 #
 ###############################################################################
 #
+declare -r use_markdown_exec=0
+#
+###############################################################################
+#
 if [ -d ${SCRIPT_DIR}/.git ]
 then
     gitrepo=1
 else
     gitrepo=0
 fi
+declare -r gitrepo
 #
 GHP_IMPORT=""
 if [ -x $HOME/bin/ghp-import.bash ]
@@ -61,9 +66,9 @@ port=8000
 print_usage() {
     cat - <<EOT
 
-Usage: ${SCRIPT_NAME} [option(s)] [venv|build|deploy|serve|shut]
+Usage: ${SCRIPT_NAME} [option(s)] [venv|build|deploy|serve|shut|status]
        Call zensical to build the site related files
-       https://zensical.org/
+       https://zensical.org/docs/get-started/
 
 Options:
   -h|--help        : show this help and exit
@@ -71,7 +76,7 @@ Options:
   -c|--check-only  : check for needed Python3 modules and exit
   -f|--force       : don't use option --strict for zensical build
   -n|--no-check    : no check for needed Python3 modules
-  -p|--port <port> : change port (default: ${port})
+  -p|--port <port> : serve: change port (default: ${port})
 
   Arguments
   venv          : create the required virtual environment and exit
@@ -83,10 +88,22 @@ Options:
                   (zensical serve)
                   Default URL: http://localhost:${port}
   shut          : shutdown Zensical development web server
+  status        : show status of  Zensical development web server
 
   Default: call 'zensical build'
 
+  Trace of git commands during deploy:
+
+  GIT_TRACE=1 ${SCRIPT_NAME} deploy
+
 EOT
+}
+#
+###############################################################################
+#
+getpid() {
+    pid=$(ps -opid,cmd | grep '/zensical' | grep -v grep | awk '{ print $1; }')
+    echo "${pid}"
 }
 #
 ###############################################################################
@@ -128,6 +145,14 @@ do
             fi
             port=$1
             ;;
+        --)
+            shift 1
+            break
+            ;;
+        --*)
+            echo "${SCRIPT_NAME}: '$1' : unknown option"
+            exit 1
+            ;;
         -*)
             echo "${SCRIPT_NAME}: '$1' : unknown option"
             exit 1
@@ -143,13 +168,29 @@ done
 if [ "$1" != "" ]
 then
     case "$1" in
-        venv)   ;;
+        venv) ;;
         build) ;;
         deploy) ;;
-        serve)  ;;
+        serve) ;;
         shut)
-            echo "${SCRIPT_NAME}: shutdown Zensical development web server"
-            pkill -15 zensical || exit 1
+            pid=$(getpid)
+            if [ "${pid}" != "" ]
+            then
+                echo "${SCRIPT_NAME}: shutdown Zensical development web server"
+                pkill -15 zensical || exit 1
+            else
+                echo "${SCRIPT_NAME}: Zensical server not running"
+            fi
+            exit 0
+            ;;
+        status)
+            pid=$(getpid)
+            if [ "${pid}" != "" ]
+            then
+                echo "${SCRIPT_NAME}: Zensical server running, pid: ${pid}"
+            else
+                echo "${SCRIPT_NAME}: Zensical server not running"
+            fi
             exit 0
             ;;
         *)
@@ -167,6 +208,13 @@ cd ${SCRIPT_DIR} || exit 1
 #
 if [ "$1" = "venv" ]
 then
+    pid=$(getpid)
+    if [ "${pid}" != "" ]
+    then
+        echo "${SCRIPT_NAME}: Zensical server running, pid: ${pid}"
+        exit 1
+    fi
+    #
     if [ "${VIRTUAL_ENV}" != "" ]
     then
         echo "${SCRIPT_NAME}: deactivate the current virtual environment"
@@ -189,10 +237,15 @@ then
 #
     echo "${SCRIPT_NAME}: python -m pip install --upgrade zensical"
     python -m pip install --upgrade zensical || exit 1
-    echo ""
+#
+    if [ ${use_markdown_exec} -eq 1 ]
+    then
+        echo "${SCRIPT_NAME}: python -m pip install --upgrade markdown-exec"
+        python -m pip install --upgrade markdown-exec || exit 1
+    fi
+#
     echo "${SCRIPT_NAME}: python -m pip install --upgrade ghp-import"
     python -m pip install --upgrade ghp-import || exit 1
-    echo ""
 #
     echo "${SCRIPT_NAME}: python -m pip freeze >requirements.txt"
     python -m pip freeze >${SCRIPT_DIR}/venv/requirements.txt || exit 1
@@ -253,6 +306,19 @@ then
     echo "----------"
     echo ""
 #
+    if [ ${use_markdown_exec} -eq 1 ]
+    then
+        data=$(python -m pip show markdown-exec 2>/dev/null)
+        if [ $? -ne 0 ]
+        then
+            echo "${SCRIPT_NAME}: Python module markdown-exec not available"
+            exit 1
+        fi
+        echo ${data} | awk '{ printf "%s %s\n%s %s\n", $1, $2, $3, $4;}'
+        echo "----------"
+        echo ""
+    fi
+#
     if [ ${checkOnly} -eq 1 ]
     then
         exit 0
@@ -283,6 +349,13 @@ then
         GHP_IMPORT="ghp-import"
     fi
 #
+    pid=$(getpid)
+    if [ "${pid}" != "" ]
+    then
+        echo "${SCRIPT_NAME}: Zensical server running, pid: ${pid}"
+        exit 1
+    fi
+#
     echo "${SCRIPT_NAME}: zensical build --clean --strict"
     zensical build --clean --strict || exit 1
     echo ""
@@ -297,6 +370,9 @@ then
         fi
     fi
 #
+    # export GIT_TRACE=1
+    # export GIT_CURL_VERBOSE=1
+#
     echo "${SCRIPT_NAME}: ghp-import --no-jekyll --push --no-history ./site"
     ${GHP_IMPORT} --no-jekyll --push --no-history ./site || exit 1
     echo ""
@@ -307,36 +383,59 @@ fi
 #
 if [ "$1" = "serve" ]
 then
+    pid=$(getpid)
+    if [ "${pid}" != "" ]
+    then
+        echo "${SCRIPT_NAME}: Zensical server already running, pid: ${pid}"
+        exit 1
+    fi
+    #
+    # File Watcher
+    # see: https://github.com/zensical/zensical/releases/tag/v0.0.28
+    #
+    # You can now opt into using a polling-based file watcher, 
+    # which is particularly useful when running Docker on 
+    # Windows, where filesystem event limitations (e.g., inotify 
+    # constraints) can cause issues.
+    ##### export ZENSICAL_POLL_WATCHER=1
+    # The polling interval is configurable and defaults to 
+    # 500 milliseconds (aligned with MkDocs behavior)
+    ##### export ZENSICAL_POLL_INTERVAL=500
+    #
     rm -fr ./.cache
     rm -fr ./site
     echo "${SCRIPT_NAME}: zensical serve --dev-addr "localhost:${port}" ..."
     zensical serve --dev-addr "localhost:${port}" &
-    # echo "#!/bin/bash" >./zensical.shut
-    # echo "kill -15 $!" >>./zensical.shut
-    # echo "rm ./zensical.shut" >>./zensical.shut
-    # chmod 700 ./zensical.shut
-    # sleep 1
-    # echo ""
-    # echo "shutdown Zensical server: ./zensical.shut"
-    # echo ""
     exit 0
 fi
 #
 ###############################################################################
 #
-grep zensical_version docs/assets/variables.yml >/dev/null 2>/dev/null
-if [ $? -ne 0 ]
+if [ -r docs/assets/variables.yml ]
 then
-    echo "${SCRIPT_NAME}: ERROR: variable zensical_version missing in file data/variables.yml"
-else
-    grep $(zensical --version) docs/assets/variables.yml >/dev/null 2>/dev/null
+    grep zensical_version docs/assets/variables.yml >/dev/null 2>/dev/null
     if [ $? -ne 0 ]
     then
-        echo "${SCRIPT_NAME}: WARN: update Zensical version in variable zensical_version in file data/variables.yml"
+        echo "${SCRIPT_NAME}: ERROR: variable zensical_version missing in file docs/assets/variables.yml"
+    else
+        grep $(zensical --version) docs/assets/variables.yml >/dev/null 2>/dev/null
+        if [ $? -ne 0 ]
+        then
+            echo "${SCRIPT_NAME}: WARN: update Zensical version in variable zensical_version in file docs/assets/variables.yml"
+            echo "${SCRIPT_NAME}: WARN: current Zensical version: $(zensical --version)"
+        fi
     fi
 fi
 #
 ###############################################################################
+#
+pid=$(getpid)
+if [ "${pid}" != "" ]
+then
+    echo "${SCRIPT_NAME}: Zensical server running, pid: ${pid}"
+    exit 1
+fi
+#
 #
 rm -fr ./.cache
 rm -fr ./site

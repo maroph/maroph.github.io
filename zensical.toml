@@ -1,4 +1,4 @@
-# 25-SEP-2026
+# 29-SEP-2026
 # Zensical Documentation:
 # https://zensical.org/docs/
 # Zensical >= 0.0.58
@@ -139,15 +139,6 @@ pygments_lang_class = "true"
 [project.markdown_extensions.tables]
 
 
-# https://zensical.org/docs/setup/extensions/macros/
-# [project.markdown_extensions.zensical.extensions.macros]
-# https://zensical.org/docs/compatibility/mkdocs/plugins/#macros
-[project.plugins.macros]
-enabled = true
-include_yaml = ["docs/assets/variables.yml"]
-on_undefined = "strict"
-on_error_fail = true
-
 # https://zensical.org/docs/compatibility/mkdocs/plugins/#minify
 [project.plugins.minify]
 enabled = true
@@ -157,9 +148,6 @@ minify_css = false
 htmlmin_opts = {
     remove_comments = true
 }
-
-[project.plugins.offline]
-enabled = false
 
 
 [project.extra]
