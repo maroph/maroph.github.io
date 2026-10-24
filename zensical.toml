@@ -1,5 +1,5 @@
-# 13-OCT-2026
-# Zensical >= 0.0.70
+# 24-OCT-2026
+# Zensical >= 0.0.72
 [project]
 dev_addr = "localhost:8000"
 
@@ -142,7 +142,6 @@ pygments_lang_class = "true"
 [project.markdown_extensions.tables]
 
 
-# https://zensical.org/docs/compatibility/mkdocs/plugins/#minify
 [project.plugins.minify]
 enabled = true
 minify_html = true
@@ -151,6 +150,9 @@ minify_css = false
 htmlmin_opts = {
     remove_comments = true
 }
+
+[project.plugins.privacy]
+enabled = true
 
 
 [project.extra]
