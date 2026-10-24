@@ -12,7 +12,7 @@ declare -r LICENSE="License: CC-BY 4.0 <https://creativecommons.org/licenses/by/
 #
 declare -r SCRIPT_NAME=$(basename $0)
 declare -r VERSION="0.1.0"
-declare -r VERSION_DATE="13-OCT-2026"
+declare -r VERSION_DATE="24-OCT-2026"
 declare -r VERSION_STRING="${SCRIPT_NAME}  ${VERSION}  (${VERSION_DATE})"
 #
 ###############################################################################
@@ -61,9 +61,13 @@ fi
 ###############################################################################
 #
 export LANG="en_US.UTF-8"
+umask 0027
+#
+###############################################################################
 #
 check=1
 checkOnly=0
+cleanup=0
 force=0
 port=8000
 #
@@ -80,6 +84,7 @@ Options:
   -h|--help        : show this help and exit
   -V|--version     : show version information and exit
   -c|--check-only  : check for needed Python3 modules and exit
+  --cleanup        : build|deploy|serve: remove from directories .cache and site
   -f|--force       : don't use option --strict for zensical build
   -n|--no-check    : no check for needed Python3 modules
   -p|--port <port> : serve: change port (default: ${port})
@@ -137,6 +142,9 @@ do
             ;;
         -c | --check-only)
             checkOnly=1
+            ;;
+        --cleanup)
+            cleanup=1
             ;;
         -f | --force)
             force=1
@@ -381,6 +389,14 @@ then
         exit 1
     fi
 #
+    if [ ${cleanup} -eq 1 ]
+    then
+        rm -fr ./.cache
+        rm -fr ./site
+        mkdir ./.cache || exit 1
+        mkdir ./site || exit 1
+    fi
+#
     echo "${SCRIPT_NAME}: zensical build --clean --strict"
     zensical build --clean --strict || exit 1
     echo ""
@@ -417,8 +433,13 @@ then
     # 500 milliseconds (aligned with MkDocs behavior)
     ##### export ZENSICAL_POLL_INTERVAL=500
     #
-    rm -fr ./.cache
-    rm -fr ./site
+    if [ ${cleanup} -eq 1 ]
+    then
+        rm -fr ./.cache
+        rm -fr ./site
+        mkdir ./.cache || exit 1
+        mkdir ./site || exit 1
+    fi
     echo "${SCRIPT_NAME}: zensical serve --dev-addr "localhost:${port}" ..."
     zensical serve --dev-addr "localhost:${port}" &
     exit 0
@@ -426,23 +447,23 @@ fi
 #
 ###############################################################################
 #
-if [ ! -r docs/assets/variables.yml ]
+if [ ! -r data/variables.yml ]
 then
     if [ ${use_zensical_version} -eq 1 ]
     then
-        echo "${SCRIPT_NAME}: ERROR: missing file docs/assets/variables.yml"
+        echo "${SCRIPT_NAME}: ERROR: missing file data/variables.yml"
         echo "${SCRIPT_NAME}: ERROR: variable zensical_version is expected in this file"
     fi
 else
-    grep zensical_version docs/assets/variables.yml >/dev/null 2>/dev/null
+    grep zensical_version data/variables.yml >/dev/null 2>/dev/null
     if [ $? -ne 0 ]
     then
-        echo "${SCRIPT_NAME}: ERROR: variable zensical_version missing in file docs/assets/variables.yml"
+        echo "${SCRIPT_NAME}: ERROR: variable zensical_version missing in file data/variables.yml"
     else
-        grep zensical_version docs/assets/variables.yml | grep $(zensical --version) >/dev/null 2>/dev/null
+        grep zensical_version data/variables.yml | grep $(zensical --version) >/dev/null 2>/dev/null
         if [ $? -ne 0 ]
         then
-            echo "${SCRIPT_NAME}: WARN: update Zensical version in variable zensical_version in file docs/assets/variables.yml"
+            echo "${SCRIPT_NAME}: WARN: update Zensical version in variable zensical_version in file data/variables.yml"
             echo "${SCRIPT_NAME}: WARN: current Zensical version: $(zensical --version)"
         fi
     fi
@@ -458,8 +479,13 @@ then
 fi
 #
 #
-rm -fr ./.cache
-rm -fr ./site
+if [ ${cleanup} -eq 1 ]
+then
+    rm -fr ./.cache
+    rm -fr ./site
+    mkdir ./.cache || exit 1
+    mkdir ./site || exit 1
+fi
 if [ ${force} -eq 1 ]
 then
     echo "${SCRIPT_NAME}: zensical build --clean"
