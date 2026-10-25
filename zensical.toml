@@ -4,9 +4,11 @@
 dev_addr = "localhost:8000"
 
 site_name = "My Main GitHub Page"
-site_description = "My main GitHub Page"
 site_author = "Manfred Rosenboom (maroph)"
 site_url = "https://maroph.github.io/"
+site_description = """
+My main GitHub Page
+"""
 
 repo_url = "https://github.com/maroph/maroph.github.io"
 repo_name = "maroph/maroph.github.io"
@@ -142,6 +144,9 @@ pygments_lang_class = "true"
 [project.markdown_extensions.tables]
 
 
+[project.plugins.meta]
+enabled = true
+
 [project.plugins.minify]
 enabled = true
 minify_html = true
@@ -152,6 +157,9 @@ htmlmin_opts = {
 }
 
 [project.plugins.privacy]
+enabled = true
+
+[project.plugins.search]
 enabled = true
 
 
