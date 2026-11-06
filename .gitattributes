@@ -1,5 +1,5 @@
 # my main .gitattributes file
-# Last updated: 19-DEC-2025
+# Last updated: 27-OCT-2026
 .* export-ignore
 #
 * text=auto
@@ -56,6 +56,7 @@ Makefile  text
 *.rar   binary
 *.ttf   binary
 *.war   binary
+*.webp  binary
 *.woff  binary
 *.woff2 binary
 *.zip   binary

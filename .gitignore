@@ -1,5 +1,6 @@
 .cache/
 .idea/
+__pycache__/
+reproduction/
 site/
 venv/
-zensical.shut

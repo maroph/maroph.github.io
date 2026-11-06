@@ -1,5 +1,5 @@
-# 24-OCT-2026
-# Zensical >= 0.0.72
+# 06-NOV-2026
+# Zensical >= 0.1.0
 [project]
 dev_addr = "localhost:8000"
 
@@ -56,18 +56,17 @@ extra_css = ["assets/extra/css/extra.css"]
 [project.validation]
 invalid_links = true
 invalid_link_anchors = true
-# unresolved_references: 0.0.56: deprecated, will be remove in a future release
 unresolved_references = false
-# unresolved_footnotes = false
-# unused_definitions = false
-# unused_footnotes = false
-# shadowed_definitions = false
-# shadowed_footnotes = false
+unresolved_footnotes = false
+unused_definitions = false
+unused_footnotes = false
+shadowed_definitions = false
+shadowed_footnotes = false
 
 [project.theme]
 font = false
-favicon = "assets/great_wave_off_kanagawa_32x32.png"
-logo = "assets/great_wave_off_kanagawa_100x100.png"
+favicon = "assets/great_wave_off_kanagawa_circle_64x64.png"
+logo = "assets/great_wave_off_kanagawa_circle_251x251.png"
 language = "en"
 direction = "ltr"
 features = [
@@ -98,25 +97,26 @@ features = [
 ]
 
 palette = [
-  {
-    scheme = "default",
-    toggle = {
-      icon = "lucide/sun",
-      name = "Switch to dark mode"
+    {
+        scheme = "default",
+        media = "(prefers-color-scheme: light)",
+        toggle = {
+            icon = "lucide/sun",
+            name = "Switch to dark mode"
+          }
+    },
+    {
+        scheme = "slate",
+        media = "(prefers-color-scheme: dark)",
+        toggle = {
+            icon = "lucide/moon",
+            name = "Switch to light mode"
+          }
     }
-  },
-  {
-    scheme = "slate",
-    toggle = {
-      icon = "lucide/moon",
-      name = "Switch to light mode"
-    }
-  }
 ]
 
 
 [project.theme.icon]
-# logo = "lucide/smile"
 repo = "fontawesome/brands/github"
 edit = "material/pencil"
 view = "material/eye"
