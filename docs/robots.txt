@@ -1,0 +1,5 @@
+# https://developers.google.com/crawling/docs/robots-txt/create-robots-txt?hl=en
+User-Agent: __usage_ai-training
+Disallow: /
+
+sitemap: https://maroph.github.io/zensical_sample/sitemap.xml

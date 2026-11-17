@@ -5,10 +5,12 @@
 * text=auto
 #
 Makefile  text
+makefile  text
 #
 *.adoc    text
 *.asc     text
 *.bash    text eol=lf
+*.bash.config text eol=lf
 *.bat     text eol=crlf
 *.c       text
 *.c_m4    text
@@ -28,6 +30,8 @@ Makefile  text
 *.man     text
 *.md      text
 *.md_m4   text
+*.ms      text
+*.ps      text
 *.py      text
 *.sh      text eol=lf
 *.sql     text
@@ -39,6 +43,7 @@ Makefile  text
 *.yml     text
 #
 *.a     binary
+*.bz2   binary
 *.class binary
 *.ear   binary
 *.eot   binary

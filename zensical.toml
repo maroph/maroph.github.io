@@ -1,5 +1,8 @@
-# 06-NOV-2026
-# Zensical >= 0.1.0
+# 17-NOV-2026
+# Zensical >= 0.1.1
+# ---
+# Based on
+# https://github.com/maroph/zensical_sample/blob/main/zensical.toml
 [project]
 dev_addr = "localhost:8000"
 
@@ -52,7 +55,6 @@ nav = [
 
 extra_css = ["assets/extra/css/extra.css"]
 
-# https://zensical.org/docs/setup/validation/
 [project.validation]
 invalid_links = true
 invalid_link_anchors = true
@@ -70,7 +72,7 @@ logo = "assets/great_wave_off_kanagawa_circle_251x251.png"
 language = "en"
 direction = "ltr"
 features = [
-    "announce.dismiss",
+    # "announce.dismiss",
     # "content.action.edit",
     # "content.action.view",
     "content.code.annotate",
@@ -81,7 +83,7 @@ features = [
     "content.tooltips",
     "header.autohide",
     "navigation.expand",
-    "navigation.footer",
+    # "navigation.footer",
     "navigation.indexes",
     "navigation.instant",
     "navigation.instant.prefetch",
@@ -124,24 +126,37 @@ previous = "fontawesome/solid/angle-left"
 next = "fontawesome/solid/angle-right"
 
 
-[project.markdown_extensions.attr_list]
-
-[project.markdown_extensions.pymdownx.emoji]
-emoji_index = "zensical.extensions.emoji.twemoji" 
-emoji_generator = "zensical.extensions.emoji.to_svg"
-
-[project.markdown_extensions.pymdownx.highlight]
-anchor_linenums = "true"
-line_spans = "__span"
-pygments_lang_class = "true"
-
-[project.markdown_extensions.pymdownx.inlinehilite]
-
-[project.markdown_extensions.pymdownx.snippets]
-
-[project.markdown_extensions.pymdownx.superfences]
-
-[project.markdown_extensions.tables]
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+tables = {}
+toc.permalink = true
+pymdownx.arithmatex.generic = true
+pymdownx.betterem = {}
+pymdownx.caret = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+pymdownx.smartsymbols = {}
+# pymdownx.snippets.base_path = "includes"
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}
 
 
 [project.plugins.meta]
@@ -160,7 +175,7 @@ htmlmin_opts = {
 enabled = true
 
 [project.plugins.search]
-enabled = true
+enabled = false
 
 
 [project.extra]
