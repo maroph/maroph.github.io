@@ -1,5 +1,5 @@
-# 17-NOV-2026
-# Zensical >= 0.1.1
+# 21-NOV-2026
+# Zensical >= 0.1.3
 # ---
 # Based on
 # https://github.com/maroph/zensical_sample/blob/main/zensical.toml
@@ -158,6 +158,13 @@ pymdownx.tabbed.combine_header_slug = true
 pymdownx.tasklist.custom_checkbox = true
 pymdownx.tilde = {}
 
+
+[project.plugins.git-revision-date-localized]
+enabled = true
+type = "iso_datetime"
+timezone = "Europe/Amsterdam"
+enable_creation_date = false
+fallback_to_build_date = true
 
 [project.plugins.meta]
 enabled = true
